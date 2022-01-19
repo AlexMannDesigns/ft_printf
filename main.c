@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:42:19 by amann             #+#    #+#             */
-/*   Updated: 2022/01/19 16:32:13 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/19 17:09:49 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	ft_printf(char *s, ...)
 	while (s[i] != '\0')
 	{
 		if (s[i] == '%')
-			ft_printf_helper(&s[i + 1],lst, &i);
+			ft_printf_helper(&s[i + 1], lst, &i);
 		else
 			ft_putchar(s[i]);
 		i++;
@@ -88,10 +88,8 @@ int	main(void)
 	// printf("this is a precision & width test %10.5d\n", 123);
 	// printf("\n3 + 4 + 5 + 6 = %d\n", add_numbers(4, 3, 4, 5, 6));
 	unsigned int i = 5;
-
 	unsigned int *ptr = &i;
-	
-	
+
 	// printf("%10% hello%-10dhello\n", 69);
 	// printf("%10% hello%10dhello\n", 69);
 	printf("%d this is a test %c\n", 5, 'a');
@@ -105,12 +103,16 @@ int	main(void)
 	printf("note with width set to '5', the sign is included\n");
 	printf("%+05d\n", 25);
 	printf("%+05d\n", -25);
+	printf("%10.5+d\n", 25);
+	printf("%10+.5-d\n", 25);
 
-	ft_printf("\n\nft_printf testing begins!!\n\n");
-	ft_printf("hello %d world\n", 5);
-	ft_printf("hello %%L% %%%% h.0 %%d world %d\n", 3, 2);
-	printf("hello %%L% %%%% h.0 %%d world %d\n", 3, 2);
-	ft_printf("hello %hld world\n", 5);
-	ft_printf("hello %hli world %i\n", 3, 2);
+	//ft_printf("%hhLd\n", 5);
+
+	// ft_printf("\n\nft_printf testing begins!!\n\n");
+	// ft_printf("hello %d world\n", 5);
+	// ft_printf("hello %%L% %%%% h.0 %%d world %d\n", 3, 2);
+	// //printf("hello %%L% %%%% h.0 %%d world %d\n", 3, 2);
+	// ft_printf("hello %hld world\n", 5);
+	// ft_printf("hello %hli world %i\n", 3, 2);
 	return (0);
 }

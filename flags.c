@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:25:40 by amann             #+#    #+#             */
-/*   Updated: 2022/01/19 16:31:04 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/19 16:35:42 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ void	handle_flags_and_length(char *s, t_flags *flag, int *helper_i)
 	if (s[0] == 'h' && s[1] == 'h')
 	{
 		flag->hh = TRUE;
-		*helper_i += 1;	
+		*helper_i += 1;
 	}
 	else if (s[0] == 'h')
 		flag->h = TRUE;
 	else if (s[0] == 'l' && s[1] == 'l')
 	{
 		flag->ll = TRUE;
-		*helper_i += 1;	
+		*helper_i += 1;
 	}
 	else if (s[0] == 'l')
 		flag->l = TRUE;
