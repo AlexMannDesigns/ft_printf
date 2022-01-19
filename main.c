@@ -6,20 +6,13 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:42:19 by amann             #+#    #+#             */
-/*   Updated: 2022/01/19 15:51:48 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/19 16:32:13 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-/* 
-*	list of args and address of i needed to determine conversion and how far 
-*	increment i process can effectively be split into two parts, one to handle
-*	the flags, one for the conversion the conversion char will always be the 
-*	last character we are interested in, so we can iterate until hitting this
-*	then increment the i in printf by the number of characters read
-*/
-
+/* control function for handling the different types of output conversion */
 static char	*handle_conv(char *s, va_list lst, int *printf_i, t_flags flag_data)
 {
 	int		i;
@@ -32,10 +25,17 @@ static char	*handle_conv(char *s, va_list lst, int *printf_i, t_flags flag_data)
 	{
 		x = va_arg(lst, int);
 		res = ft_itoa(x);
-		ft_putstr(res);
 	}
 	return (res);
 }
+
+/* 
+*	list of args and address of i needed to determine conversion and how far 
+*	increment i process can effectively be split into two parts, one to handle
+*	the flags, one for the conversion the conversion char will always be the 
+*	last character we are interested in, so we can iterate until hitting this
+*	then increment the i in printf by the number of characters read
+*/
 
 static void	ft_printf_helper(char *s, va_list lst, int *printf_i)
 {
@@ -43,6 +43,7 @@ static void	ft_printf_helper(char *s, va_list lst, int *printf_i)
 	t_flags	flag_data;
 	char	*res;
 
+	initialise_flags(&flag_data);
 	i = 0;
 	while (!ft_isalpha(s[i]) || s[i] == 'h' || s[i] == 'l' || s[i] == 'L')
 	{
@@ -51,11 +52,12 @@ static void	ft_printf_helper(char *s, va_list lst, int *printf_i)
 			ft_putchar('%');
 			break ;
 		}
-		// else
-		// 	handle_flags(s[i], &flag_data);
+		else
+			handle_flags_and_length(s + i, &flag_data, &i);
 		i++;
 	}
 	res = handle_conv(s + i, lst, &i, flag_data);
+	ft_putstr(res);
 	if (res)
 		free(res);
 	*printf_i += i + 1;
@@ -107,7 +109,7 @@ int	main(void)
 	ft_printf("\n\nft_printf testing begins!!\n\n");
 	ft_printf("hello %d world\n", 5);
 	ft_printf("hello %%L% %%%% h.0 %%d world %d\n", 3, 2);
-	//printf("hello %%L% %%%% h.0 %%d world %d\n", 3, 2);
+	printf("hello %%L% %%%% h.0 %%d world %d\n", 3, 2);
 	ft_printf("hello %hld world\n", 5);
 	ft_printf("hello %hli world %i\n", 3, 2);
 	return (0);
