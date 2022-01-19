@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:42:19 by amann             #+#    #+#             */
-/*   Updated: 2022/01/19 13:18:47 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/19 13:42:51 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,36 @@ int	add_numbers(int n, ...)
 	return (sum);
 }
 
+/* list of args and address of i needed to determine conversion and how far increment i */
+void ft_printf_helper(char *s, va_list lst, int *i)
+{
+	int x = va_arg(lst, int);
+	if (s[0] == 'd')
+	{
+		x += '0'; // ft_itoa is probs what's needed here...
+		write(1, &x, 1);
+	}
+	*i += 1;
+}
+
 int	ft_printf(char *s, ...)
 {
-	//va_list ptr;
-	//va_start(ptr, s);
-	for (int i = 0; s[i] != '\0'; i++)
-		write(1, &s[i], 1);
-	//va_end(ptr);
+	va_list ptr;
+	int		i;
+
+	va_start(ptr, s);
+	/* iterate string to find % chars */
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == '%')
+			ft_printf_helper(&s[i + 1], ptr, &i);
+		else
+			write(1, &s[i], 1);
+		i++;
+	}
+	 	
+	va_end(ptr);
 	return (0);
 }
 
@@ -59,6 +82,9 @@ int main(void)
 	printf("note with width set to '5', the sign is included\n");
 	printf("%+05d\n", 25);
 	printf("%+05d\n", -25);
-	ft_printf("hello world\n");
+
+	ft_printf("\n\nft_printf testing begins!!\n\n");
+	ft_printf("hello %d world\n", 5);
+	ft_printf("hello %d world\n", 3 + 2);
 	return (0);
 }
