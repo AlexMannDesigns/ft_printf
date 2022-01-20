@@ -50,8 +50,9 @@ int	main(void)
 
 	//ft_printf("%hhLd\n", 5);
 
+	int x = 57584;
 	ft_printf("\n\nft_printf testing begins!!\n\n");
-	ft_printf("hello %d world\n", 57584);
+	ft_printf("hello %d world\n", x);
 	ft_printf("hello %d world\n", -205657584);
 	ft_printf("hello %%d world %d%%\n", 3, 2);
 	//printf("hello %%d world %d\n", 3, 2);
@@ -89,5 +90,16 @@ int	main(void)
 	ft_printf("ft_printf uppercase hexadecimal: %X\n", 10527024);
 	printf("printf uppercase hexadecimal: %X\n", 10527024);
 
+	char *str = "...and this is a string in a variable";
+	char a = 'a';
+	ft_printf("\nstring/char conversions:\n\n");
+	ft_printf("\nft_printf string: %s || %s\n", "hello world", str);
+	printf("printf string: %s || %s\n", "hello world", str);
+	ft_printf("\n---------\n");
+	ft_printf("\nft_printf string: %s || %s || check digits still work: %d\n", "hello world", str, 123);
+	printf("printf string: %s || %s || check digits still work: %d\n", "hello world", str, 123);
+	ft_printf("\n---------\n");
+	ft_printf("\nft_printf char: %c || %s %c || check digits still work: %d\n", 'a', "this is a char variable:", a, 123);
+	printf("printf char: %c || %s %c || check digits still work: %d\n", 'a', "this is a char variable:", a, 123);
 	return (0);
 }

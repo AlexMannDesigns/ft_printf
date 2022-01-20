@@ -6,18 +6,20 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:42:19 by amann             #+#    #+#             */
-/*   Updated: 2022/01/20 11:58:29 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/20 13:17:00 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-*	list of args and address of i needed to determine conversion and how far 
+*	list of args and address of i needed to determine conversion and how far
 *	increment i process can effectively be split into two parts, one to handle
-*	the flags, one for the conversion the conversion char will always be the 
+*	the flags, one for the conversion the conversion char will always be the
 *	last character we are interested in, so we can iterate until hitting this
-*	then increment the i in printf by the number of characters read
+*	then increment the i in printf by the number of characters read.
+*	We also need to handle width, precision and lenght before printing the
+*	resulting string.
 */
 
 static void	ft_printf_helper(char *s, va_list lst, int *printf_i)
@@ -31,7 +33,7 @@ static void	ft_printf_helper(char *s, va_list lst, int *printf_i)
 	i = 0;
 	while (!ft_isalpha(s[i]) || s[i] == 'h' || s[i] == 'l' || s[i] == 'L')
 	{
-		if (s[i] == '%')
+		if (s[i] == '%') //maybe add a percentage flag to the struct to save space here
 		{
 			ft_putchar('%');
 			break ;
