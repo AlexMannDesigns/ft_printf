@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:25:40 by amann             #+#    #+#             */
-/*   Updated: 2022/01/19 16:35:42 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/20 11:23:03 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	initialise_flags(t_flags *flag)
 	flag->space = FALSE;
 }
 
-static void	handle_flags(char *s, t_flags *flag)
+static void	set_flags(char *s, t_flags *flag)
 {
 	if (s[0] == 'L')
 		flag->big_l = TRUE;
@@ -42,9 +42,9 @@ static void	handle_flags(char *s, t_flags *flag)
 		flag->space = TRUE;
 }
 
-void	handle_flags_and_length(char *s, t_flags *flag, int *helper_i)
+void	set_flags_and_length(char *s, t_flags *flag, int *helper_i)
 {
-	handle_flags(s, flag);
+	set_flags(s, flag);
 	if (s[0] == 'h' && s[1] == 'h')
 	{
 		flag->hh = TRUE;

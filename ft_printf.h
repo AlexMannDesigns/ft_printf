@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/01/19 16:29:47 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/20 11:56:48 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,20 @@ typedef struct s_flags
 
 /***** FUNCTION PROTOTYPING *****/
 
-/* main.c */
+/* ft_printf.c */
 int		ft_printf(char *s, ...);
 
 /* flags.c */
-void	handle_flags_and_length(char *s, t_flags *flag, int *helper_i);
+void	set_flags_and_length(char *s, t_flags *flag, int *helper_i);
 void	initialise_flags(t_flags *flag);
+
+/* conversion_control.c */
+char	*conversion_control(char *s, va_list lst, t_flags flag_data);
+
+/* numeric_conversion.c */
+void	numeric_conv_dispatcher(char c, int x, char **res);
+
+/* ft_itoa_base.c */
+char	*ft_itoa_base(int value, int base);
 
 #endif
