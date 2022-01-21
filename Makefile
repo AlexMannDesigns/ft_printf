@@ -6,7 +6,7 @@
 #    By: amann <amann@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 12:30:40 by amann             #+#    #+#              #
-#    Updated: 2022/01/21 13:05:57 by amann            ###   ########.fr        #
+#    Updated: 2022/01/21 15:01:11 by amann            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,10 +14,11 @@
 NAME = libftprintf.a
 FLAGS = -Wall -Wextra -Werror
 SRCS = conversion_control.c ft_itoa_base.c ft_printf.c	set_flags.c 			\
-		numeric_conversion.c #flag_control.c (WIP)
+		numeric_conversion.c width_precision.c #flag_control.c (WIP)
 OBJ = $(SRCS:.c=.o)
 TEST = tests.c
 LIB_DIR = libft/
+ARC = $(LIB_DIR)libft.a
 
 #RULES
 all: $(NAME)
@@ -27,8 +28,9 @@ $(NAME):
 	@@ar rcs $(NAME) $(OBJ)
 	@@ranlib $(NAME)
 
+#the below is just for testing with my main - spits out a binary called test
 test: $(NAME)
-	gcc $(FLAGS) $(TEST) $(NAME) -o test
+	gcc -o test $(TEST) $(NAME) -I $(LIB_DIR) $(ARC)
 
 clean:
 	@@/bin/rm -f $(OBJ)

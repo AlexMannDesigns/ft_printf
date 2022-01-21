@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/01/21 11:13:33 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/21 16:08:58 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ typedef struct s_flags
 	unsigned int	percent;
 }					t_flags;
 
+typedef struct s_width
+{
+	size_t	precision;
+	size_t	width;
+}			t_width;
+
 /***** FUNCTION PROTOTYPING *****/
 
 /* ft_printf.c */
@@ -48,7 +54,10 @@ int		ft_printf(char *s, ...);
 
 /* set_flags.c */
 void	set_flags_and_length(char *s, t_flags *flag, int *helper_i);
-void	initialise_flags(t_flags *flag);
+void	initialise_structs(t_flags *flag, t_width *width);
+
+/* width_precision.c */
+void	set_width_precision(char *s, t_width *data, int *helper_i);
 
 /* conversion_control.c */
 char	*conversion_control(char *s, va_list lst, t_flags flag_data);

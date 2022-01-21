@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flags.c                                            :+:      :+:    :+:   */
+/*   set_flags.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:25:40 by amann             #+#    #+#             */
-/*   Updated: 2022/01/21 10:51:41 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/21 14:22:47 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 /*	each time a new conversion starts, flag should all be set to FALSE */
-void	initialise_flags(t_flags *flag)
+void	initialise_structs(t_flags *flag, t_width *width)
 {
 	flag->h = FALSE;
 	flag->hh = FALSE;
@@ -25,6 +25,8 @@ void	initialise_flags(t_flags *flag)
 	flag->plus = FALSE;
 	flag->space = FALSE;
 	flag->percent = FALSE;
+	width->precision = 0;
+	width->width = 0;
 }
 
 static void	set_flags(char *s, t_flags *flag)
