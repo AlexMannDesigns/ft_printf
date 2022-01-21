@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 11:00:46 by amann             #+#    #+#             */
-/*   Updated: 2022/01/20 11:31:09 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/21 10:43:29 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static char	*itoa_reverse(char *str)
 {
-	int	len;
-	int	i;
+	int		len;
+	int		i;
 	char	temp;
 
 	len = ft_strlen(str) - 1;
 	i = 0;
-	while (i <= (len/2))
+	while (i <= (len / 2))
 	{
 		temp = str[i];
 		str[i] = str[len - i];
@@ -51,7 +51,7 @@ static char	*itoa_helper_neg(int nb, int base, char *res)
 static char	*itoa_helper(int nb, int base, char *res)
 {
 	char	*arr;
-	int	i;
+	int		i;
 
 	arr = "0123456789ABCDEF";
 	i = 0;
@@ -65,15 +65,25 @@ static char	*itoa_helper(int nb, int base, char *res)
 	return (res);
 }
 
+static char	*negative_control(int value, int base, char *res)
+{
+	value = value * -1;
+	if (base == 10)
+		res = itoa_helper_neg(value, base, res);
+	else
+		res = itoa_helper(value, base, res);
+	return (res);
+}
+
 char	*ft_itoa_base(int value, int base)
 {
 	char	*res;
-	int 	i;
-	int	n;
+	int		i;
+	int		n;
 
 	n = value;
 	i = 0;
-	while ( n / base > 0)
+	while (n / base > 0)
 	{	
 		n = n / base;
 		i++;
@@ -83,13 +93,7 @@ char	*ft_itoa_base(int value, int base)
 	else
 		res = (char *) malloc(sizeof(char) * i);
 	if (value < 0)
-	{
-		value = value * -1;
-		if (base == 10)
-			res = itoa_helper_neg(value, base, res);
-		else
-			res = itoa_helper(value, base, res);
-	}
+		res = negative_control(value, base, res);
 	else
 		res = itoa_helper(value, base, res);
 	return (itoa_reverse(res));

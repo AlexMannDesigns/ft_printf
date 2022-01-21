@@ -29,8 +29,8 @@ int	main(void)
 	// printf("this is a width test%10i!\n", 123);
 	// printf("this is a precision & width test %10.5d\n", 123);
 	// printf("\n3 + 4 + 5 + 6 = %d\n", add_numbers(4, 3, 4, 5, 6));
-	unsigned int i = 5;
-	unsigned int *ptr = &i;
+	// unsigned int i = 5;
+	// unsigned int *ptr = &i;
 
 	// printf("%10% hello%-10dhello\n", 69);
 	// printf("%10% hello%10dhello\n", 69);

@@ -19,7 +19,7 @@
 */
 static char	*handle_char(char c)
 {
-	char *res;
+	char	*res;
 
 	res = ft_strnew(2);
 	res[0] = c;
@@ -39,6 +39,7 @@ char	*conversion_control(char *s, va_list lst, t_flags flag_data)
 	else if (s[0] == 'c')
 		res = handle_char((char) va_arg(lst, int));
 	else
-		res = ft_strdup("*** I'm not entirely sure this is the conversion you meant! ***"); //just here for testing
+		res = ft_strdup("*** This is not the conv you're looking for ***");
+	flag_data.hash = FALSE;
 	return (res);
 }

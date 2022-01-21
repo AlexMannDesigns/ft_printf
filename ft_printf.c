@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:42:19 by amann             #+#    #+#             */
-/*   Updated: 2022/01/20 13:17:00 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/21 10:46:07 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	ft_printf_helper(char *s, va_list lst, int *printf_i)
 	i = 0;
 	while (!ft_isalpha(s[i]) || s[i] == 'h' || s[i] == 'l' || s[i] == 'L')
 	{
-		if (s[i] == '%') //maybe add a percentage flag to the struct to save space here
+		if (s[i] == '%')
 		{
 			ft_putchar('%');
 			break ;
@@ -49,6 +49,8 @@ static void	ft_printf_helper(char *s, va_list lst, int *printf_i)
 		free(res);
 	*printf_i += i + 1;
 }
+
+/*add a percentage flag to the struct to save space*/
 
 int	ft_printf(char *s, ...)
 {
