@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/01/20 11:56:48 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/21 11:13:33 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_flags
 	unsigned int	left;
 	unsigned int	plus;
 	unsigned int	space;
+	unsigned int	percent;
 }					t_flags;
 
 /***** FUNCTION PROTOTYPING *****/
@@ -45,7 +46,7 @@ typedef struct s_flags
 /* ft_printf.c */
 int		ft_printf(char *s, ...);
 
-/* flags.c */
+/* set_flags.c */
 void	set_flags_and_length(char *s, t_flags *flag, int *helper_i);
 void	initialise_flags(t_flags *flag);
 

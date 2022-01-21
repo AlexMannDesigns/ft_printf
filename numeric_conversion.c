@@ -54,7 +54,7 @@ void	numeric_conv_dispatcher(char c, int x, char **res)
 		*res = (*p[0])(x);
 	else if (c == 'o')
 		*res = (*p[1])(x);
-	else if (c == 'x')
+	else if (c == 'x' || c == 'p')
 		*res = (*p[2])(x);
 	else if (c == 'X')
 		*res = (*p[3])(x);

@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:42:19 by amann             #+#    #+#             */
-/*   Updated: 2022/01/21 10:46:07 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/21 10:58:06 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,10 @@ static void	ft_printf_helper(char *s, va_list lst, int *printf_i)
 	i = 0;
 	while (!ft_isalpha(s[i]) || s[i] == 'h' || s[i] == 'l' || s[i] == 'L')
 	{
-		if (s[i] == '%')
-		{
-			ft_putchar('%');
-			break ;
-		}
-		else
-			set_flags_and_length(s + i, &flag_data, &i);
+		set_flags_and_length(s + i, &flag_data, &i);
 		i++;
 	}
-	if (s[i] != '%')
-		res = conversion_control(s + i, lst, flag_data);
+	res = conversion_control(s + i, lst, flag_data);
 	ft_putstr(res);
 	if (res)
 		free(res);

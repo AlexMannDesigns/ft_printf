@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:25:40 by amann             #+#    #+#             */
-/*   Updated: 2022/01/20 11:23:03 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/21 10:51:41 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	initialise_flags(t_flags *flag)
 	flag->left = FALSE;
 	flag->plus = FALSE;
 	flag->space = FALSE;
+	flag->percent = FALSE;
 }
 
 static void	set_flags(char *s, t_flags *flag)
@@ -59,4 +60,6 @@ void	set_flags_and_length(char *s, t_flags *flag, int *helper_i)
 	}
 	else if (s[0] == 'l')
 		flag->l = TRUE;
+	else if (s[0] == '%')
+		flag->percent = TRUE;
 }

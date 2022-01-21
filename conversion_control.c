@@ -34,6 +34,8 @@ char	*conversion_control(char *s, va_list lst, t_flags flag_data)
 	if (s[0] == 'd' || s[0] == 'i' || s[0] == 'o' || s[0] == 'u'
 		|| s[0] == 'x' || s[0] == 'X')
 		numeric_conv_dispatcher(s[0], va_arg(lst, int), &res);
+	else if (s[0] == 'p')
+		numeric_conv_dispatcher(s[0], va_arg(lst, long int), &res);
 	else if (s[0] == 's')
 		res = ft_strdup(va_arg(lst, char *));
 	else if (s[0] == 'c')
