@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/01/21 16:08:58 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/24 13:30:11 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_flags
 	unsigned int	plus;
 	unsigned int	space;
 	unsigned int	percent;
+	unsigned int	numeric;
 }					t_flags;
 
 typedef struct s_width
@@ -60,7 +61,7 @@ void	initialise_structs(t_flags *flag, t_width *width);
 void	set_width_precision(char *s, t_width *data, int *helper_i);
 
 /* conversion_control.c */
-char	*conversion_control(char *s, va_list lst, t_flags flag_data);
+char	*conversion_control(char *s, va_list lst, t_flags *flag_data);
 
 /* numeric_conversion.c */
 void	numeric_conv_dispatcher(char c, int x, char **res);

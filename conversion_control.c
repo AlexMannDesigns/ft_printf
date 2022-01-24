@@ -26,22 +26,28 @@ static char	*handle_char(char c)
 	return (res);
 }
 
-char	*conversion_control(char *s, va_list lst, t_flags flag_data)
+char	*conversion_control(char *s, va_list lst, t_flags *flag_data)
 {
 	char	*res;
 
 	res = NULL;
 	if (s[0] == 'd' || s[0] == 'i' || s[0] == 'o' || s[0] == 'u'
 		|| s[0] == 'x' || s[0] == 'X')
+	{
+		flag_data->numeric = TRUE;
 		numeric_conv_dispatcher(s[0], va_arg(lst, int), &res);
+	}
 	else if (s[0] == 'p')
+	{
+		flag_data->numeric = TRUE;
 		numeric_conv_dispatcher(s[0], va_arg(lst, long int), &res);
+	}
 	else if (s[0] == 's')
 		res = ft_strdup(va_arg(lst, char *));
 	else if (s[0] == 'c')
 		res = handle_char((char) va_arg(lst, int));
 	else
 		res = ft_strdup("*** This is not the conv you're looking for ***");
-	flag_data.hash = FALSE;
+	flag_data->hash = FALSE;
 	return (res);
 }
