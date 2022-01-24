@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/01/24 13:30:11 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/24 15:12:56 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_flags
 
 typedef struct s_width
 {
-	size_t	precision;
+	size_t	prec;
 	size_t	width;
 }			t_width;
 
@@ -69,4 +69,6 @@ void	numeric_conv_dispatcher(char c, int x, char **res);
 /* ft_itoa_base.c */
 char	*ft_itoa_base(int value, int base);
 
+/* print_result.c */
+void	print_result(char *s, t_width w, t_flags flag);
 #endif
