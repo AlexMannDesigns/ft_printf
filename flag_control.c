@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:14:26 by amann             #+#    #+#             */
-/*   Updated: 2022/01/21 13:07:14 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/25 14:47:36 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,3 +24,9 @@
 *	' ' leaves an empty space before positive numbers
 *	% just prints a percentage sign.
 */
+char	*flag_control(char *res, t_flags flag, t_conv conv, t_width width)
+{
+	if ((flag.hash && conv.numeric) || ((conv.x || conv.big_x) && width.prec))
+		return (handle_hash(res, conv, width, flag));
+	return (res);
+}
