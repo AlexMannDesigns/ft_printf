@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:25:40 by amann             #+#    #+#             */
-/*   Updated: 2022/01/25 14:47:59 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/26 14:34:30 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,38 +36,39 @@ void	initialise_structs(t_flags *flag, t_width *width, t_conv *conv)
 	conv->big_x = FALSE;
 	conv->f = FALSE;
 	conv->p = FALSE;
+	conv->neg = FALSE;
 }
 
-static void	set_flags(char *s, t_flags *flag)
+static void	set_flags(char *s, t_flags *flag, t_width width)
 {
 	if (s[0] == 'L')
 		flag->big_l = TRUE;
 	else if (s[0] == '#')
 		flag->hash = TRUE;
-	else if (s[0] == '0')
+	else if (s[0] == '0' && !width.width && !width.prec)
 		flag->zero = TRUE;
 	else if (s[0] == '-')
 		flag->left = TRUE;
 	else if (s[0] == '+')
 		flag->plus = TRUE;
-	else if (s[0] == ' ')
+	else if (s[0] == 32)
 		flag->space = TRUE;
 }
 
-void	set_flags_and_length(char *s, t_flags *flag, int *helper_i)
+void	set_flags_and_length(char *s, t_flags *flag, int *h_i, t_width width)
 {
-	set_flags(s, flag);
+	set_flags(s, flag, width);
 	if (s[0] == 'h' && s[1] == 'h')
 	{
 		flag->hh = TRUE;
-		*helper_i += 1;
+		*h_i += 1;
 	}
 	else if (s[0] == 'h')
 		flag->h = TRUE;
 	else if (s[0] == 'l' && s[1] == 'l')
 	{
 		flag->ll = TRUE;
-		*helper_i += 1;
+		*h_i += 1;
 	}
 	else if (s[0] == 'l')
 		flag->l = TRUE;

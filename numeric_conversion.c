@@ -42,7 +42,7 @@ static char	*convert_digit(int nb)
 	return (ft_itoa_base(nb, 10));
 }
 
-void	numeric_conv_dispatcher(char c, int x, char **res)
+void	numeric_conv_dispatcher(char c, int x, char **res, t_conv *conv)
 {
 	char	*(*p[4])(int nb);
 
@@ -50,6 +50,8 @@ void	numeric_conv_dispatcher(char c, int x, char **res)
 	p[1] = convert_octal;
 	p[2] = convert_hex_lower;
 	p[3] = convert_hex_upper;
+	if (x < 0)
+		conv->neg = TRUE;
 	if (c == 'd' || c == 'i')
 		*res = (*p[0])(x);
 	else if (c == 'o')

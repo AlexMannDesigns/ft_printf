@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/01/25 14:49:07 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/26 14:22:58 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_conv
 {
 	unsigned int	percent;
 	unsigned int	numeric;
+	unsigned int	neg;
 	unsigned int	d;
 	unsigned int	o;
 	unsigned int	u;
@@ -66,7 +67,7 @@ typedef struct s_conv
 int		ft_printf(char *s, ...);
 
 /* set_flags.c */
-void	set_flags_and_length(char *s, t_flags *flag, int *helper_i);
+void	set_flags_and_length(char *s, t_flags *flag, int *h_i, t_width width);
 void	initialise_structs(t_flags *flag, t_width *width, t_conv *conv);
 
 /* width_precision.c */
@@ -76,7 +77,7 @@ void	set_width_precision(char *s, t_width *data, int *helper_i);
 char	*conversion_control(char *s, va_list lst, t_conv *conv, t_flags *flag);
 
 /* numeric_conversion.c */
-void	numeric_conv_dispatcher(char c, int x, char **res);
+void	numeric_conv_dispatcher(char c, int x, char **res, t_conv *conv);
 
 /* flag_control.c */
 char	*flag_control(char *res, t_flags flag, t_conv conv, t_width width);

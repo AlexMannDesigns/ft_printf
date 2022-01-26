@@ -56,12 +56,12 @@ char	*conversion_control(char *s, va_list lst, t_conv *conv, t_flags *flag)
 		|| s[0] == 'x' || s[0] == 'X')
 	{
 		flag->numeric = TRUE;
-		numeric_conv_dispatcher(s[0], va_arg(lst, int), &res);
+		numeric_conv_dispatcher(s[0], va_arg(lst, int), &res, conv);
 	}
 	else if (s[0] == 'p')
 	{
 		flag->numeric = TRUE;
-		numeric_conv_dispatcher(s[0], va_arg(lst, long int), &res);
+		numeric_conv_dispatcher(s[0], va_arg(lst, long int), &res, conv);
 	}
 	else if (s[0] == 's')
 		res = ft_strdup(va_arg(lst, char *));

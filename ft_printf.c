@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:42:19 by amann             #+#    #+#             */
-/*   Updated: 2022/01/25 14:13:16 by amann            ###   ########.fr       */
+/*   Updated: 2022/01/26 14:33:47 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	ft_printf_helper(char *s, va_list lst, int *printf_i)
 	{
 		if ((ft_isdigit(s[i]) && s[i] != '0') || s[i] == '.')
 			set_width_precision(s + i, &width_data, &i);
-		set_flags_and_length(s + i, &flag_data, &i);
+		set_flags_and_length(s + i, &flag_data, &i, width_data);
 		i++;
 	}
 	res = conversion_control(s + i, lst, &conversion_type, &flag_data);
