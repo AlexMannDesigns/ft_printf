@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:14:26 by amann             #+#    #+#             */
-/*   Updated: 2022/02/01 10:30:11 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/01 10:55:36 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*flag_control(char *res, t_flags flag, t_conv conv, t_width width)
 		res = handle_hash(res, conv, width, flag);
 	if (flag.zero && conv.numeric && width.width && !width.prec && !flag.left)
 		res = handle_zero(res, conv, width.width, flag);
-	if ((flag.plus || flag.space) && conv.d && !conv.neg)
+	if ((flag.plus || flag.space) && conv.d && !conv.neg && res)
 	{
 		len = ft_strlen(res);
 		res = handle_plus(res, flag, width, len);
