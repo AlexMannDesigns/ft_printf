@@ -43,6 +43,8 @@ static char	*handle_char(char c)
 	char	*res;
 
 	res = ft_strnew(2);
+	if (!res)
+		return (NULL);
 	res[0] = c;
 	return (res);
 }

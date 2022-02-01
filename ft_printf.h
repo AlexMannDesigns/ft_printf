@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/01/26 14:22:58 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/01 08:54:05 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,11 @@ void	numeric_conv_dispatcher(char c, int x, char **res, t_conv *conv);
 /* flag_control.c */
 char	*flag_control(char *res, t_flags flag, t_conv conv, t_width width);
 
-/* hash_fag.c */
+/* hash_flag.c */
 char	*handle_hash(char *res, t_conv conv, t_width width, t_flags flag);
+
+/* plus_flag.c */
+char	*handle_plus(char *res, t_flags flag, t_width width, size_t len);
 
 /* ft_itoa_base.c */
 char	*ft_itoa_base(int value, int base);

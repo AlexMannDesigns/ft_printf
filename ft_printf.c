@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:42:19 by amann             #+#    #+#             */
-/*   Updated: 2022/01/26 14:33:47 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/01 08:40:00 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,8 @@ int	ft_printf(char *s, ...)
 {
 	va_list	lst;
 	int		i;
-	int		ret;
 
 	va_start(lst, s);
-	ret = 0;
 	i = 0;
 	while (s[i] != '\0')
 	{

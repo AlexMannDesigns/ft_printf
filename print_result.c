@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:37:43 by amann             #+#    #+#             */
-/*   Updated: 2022/01/25 14:50:01 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/01 09:01:01 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,9 @@ static void	precision_helper(char *s, char *res, t_width w, t_flags flag)
 void	print_result(char *s, t_width w, t_flags flag, t_conv conv)
 {
 	char	*res;
-	size_t	start;
 	size_t	len;
 
 	len = ft_strlen(s);
-	start = 0;
 	if (w.prec && w.prec > len && w.width < w.prec && flag.numeric
 		&& !conv.big_x && !conv.x && !conv.p)
 		res = ft_strnew(w.prec);
@@ -69,6 +67,8 @@ void	print_result(char *s, t_width w, t_flags flag, t_conv conv)
 		res = width_helper(s, len, w, flag);
 	else
 		res = ft_strdup(s);
+	if (!res)
+		return(NULL);
 	if (!conv.big_x && !conv.x && !conv.p)
 		precision_helper(s, res, w, flag);
 	ft_putstr(res);

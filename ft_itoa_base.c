@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 11:00:46 by amann             #+#    #+#             */
-/*   Updated: 2022/01/21 10:43:29 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/01 08:44:14 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ char	*ft_itoa_base(int value, int base)
 		res = (char *) malloc(sizeof(char) * (i + 1));
 	else
 		res = (char *) malloc(sizeof(char) * i);
+	if (!res)
+		return (NULL);
 	if (value < 0)
 		res = negative_control(value, base, res);
 	else

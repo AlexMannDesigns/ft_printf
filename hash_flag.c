@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:43:01 by amann             #+#    #+#             */
-/*   Updated: 2022/01/25 14:47:45 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/01 09:04:47 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static char	*hex_hash_helper(char *res, t_conv conv, size_t len)
 	lower_hex = "0x";
 	upper_hex = "0X";
 	new = ft_strnew(len + 2);
+	if (!new)
+		return (NULL);
 	if (conv.x)
 		ft_strcpy(new, lower_hex);
 	else
@@ -46,6 +48,8 @@ static char	*hex_precision(char *res, size_t prec)
 	if (len < prec)
 	{
 		new = ft_strnew(prec);
+		if (!new)
+			return (NULL);
 		ft_memset(new, '0', prec - len);
 		ft_strcpy(new + prec - len, res);
 		free(res);
@@ -61,6 +65,8 @@ char	*handle_hash(char *res, t_conv conv, t_width width, t_flags flag)
 	if (conv.o)
 	{
 		new = ft_strnew(ft_strlen(res) + 1);
+		if (!new)
+			return (NULL);
 		ft_memset(new, '0', 1);
 		ft_strcpy(new + 1, res);
 		free(res);
