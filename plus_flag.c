@@ -12,6 +12,14 @@
 
 #include "ft_printf.h"
 
+static char	sign_selector(t_flags flag)
+{
+	if (flag.plus)
+		return ('+');
+	else
+		return ((char)32);
+}
+
 static char	*plus_helper(int len, t_width width, char sign, char *res)
 {
 	char	*new;

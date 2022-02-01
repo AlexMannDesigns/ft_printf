@@ -23,6 +23,8 @@ static char	*convert_hex_lower(int nb)
 	int		i;
 
 	res = ft_itoa_base(nb, 16);
+	if (!res)
+		return (NULL);
 	i = 0;
 	while (res[i] != '\0')
 	{

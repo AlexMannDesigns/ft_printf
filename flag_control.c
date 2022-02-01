@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:14:26 by amann             #+#    #+#             */
-/*   Updated: 2022/02/01 08:53:01 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/01 10:30:11 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,17 @@ static char	*handle_zero(char *res, t_conv conv, size_t width, t_flags flag)
 	char	*new;
 	size_t	len;
 
+	if (!res)
+		return (NULL);
 	len = ft_strlen(res);
 	if (len > width)
 		return (res);
 	new = ft_strnew(width + 1);
 	if (!new)
+	{
+		ft_memdel((void **)&res);
 		return (NULL);
+	}
 	ft_memset(new, '0', width - len);
 	ft_strcpy(new + width - len, res);
 	free(res);
@@ -62,18 +67,12 @@ static char	*handle_zero(char *res, t_conv conv, size_t width, t_flags flag)
 	return (new);
 }
 
-static char	sign_selector(t_flags flag)
-{
-	if (flag.plus)
-		return ('+');
-	else
-		return ((char)32);
-}
-
 char	*flag_control(char *res, t_flags flag, t_conv conv, t_width width)
 {
 	size_t	len;
 
+	if (!res)
+		return (NULL);
 	if ((flag.hash && conv.numeric) || ((conv.x || conv.big_x) && width.prec))
 		res = handle_hash(res, conv, width, flag);
 	if (flag.zero && conv.numeric && width.width && !width.prec && !flag.left)
