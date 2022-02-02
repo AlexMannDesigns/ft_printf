@@ -6,14 +6,14 @@
 #    By: amann <amann@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 12:30:40 by amann             #+#    #+#              #
-#    Updated: 2022/02/01 08:54:17 by amann            ###   ########.fr        #
+#    Updated: 2022/02/02 15:57:23 by amann            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #VARIABLES
 NAME = libftprintf.a
 FLAGS = -Wall -Wextra -Werror
-SRCS = conversion_control.c ft_itoa_base.c ft_printf.c	set_flags.c 			\
+SRCS = conversion_control.c ft_itoa_base.c ft_printf.c set_flags.c 				\
 		numeric_conversion.c width_precision.c 	print_result.c	flag_control.c	\
 		hash_flag.c plus_flag.c
 OBJ = $(SRCS:.c=.o)

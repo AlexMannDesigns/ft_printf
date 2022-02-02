@@ -78,7 +78,7 @@ char	*conversion_control(char *s, va_list lst, t_conv *conv, t_flags *flag)
 	}
 	else if (s[0] == 's')
 		res = ft_strdup(va_arg(lst, char *));
-	else if (s[0] == 'c' || s[0] == '%')
+	else if (s[0] == 'c')
 		res = handle_char((char) va_arg(lst, int));
 	else if (s[0] == '%')
 		res = handle_percent();
