@@ -49,6 +49,17 @@ static char	*handle_char(char c)
 	return (res);
 }
 
+static char *handle_percent(void)
+{
+	char	*res;
+
+	res = ft_strnew(2);
+	if (!res)
+		return (NULL);
+	res[0] = '%';
+	return (res);
+}
+
 char	*conversion_control(char *s, va_list lst, t_conv *conv, t_flags *flag)
 {
 	char	*res;
@@ -67,10 +78,12 @@ char	*conversion_control(char *s, va_list lst, t_conv *conv, t_flags *flag)
 	}
 	else if (s[0] == 's')
 		res = ft_strdup(va_arg(lst, char *));
-	else if (s[0] == 'c')
+	else if (s[0] == 'c' || s[0] == '%')
 		res = handle_char((char) va_arg(lst, int));
+	else if (s[0] == '%')
+		res = handle_percent();
 	else
-		res = ft_strdup("*** This is not the conv you're looking for ***");
+		res = ft_strdup("*** error ***");
 	set_conv_type(s[0], conv);
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:42:19 by amann             #+#    #+#             */
-/*   Updated: 2022/02/02 14:54:41 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/02 15:49:03 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static void	ft_printf_helper(char *s, va_list lst, int *printf_i)
 	initialise_structs(&flag_data, &width_data, &conversion_type);
 	res = NULL;
 	i = 0;
-	while (!ft_isalpha(s[i]) || s[i] == 'h' || s[i] == 'l' || s[i] == 'L')
+	while ((!ft_isalpha(s[i]) && s[i] != '%') || s[i] == 'h' || s[i] == 'l' 
+		|| s[i] == 'L')
 	{
 		if ((ft_isdigit(s[i]) && s[i] != '0') || s[i] == '.')
 			set_width_precision(s + i, &width_data, &i);
