@@ -58,19 +58,19 @@ char	*conversion_control(char *s, va_list lst, t_conv *conv, t_flags *flag)
 		|| s[0] == 'x' || s[0] == 'X')
 	{
 		flag->numeric = TRUE;
-		numeric_conv_dispatcher(s[0], va_arg(lst, int), &res, conv); //potentially returns null pointer
+		numeric_conv_dispatcher(s[0], va_arg(lst, int), &res, conv);
 	}
 	else if (s[0] == 'p')
 	{
 		flag->numeric = TRUE;
-		numeric_conv_dispatcher(s[0], va_arg(lst, long int), &res, conv); //potentially returns null pointer
+		numeric_conv_dispatcher(s[0], va_arg(lst, long int), &res, conv);
 	}
 	else if (s[0] == 's')
-		res = ft_strdup(va_arg(lst, char *)); //potentially returns null pointer
+		res = ft_strdup(va_arg(lst, char *));
 	else if (s[0] == 'c')
-		res = handle_char((char) va_arg(lst, int)); //potentially returns null pointer
+		res = handle_char((char) va_arg(lst, int));
 	else
-		res = ft_strdup("*** This is not the conv you're looking for ***"); //potentially returns null pointer
+		res = ft_strdup("*** This is not the conv you're looking for ***");
 	set_conv_type(s[0], conv);
 	return (res);
 }
