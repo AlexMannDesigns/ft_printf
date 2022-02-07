@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 11:00:46 by amann             #+#    #+#             */
-/*   Updated: 2022/02/01 08:44:14 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/07 17:18:17 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	*itoa_helper_neg(int nb, int base, char *res)
 	return (res);
 }
 
-static char	*itoa_helper(int nb, int base, char *res)
+static char	*itoa_helper(long long int nb, int base, char *res)
 {
 	char	*arr;
 	int		i;
@@ -75,11 +75,11 @@ static char	*negative_control(int value, int base, char *res)
 	return (res);
 }
 
-char	*ft_itoa_base(int value, int base)
+char	*ft_itoa_base(const long int value, int base)
 {
-	char	*res;
-	int		i;
-	int		n;
+	char			*res;
+	int				i;
+	long int	n;
 
 	n = value;
 	i = 0;

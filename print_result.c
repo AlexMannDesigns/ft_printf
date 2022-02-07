@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:37:43 by amann             #+#    #+#             */
-/*   Updated: 2022/02/01 10:00:23 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/07 12:51:07 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static char	*width_helper(char *s, size_t len, t_width width, t_flags flag)
 	else
 	{
 		ft_strcpy(res, s);
-		ft_memset((void *)res + len, ' ', width.width - len);
+		ft_memset((void *)(res + len), ' ', width.width - len);
 	}
 	return (res);
 }
@@ -44,12 +44,12 @@ static void	precision_helper(char *s, char *res, t_width w, t_flags flag)
 	{
 		ft_memset((void *)res, '0', w.prec - len);
 		ft_strcpy(res + w.prec - len, s);
-		ft_memset((void *)res + w.prec, ' ', w.width - w.prec);
+		ft_memset((void *)(res + w.prec), ' ', w.width - w.prec);
 	}
 	else if (w.prec > len && w.width && flag.numeric)
 	{
 		ft_memset((void *)res, ' ', w.width);
-		ft_memset((void *)res + w.width - w.prec, '0', w.prec - len);
+		ft_memset((void *)(res + w.width - w.prec), '0', w.prec - len);
 		ft_strcpy((res + (w.width - len)), s);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/02/01 08:54:05 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/07 17:24:14 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,6 @@
 # define FALSE 0
 
 /***** STRUCT PROTOTYPING *****/
-
-typedef struct s_flags
-{
-	unsigned int	h;
-	unsigned int	hh;
-	unsigned int	l;
-	unsigned int	ll;
-	unsigned int	big_l;
-	unsigned int	hash;
-	unsigned int	zero;
-	unsigned int	left;
-	unsigned int	plus;
-	unsigned int	space;
-	unsigned int	numeric;
-}					t_flags;
 
 typedef struct s_width
 {
@@ -61,6 +46,24 @@ typedef struct s_conv
 	unsigned int	p;
 }					t_conv;
 
+
+typedef struct s_flags
+{
+	unsigned int	h;
+	unsigned int	hh;
+	unsigned int	l;
+	unsigned int	ll;
+	unsigned int	big_l;
+	unsigned int	hash;
+	unsigned int	zero;
+	unsigned int	left;
+	unsigned int	plus;
+	unsigned int	space;
+	unsigned int	numeric;
+	//t_conv			conv;
+}					t_flags;
+
+
 /***** FUNCTION PROTOTYPING *****/
 
 /* ft_printf.c */
@@ -77,7 +80,7 @@ void	set_width_precision(char *s, t_width *data, int *helper_i);
 char	*conversion_control(char *s, va_list lst, t_conv *conv, t_flags *flag);
 
 /* numeric_conversion.c */
-void	numeric_conv_dispatcher(char c, int x, char **res, t_conv *conv);
+void	numeric_conv_dispatcher(char c, va_list lst, char **res, t_conv *conv, t_flags *flags);
 
 /* flag_control.c */
 char	*flag_control(char *res, t_flags flag, t_conv conv, t_width width);
@@ -89,7 +92,10 @@ char	*handle_hash(char *res, t_conv conv, t_width width, t_flags flag);
 char	*handle_plus(char *res, t_flags flag, t_width width, size_t len);
 
 /* ft_itoa_base.c */
-char	*ft_itoa_base(int value, int base);
+char	*ft_itoa_base(const long int value, int base);
+
+/* ft_abs_long.c */
+long int	ft_abs_long(long long int i);
 
 /* print_result.c */
 void	print_result(char *s, t_width w, t_flags flag, t_conv conv);

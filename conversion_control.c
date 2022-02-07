@@ -66,15 +66,10 @@ char	*conversion_control(char *s, va_list lst, t_conv *conv, t_flags *flag)
 
 	res = NULL;
 	if (s[0] == 'd' || s[0] == 'i' || s[0] == 'o' || s[0] == 'u'
-		|| s[0] == 'x' || s[0] == 'X')
+		|| s[0] == 'x' || s[0] == 'X' || s[0] == 'p')
 	{
 		flag->numeric = TRUE;
-		numeric_conv_dispatcher(s[0], va_arg(lst, int), &res, conv);
-	}
-	else if (s[0] == 'p')
-	{
-		flag->numeric = TRUE;
-		numeric_conv_dispatcher(s[0], va_arg(lst, long int), &res, conv);
+		numeric_conv_dispatcher(s[0], lst, &res, conv, flag);
 	}
 	else if (s[0] == 's')
 		res = ft_strdup(va_arg(lst, char *));
