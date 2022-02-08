@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:14:26 by amann             #+#    #+#             */
-/*   Updated: 2022/02/01 10:55:36 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/08 12:29:43 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,19 @@ static char	*handle_zero(char *res, t_conv conv, size_t width, t_flags flag)
 	return (new);
 }
 
-char	*flag_control(char *res, t_flags flag, t_conv conv, t_width width)
+char	*flag_control(char *res, t_flags flag, t_width width)
 {
 	size_t	len;
+	t_conv	c;
 
+	c = flag.conv;
 	if (!res)
 		return (NULL);
-	if ((flag.hash && conv.numeric) || ((conv.x || conv.big_x) && width.prec))
-		res = handle_hash(res, conv, width, flag);
-	if (flag.zero && conv.numeric && width.width && !width.prec && !flag.left)
-		res = handle_zero(res, conv, width.width, flag);
-	if ((flag.plus || flag.space) && conv.d && !conv.neg && res)
+	if ((flag.hash && c.numeric) || ((c.x || c.big_x) && width.prec) || c.p)
+		res = handle_hash(res, c, width, flag);
+	if (flag.zero && c.numeric && width.width && !width.prec && !flag.left)
+		res = handle_zero(res, c, width.width, flag);
+	if ((flag.plus || flag.space) && c.d && !c.neg && res)
 	{
 		len = ft_strlen(res);
 		res = handle_plus(res, flag, width, len);

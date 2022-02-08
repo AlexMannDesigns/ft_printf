@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 11:00:46 by amann             #+#    #+#             */
-/*   Updated: 2022/02/07 17:18:17 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/08 12:29:29 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ static char	*negative_control(int value, int base, char *res)
 
 char	*ft_itoa_base(const long int value, int base)
 {
-	char			*res;
-	int				i;
+	char		*res;
+	int			i;
 	long int	n;
 
 	n = value;

@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:43:01 by amann             #+#    #+#             */
-/*   Updated: 2022/02/01 10:26:39 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/08 12:24:36 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*hex_hash_helper(char *res, t_conv conv, size_t len)
 		ft_memdel((void **)&res);
 		return (NULL);
 	}
-	if (conv.x)
+	if (conv.x || conv.p)
 		ft_strcpy(new, lower_hex);
 	else
 		ft_strcpy(new, upper_hex);
@@ -81,12 +81,12 @@ char	*handle_hash(char *res, t_conv conv, t_width width, t_flags flag)
 		free(res);
 		return (new);
 	}
-	else if (conv.x || conv.big_x)
+	else if (conv.x || conv.big_x || conv.p)
 	{
 		res = hex_precision(res, width.prec);
 		if (!res)
 			return (NULL);
-		if (flag.hash)
+		if (flag.hash || conv.p)
 			return (hex_hash_helper(res, conv, ft_strlen(res)));
 	}
 	return (res);

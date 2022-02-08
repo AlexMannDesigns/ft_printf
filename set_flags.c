@@ -6,13 +6,13 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:25:40 by amann             #+#    #+#             */
-/*   Updated: 2022/01/26 14:34:30 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/08 12:06:03 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 /*	each time a new conversion starts, flag should all be set to FALSE */
-void	initialise_structs(t_flags *flag, t_width *width, t_conv *conv)
+void	initialise_structs(t_flags *flag, t_width *width)
 {
 	flag->h = FALSE;
 	flag->hh = FALSE;
@@ -24,19 +24,18 @@ void	initialise_structs(t_flags *flag, t_width *width, t_conv *conv)
 	flag->left = FALSE;
 	flag->plus = FALSE;
 	flag->space = FALSE;
-	flag->numeric = FALSE;
 	width->prec = 0;
 	width->width = 0;
-	conv->numeric = FALSE;
-	conv->percent = FALSE;
-	conv->d = FALSE;
-	conv->o = FALSE;
-	conv->u = FALSE;
-	conv->x = FALSE;
-	conv->big_x = FALSE;
-	conv->f = FALSE;
-	conv->p = FALSE;
-	conv->neg = FALSE;
+	flag->conv.numeric = FALSE;
+	flag->conv.percent = FALSE;
+	flag->conv.d = FALSE;
+	flag->conv.o = FALSE;
+	flag->conv.u = FALSE;
+	flag->conv.x = FALSE;
+	flag->conv.big_x = FALSE;
+	flag->conv.f = FALSE;
+	flag->conv.p = FALSE;
+	flag->conv.neg = FALSE;
 }
 
 static void	set_flags(char *s, t_flags *flag, t_width width)

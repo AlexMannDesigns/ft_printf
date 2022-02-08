@@ -29,7 +29,7 @@ int	main(void)
 	// printf("this is a width test%10i!\n", 123);
 	// printf("this is a precision & width test %10.5d\n", 123);
 	// printf("\n3 + 4 + 5 + 6 = %d\n", add_numbers(4, 3, 4, 5, 6));
-	unsigned int i = 5;
+	//unsigned int i = 5;
 	//unsigned int *ptr = &i;
 
 	// printf("%10% hello%-10dhello\n", 69);
@@ -44,6 +44,11 @@ int	main(void)
 	// printf("% d\n", 25);
 	// printf("% d\n", -25);
 	// printf("note with width set to '5', the sign is included\n");
+	ft_printf("\n\n***** memory address testing *****\n\n");
+	int i = 5;
+	int *ptr = &i;
+	printf("printf address test   : *%p*\n", (void *)ptr);
+	ft_printf("ft_printf address test: *%#p*\n\n", ptr);
 
 	ft_printf("\n\n***** BIG number testing *****\n\n");
 	long long int super_big = 2345678923456781234; //19 digit number is about the limit
@@ -51,14 +56,18 @@ int	main(void)
 	long long int neg_super_big = -2345678923456781234;
 	long long int neg_not_so_super_big = -234;
 	int nb = 125;
+	int neg_nb = -125;
 	printf("printf    long long test: %lld\n", super_big);
 	ft_printf("ft_printf long long test: %lld\n\n", super_big);
 
 	printf("printf    long long test: %lld\n", not_so_super_big);
 	ft_printf("ft_printf long long test: %lld\n\n", not_so_super_big);
 
-	printf("printf    long long test: %lld\n", (long long int)nb);
-	ft_printf("ft_printf long long test: %lld\n\n", (long long int)nb);
+	printf("printf    normal int test: %d\n", nb);
+	ft_printf("ft_printf normal int test: %d\n\n", nb);
+
+	printf("printf    normal neg int test: %d\n", neg_nb);
+	ft_printf("ft_printf normal neg int test: %d\n\n", neg_nb);
 
 	printf("printf    long long test: %lld\n", neg_super_big);
 	ft_printf("ft_printf long long test: %lld\n\n", neg_super_big);
@@ -155,8 +164,8 @@ int	main(void)
 	ft_printf("ft_printf with upper hex and with 10 and precision 6: *%10.6X*\n", 234);
 	printf("printf hash flag with octal and with 10 and precision 6   : *%#10.6o*\n", 234);
 	ft_printf("ft_printf hash flag with octal and with 10 and precision 6: *%#10.6o*\n", 234);
-	printf("printf hash flag with decimal and with 10 and precision 6   : *%#10.6d*\n", 234);
-	ft_printf("ft_printf hash flag with decimal and with 10 and precision 6: *%#10.6d*\n", 234);
+	//undefined behaviour printf("printf hash flag with decimal and with 10 and precision 6   : *%#10.6d*\n", 234);
+	//undefined behaviour ft_printf("ft_printf hash flag with decimal and with 10 and precision 6: *%#10.6d*\n", 234);
 
 	ft_printf("\n\n***** precision and width testing *****\n\n");
 	printf("printf width 1   : *%1d*\n", 25);
@@ -189,10 +198,8 @@ int	main(void)
 	ft_printf("ft_printf string test width 20 precision 20: *%20.20s*\n\n", "hello world");
 	printf("printf string test precision 20   : *%.20s*\n", "hello world");
 	ft_printf("ft_printf string test precision 20: *%.20s*\n\n", "hello world");
-	printf("printf char test precision 20   : *%.20c*\n", 'c');
-	ft_printf("ft_printf char test precision 20: *%.20c*\n\n", 'c');
-	printf("printf address test precision 20   : *%.20p*\n", &i);
-	ft_printf("ft_printf address test precision 20: *%.20p*\n\n", &i);
+	// //undefined behaviour printf("printf char test precision 20   : *%.20c*\n", 'c');
+	// //undefined behaviour ft_printf("ft_printf char test precision 20: *%.20c*\n\n", 'c');
 	printf("printf hex test width 20 precision 20   : *%20.20x*\n", 1234);
 	ft_printf("ft_printf hex test width 20 precision 20: *%20.20x*\n\n", 1234);
 	printf("printf oct test width 20 precision 20   : *%20.20o*\n", 1234);

@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:37:43 by amann             #+#    #+#             */
-/*   Updated: 2022/02/07 12:51:07 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/08 12:27:50 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,18 +35,18 @@ static void	precision_helper(char *s, char *res, t_width w, t_flags flag)
 	size_t	len;
 
 	len = ft_strlen(s);
-	if (w.prec > len && w.prec > w.width && flag.numeric)
+	if (w.prec > len && w.prec > w.width && flag.conv.numeric)
 	{
 		ft_memset((void *)res, '0', w.prec - len);
 		ft_strcpy((res + (w.prec - len)), s);
 	}
-	else if (w.prec > len && w.width && flag.numeric && flag.left)
+	else if (w.prec > len && w.width && flag.conv.numeric && flag.left)
 	{
 		ft_memset((void *)res, '0', w.prec - len);
 		ft_strcpy(res + w.prec - len, s);
 		ft_memset((void *)(res + w.prec), ' ', w.width - w.prec);
 	}
-	else if (w.prec > len && w.width && flag.numeric)
+	else if (w.prec > len && w.width && flag.conv.numeric)
 	{
 		ft_memset((void *)res, ' ', w.width);
 		ft_memset((void *)(res + w.width - w.prec), '0', w.prec - len);
@@ -54,7 +54,7 @@ static void	precision_helper(char *s, char *res, t_width w, t_flags flag)
 	}
 }
 
-void	print_result(char *s, t_width w, t_flags flag, t_conv conv)
+void	print_result(char *s, t_width w, t_flags flag)
 {
 	char	*res;
 	size_t	len;
@@ -62,8 +62,8 @@ void	print_result(char *s, t_width w, t_flags flag, t_conv conv)
 	if (!s)
 		return ;
 	len = ft_strlen(s);
-	if (w.prec && w.prec > len && w.width < w.prec && flag.numeric
-		&& !conv.big_x && !conv.x && !conv.p)
+	if (w.prec && w.prec > len && w.width < w.prec && flag.conv.numeric
+		&& !flag.conv.big_x && !flag.conv.x && !flag.conv.p)
 		res = ft_strnew(w.prec);
 	else if (w.width && w.width > len)
 		res = width_helper(s, len, w, flag);
@@ -71,7 +71,7 @@ void	print_result(char *s, t_width w, t_flags flag, t_conv conv)
 		res = ft_strdup(s);
 	if (!res)
 		return ;
-	if (!conv.big_x && !conv.x && !conv.p)
+	if (!flag.conv.big_x && !flag.conv.x && !flag.conv.p)
 		precision_helper(s, res, w, flag);
 	ft_putstr(res);
 }

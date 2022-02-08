@@ -6,13 +6,13 @@
 #    By: amann <amann@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 12:30:40 by amann             #+#    #+#              #
-#    Updated: 2022/02/07 16:31:03 by amann            ###   ########.fr        #
+#    Updated: 2022/02/08 11:48:02 by amann            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #VARIABLES
 NAME = libftprintf.a
-FLAGS = -Wall -Wextra -Werror -ansi -pedantic -std=c99
+FLAGS = -Wall -Wextra -Werror -ansi -pedantic -std=c99 -O3
 SRCS = conversion_control.c ft_itoa_base.c ft_printf.c	set_flags.c 			\
 		numeric_conversion.c width_precision.c 	print_result.c	flag_control.c	\
 		hash_flag.c plus_flag.c ft_abs_long.c
@@ -32,10 +32,10 @@ $(NAME):
 
 #the below is just for testing with my main - spits out a binary called test
 test: $(NAME)
-	gcc -o test $(TEST) $(NAME) -I $(LIB_DIR) $(ARC)
+	gcc $(FLAGS) -o test $(TEST) $(NAME) -I $(LIB_DIR) $(ARC)
 
 float: $(NAME)
-	gcc -o test $(DOUBLE_TEST) $(NAME) -I $(LIB_DIR) $(ARC)
+	gcc $(FLAGS) -o test $(DOUBLE_TEST) $(NAME) -I $(LIB_DIR) $(ARC)
 
 clean:
 	@@/bin/rm -f $(OBJ)

@@ -44,22 +44,21 @@ static char	*convert_digit(long int nb)
 	return (ft_itoa_base(ft_abs_long(nb), 10));
 }
 
-void	numeric_conv_dispatcher(char c, va_list lst, char **res, t_conv *conv, t_flags *flags)
+void	numeric_conv_dispatcher(char c, va_list lst, char **res, t_flags *flags)
 {
-	char			*(*p[4])(long int nb);
-	long int	x; /* check flags to see if unsigned... will need to handle bigger nums */
+	char		*(*p[4])(long int nb);
+	long int	x;
 
 	p[0] = convert_digit;
 	p[1] = convert_octal;
 	p[2] = convert_hex_lower;
 	p[3] = convert_hex_upper;
-	if (flags->ll || flags->l || !conv->p)
+	if (flags->ll || flags->l || flags->conv.p)
 		x = va_arg(lst, long int);
 	else
 		x = va_arg(lst, int);
-	// printf("%lld\n", x);
 	if (x < 0)
-		conv->neg = TRUE;
+		flags->conv.neg = TRUE;
 	if (c == 'd' || c == 'i')
 		*res = (*p[0])(x);
 	else if (c == 'o')
@@ -68,6 +67,6 @@ void	numeric_conv_dispatcher(char c, va_list lst, char **res, t_conv *conv, t_fl
 		*res = (*p[2])(x);
 	else if (c == 'X')
 		*res = (*p[3])(x);
-	if (conv->neg)
+	if (flags->conv.neg)
 		*res = ft_strjoin("-", *res);
 }

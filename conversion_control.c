@@ -32,6 +32,8 @@ static void	set_conv_type(char c, t_conv *conv)
 		conv->x = TRUE;
 	else if (c == 'X')
 		conv->big_x = TRUE;
+	else if (c == 'p')
+		conv->p = TRUE;
 	else if (c == 'f')
 		conv->f = TRUE;
 	else if (c == '%')
@@ -49,7 +51,7 @@ static char	*handle_char(char c)
 	return (res);
 }
 
-static char *handle_percent(void)
+static char	*handle_percent(void)
 {
 	char	*res;
 
@@ -60,17 +62,15 @@ static char *handle_percent(void)
 	return (res);
 }
 
-char	*conversion_control(char *s, va_list lst, t_conv *conv, t_flags *flag)
+char	*conversion_control(char *s, va_list lst, t_flags *flag)
 {
 	char	*res;
 
 	res = NULL;
+	set_conv_type(s[0], &(flag->conv));
 	if (s[0] == 'd' || s[0] == 'i' || s[0] == 'o' || s[0] == 'u'
 		|| s[0] == 'x' || s[0] == 'X' || s[0] == 'p')
-	{
-		flag->numeric = TRUE;
-		numeric_conv_dispatcher(s[0], lst, &res, conv, flag);
-	}
+		numeric_conv_dispatcher(s[0], lst, &res, flag);
 	else if (s[0] == 's')
 		res = ft_strdup(va_arg(lst, char *));
 	else if (s[0] == 'c')
@@ -79,6 +79,5 @@ char	*conversion_control(char *s, va_list lst, t_conv *conv, t_flags *flag)
 		res = handle_percent();
 	else
 		res = ft_strdup("*** error ***");
-	set_conv_type(s[0], conv);
 	return (res);
 }

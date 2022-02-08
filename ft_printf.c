@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:42:19 by amann             #+#    #+#             */
-/*   Updated: 2022/02/02 15:49:03 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/08 12:29:08 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,12 @@ static void	ft_printf_helper(char *s, va_list lst, int *printf_i)
 	int		i;
 	t_flags	flag_data;
 	t_width	width_data;
-	t_conv	conversion_type;
 	char	*res;
 
-	initialise_structs(&flag_data, &width_data, &conversion_type);
+	initialise_structs(&flag_data, &width_data);
 	res = NULL;
 	i = 0;
-	while ((!ft_isalpha(s[i]) && s[i] != '%') || s[i] == 'h' || s[i] == 'l' 
+	while ((!ft_isalpha(s[i]) && s[i] != '%') || s[i] == 'h' || s[i] == 'l'
 		|| s[i] == 'L')
 	{
 		if ((ft_isdigit(s[i]) && s[i] != '0') || s[i] == '.')
@@ -41,9 +40,9 @@ static void	ft_printf_helper(char *s, va_list lst, int *printf_i)
 		set_flags_and_length(s + i, &flag_data, &i, width_data);
 		i++;
 	}
-	res = conversion_control(s + i, lst, &conversion_type, &flag_data);
-	res = flag_control(res, flag_data, conversion_type, width_data);
-	print_result(res, width_data, flag_data, conversion_type);
+	res = conversion_control(s + i, lst, &flag_data);
+	res = flag_control(res, flag_data, width_data);
+	print_result(res, width_data, flag_data);
 	if (res)
 		free(res);
 	*printf_i += i + 1;
