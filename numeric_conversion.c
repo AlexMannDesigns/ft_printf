@@ -53,10 +53,7 @@ void	numeric_conv_dispatcher(char c, va_list lst, char **res, t_flags *flags)
 	p[1] = convert_octal;
 	p[2] = convert_hex_lower;
 	p[3] = convert_hex_upper;
-	if (flags->ll || flags->l || flags->conv.p)
-		x = va_arg(lst, long int);
-	else
-		x = va_arg(lst, int);
+	length_control(&x, lst, flags);
 	if (x < 0)
 		flags->conv.neg = TRUE;
 	if (c == 'd' || c == 'i')

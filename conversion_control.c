@@ -40,14 +40,14 @@ static void	set_conv_type(char c, t_conv *conv)
 		conv->percent = TRUE;
 }
 
-static char	*handle_char(char c)
+static char	*handle_char(unsigned int c)
 {
 	char	*res;
 
 	res = ft_strnew(2);
 	if (!res)
 		return (NULL);
-	res[0] = c;
+	res[0] = (unsigned char) c;
 	return (res);
 }
 
@@ -74,7 +74,7 @@ char	*conversion_control(char *s, va_list lst, t_flags *flag)
 	else if (s[0] == 's')
 		res = ft_strdup(va_arg(lst, char *));
 	else if (s[0] == 'c')
-		res = handle_char((char) va_arg(lst, int));
+		res = handle_char(va_arg(lst, unsigned int));
 	else if (s[0] == '%')
 		res = handle_percent();
 	else

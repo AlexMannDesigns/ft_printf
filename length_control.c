@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_abs_long.c                                      :+:      :+:    :+:   */
+/*   length_control.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/07 16:29:45 by amann             #+#    #+#             */
-/*   Updated: 2022/02/08 16:04:40 by amann            ###   ########.fr       */
+/*   Created: 2022/02/08 16:09:44 by amann             #+#    #+#             */
+/*   Updated: 2022/02/08 16:37:36 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-long int	ft_abs_long(long int i)
+void	length_control(int *x, va_list lst, t_flags *flags)
 {
-	if (i >= 0)
-		return (i);
+	if (flags->ll || flags->l || flags->conv.p)
+		*x = va_arg(lst, long int);
+	// else if (flags->h && !flags->conv.f)
+	// 	*x = va_arg(lst, short);
+	// else if (flags->hh && !flags->conv.f)
+	// 	*x = (long int) va_arg(lst, char);
 	else
-		return (-i);
+		*x = (long int) va_arg(lst, int);
 }

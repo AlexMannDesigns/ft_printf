@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:37:43 by amann             #+#    #+#             */
-/*   Updated: 2022/02/08 12:27:50 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/08 15:30:16 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,27 +30,42 @@ static char	*width_helper(char *s, size_t len, t_width width, t_flags flag)
 	return (res);
 }
 
+static void	precision_helper_part_2(char *s, char *res, t_width w, size_t len)
+{
+	if (w.prec > len && w.prec > w.width)
+	{
+		ft_memset((void *)res, '0', w.prec - len);
+		ft_strcpy((res + (w.prec - len)), s);
+	}
+	else if (w.prec > len && w.width)
+	{
+		ft_memset((void *)res, ' ', w.width);
+		ft_memset((void *)(res + w.width - w.prec), '0', w.prec - len);
+		ft_strcpy((res + (w.width - len)), s);
+	}
+}
+
 static void	precision_helper(char *s, char *res, t_width w, t_flags flag)
 {
 	size_t	len;
 
 	len = ft_strlen(s);
-	if (w.prec > len && w.prec > w.width && flag.conv.numeric)
+	if (flag.conv.neg && w.prec > (len - 1))
 	{
-		ft_memset((void *)res, '0', w.prec - len);
-		ft_strcpy((res + (w.prec - len)), s);
+		s[0] = '0';
+		w.prec += 1;
 	}
-	else if (w.prec > len && w.width && flag.conv.numeric && flag.left)
+	precision_helper_part_2(s, res, w, len);
+	if (w.prec > len && w.width && flag.left)
 	{
 		ft_memset((void *)res, '0', w.prec - len);
 		ft_strcpy(res + w.prec - len, s);
 		ft_memset((void *)(res + w.prec), ' ', w.width - w.prec);
 	}
-	else if (w.prec > len && w.width && flag.conv.numeric)
+	if (flag.conv.neg && w.prec > (len - 1))
 	{
-		ft_memset((void *)res, ' ', w.width);
-		ft_memset((void *)(res + w.width - w.prec), '0', w.prec - len);
-		ft_strcpy((res + (w.width - len)), s);
+		s = ft_strchr(res, '0');
+		s[0] = '-';
 	}
 }
 
@@ -71,7 +86,7 @@ void	print_result(char *s, t_width w, t_flags flag)
 		res = ft_strdup(s);
 	if (!res)
 		return ;
-	if (!flag.conv.big_x && !flag.conv.x && !flag.conv.p)
+	if (!flag.conv.big_x && !flag.conv.x && !flag.conv.p && flag.conv.numeric)
 		precision_helper(s, res, w, flag);
 	ft_putstr(res);
 }
