@@ -78,7 +78,7 @@ char	*conversion_control(char *s, va_list lst, t_flags *flag, t_width *width)
 	else if (s[0] == '%')
 		res = handle_percent();
 	else if (s[0] == 'f')
-		res = handle_double(lst, flag, width->prec);
+		res = handle_double(va_arg(lst, double), flag, *width);
 	else
 		res = ft_strdup("*** error ***");
 	return (res);

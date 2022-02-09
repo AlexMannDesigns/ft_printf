@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:25:40 by amann             #+#    #+#             */
-/*   Updated: 2022/02/08 12:06:03 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/09 15:55:04 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	initialise_structs(t_flags *flag, t_width *width)
 	flag->space = FALSE;
 	width->prec = 0;
 	width->width = 0;
+	width->prec_set = FALSE;
 	flag->conv.numeric = FALSE;
 	flag->conv.percent = FALSE;
 	flag->conv.d = FALSE;

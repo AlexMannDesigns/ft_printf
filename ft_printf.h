@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/02/09 14:34:08 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/09 16:22:27 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_width
 {
 	size_t	prec;
 	size_t	width;
+	int		prec_set;
 }			t_width;
 
 typedef struct s_conv
@@ -82,7 +83,7 @@ char		*conversion_control(char *s, va_list lst, t_flags *flag, t_width *width);
 void		numeric_conv_dispatcher(char c, va_list lst, char **res, t_flags *flags);
 
 /* handle_double.c */
-char		*handle_double(va_list lst, t_flags *flag, size_t prec);
+char		*handle_double(double x, t_flags *flag, t_width width);
 
 /* flag_control.c */
 char		*flag_control(char *res, t_flags flag, t_width width);

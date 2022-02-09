@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:00:09 by amann             #+#    #+#             */
-/*   Updated: 2022/01/26 13:20:31 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/09 15:54:22 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	set_width_precision(char *s, t_width *data, int *helper_i)
 	if (s[0] == '.')
 	{
 		set_precision(s + 1, data, helper_i);
+		data->prec_set = TRUE;
 		return ;
 	}
 	len = 0;
