@@ -6,7 +6,7 @@
 #    By: amann <amann@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 12:30:40 by amann             #+#    #+#              #
-#    Updated: 2022/02/08 16:15:40 by amann            ###   ########.fr        #
+#    Updated: 2022/02/09 13:41:55 by amann            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = libftprintf.a
 FLAGS = -Wall -Wextra -Werror -ansi -pedantic -std=c99 -O3
 SRCS = conversion_control.c ft_itoa_base.c ft_printf.c	set_flags.c 			\
 		numeric_conversion.c width_precision.c 	print_result.c	flag_control.c	\
-		hash_flag.c plus_flag.c ft_abs_long.c length_control.c
+		hash_flag.c plus_flag.c ft_abs_long.c length_control.c handle_double.c
 OBJ = $(SRCS:.c=.o)
 TEST = tests_main.c
 DOUBLE_TEST = double_test_main.c
@@ -45,4 +45,6 @@ fclean: clean
 
 re: fclean test #remember to change this before submitting!!
 
-.PHONY: all clean fclean re test
+ref: fclean float #remember to change this before submitting!!
+
+.PHONY: all clean fclean re test float ref

@@ -62,7 +62,7 @@ static char	*handle_percent(void)
 	return (res);
 }
 
-char	*conversion_control(char *s, va_list lst, t_flags *flag)
+char	*conversion_control(char *s, va_list lst, t_flags *flag, t_width *width)
 {
 	char	*res;
 
@@ -77,6 +77,8 @@ char	*conversion_control(char *s, va_list lst, t_flags *flag)
 		res = handle_char(va_arg(lst, unsigned int));
 	else if (s[0] == '%')
 		res = handle_percent();
+	else if (s[0] == 'f')
+		res = handle_double(lst, flag, width->prec);
 	else
 		res = ft_strdup("*** error ***");
 	return (res);

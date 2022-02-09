@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/02/08 16:16:10 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/09 14:34:08 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,16 +76,19 @@ void		initialise_structs(t_flags *flag, t_width *width);
 void		set_width_precision(char *s, t_width *data, int *helper_i);
 
 /* conversion_control.c */
-char		*conversion_control(char *s, va_list lst, t_flags *flag);
+char		*conversion_control(char *s, va_list lst, t_flags *flag, t_width *width);
 
 /* numeric_conversion.c */
 void		numeric_conv_dispatcher(char c, va_list lst, char **res, t_flags *flags);
+
+/* handle_double.c */
+char		*handle_double(va_list lst, t_flags *flag, size_t prec);
 
 /* flag_control.c */
 char		*flag_control(char *res, t_flags flag, t_width width);
 
 /* length_control.c */
-void	length_control(long int *x, va_list lst, t_flags *flags);
+void		length_control(long int *x, va_list lst, t_flags *flags);
 
 /* hash_flag.c */
 char		*handle_hash(char *res, t_conv conv, t_width width, t_flags flag);

@@ -291,7 +291,8 @@ int	main(void)
 	// ft_printf("\n\ntesting return values:\nprintf = %d  ft_printf = %d\n", printf("hello %5d world", 123), ft_printf("hello %5d world", 123));
 	// ft_printf("%hhLd\n", 5);
 
-
+	printf("printf integer 0 test   :	*%d*\n", 0);
+	ft_printf("ft_printf integer 0 test:	*%d*\n\n", 0);
 	ft_printf("\noctal conversions:\n\n");
 	ft_printf("ft_printf octal: %o\n", 5);
 	printf("printf octal   : %o\n", 5);
