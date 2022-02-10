@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:31:56 by amann             #+#    #+#             */
-/*   Updated: 2022/02/09 16:29:26 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/10 15:22:13 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,99 @@
 /* helper functions needed to handle rounding and precision */
 /* further function needed to correctly handle negative int */
 
-char	*handle_double(double x, t_flags *flag, t_width width)
+static void	algo_helper(char **res, size_t *len)
+{
+	size_t	check;
+
+	while (*len)
+	{
+		check = 1;
+		if ((*res)[*len] == '.')
+			(*len)--;
+		if ((*res)[*len - check] == '.')
+			check = 2;
+		if ((*res)[*len - check] < '9')
+		{
+			(*res)[*len - check] += 1;
+			break ;
+		}
+		else
+		{
+			(*res)[*len - check] = '0';
+			(*len)--;
+		}
+	}
+}
+
+/*	
+*	len can be used to point to end of string
+*	if the last digit is less than 5, we can return the number as is
+*	otherwise, we need to go into our rounding algorithm
+*/
+
+static char	*rounding_algo(char *res)
+{
+	size_t	len;
+	char	*new;
+
+	len = ft_strlen(res) - 1;
+	if (res[len] < '5')
+	{
+		new = ft_strndup(res, len);
+		free(res);
+		return (new);
+	}
+	if (res[len] >= '5')
+		algo_helper(&res, &len);
+	if (len == 0 && (res)[len] == '0')
+	{
+		new = ft_strjoin("1", res);
+		free(res);
+		return (new);
+	}
+	return (res);
+}
+
+/*	
+*	we can convert our double to a string by casting to an int
+*	this rounds the number down, so we have the left side of the dp
+*	to get the fractional part, we simply subtract the casted number
+*	from the original double, then multiply that by whatever factor
+*	of precision we would like. 15 decimal places feels about right
+*/
+
+static char	*create_string(long int left_dp, double right_dp, size_t prec)
 {
 	char		*int_str;
 	char		*dec_str;
+	char		*res_str;
+	char		*temp_str;
+
+	int_str = ft_itoa_base(left_dp, 10);
+	res_str = ft_itoa_base((long int)right_dp, 10);
+	dec_str = ft_strndup(res_str, prec);
+	free(res_str);
+	temp_str = ft_strjoin(".", dec_str);
+	res_str = ft_strjoin(int_str, temp_str);
+	free(int_str);
+	free(dec_str);
+	free(temp_str);
+	return (res_str);
+}
+
+char	*handle_double(double x, t_flags *flag, t_width width)
+{
+	char		*res_str;
 	long int	left_dp;
 	double		right_dp;
 
 	if (!width.prec_set)
 		width.prec = 6;
-	if (x < 0)
-	{
-		flag->conv.numeric = TRUE;
+	if (x < 0 && !flag->conv.numeric)
 		return (ft_strdup("0"));
-	}
 	left_dp = (long int) x;
-	right_dp = ((x - (double)left_dp) * 10000000000000000L);
-	int_str = ft_itoa_base(left_dp, 10); // returns double rounded down as string
-	dec_str = ft_strndup(ft_itoa_base((long int)right_dp, 10), width.prec);
-	dec_str = ft_strjoin(".", dec_str);	
-	return (ft_strjoin(int_str, dec_str));
+	right_dp = ((x - (double)left_dp) * 10e+17L);
+	res_str = create_string(left_dp, right_dp, (width.prec + 1));
+	res_str = rounding_algo(res_str);
+	return (res_str);
 }

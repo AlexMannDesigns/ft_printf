@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:17:33 by amann             #+#    #+#             */
-/*   Updated: 2022/02/09 14:57:18 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/10 15:12:51 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,12 @@ int main(void)
 	printf("printf integer 1.7 test, prec 0   :	*%.0f*\n", 1.7);
 	ft_printf("ft_printf integer 1.7 test, prec 0:	*%.0f*\n\n", 1.7);
 
+	printf("printf integer 9999.99999 test, prec 0   :	*%.0f*\n", 9999.99999);
+	ft_printf("ft_printf integer 9999.99999 test, prec 0:	*%.0f*\n\n", 9999.99999);
+
+	printf("printf integer 999999999.999999999999 test, prec 10   :	*%.10f*\n", 999999999.999999999999);
+	ft_printf("ft_printf integer 999999999.999999999999 test, prec 10:	*%.10f*\n\n", 999999999.999999999999);
+	
 	printf("printf integer 0.9 test   :	*%f*\n", 0.9);
 	ft_printf("ft_printf integer 0.9 test:	*%f*\n\n", 0.9);
 	

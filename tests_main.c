@@ -218,11 +218,30 @@ int	main(void)
 	printf("printf width 10   : *%10d*\n", 12345);
 	ft_printf("ft_printf width 10: *%10d*\n\n", 12345);
 
+
 	printf("printf width 20   : *%20d*\n", 78912340);
 	ft_printf("ft_printf width 20: *%20d*\n\n", 78912340);
 
 	printf("printf preci 8   : *%.8d*\n", 27);
 	ft_printf("ft_printf preci 8: *%.8d*\n\n", 27);
+	char *test_str = "%.-8d";
+	printf("printf preci -8   : *"),
+	printf(test_str, 27);
+	printf("*\n");
+
+	ft_printf("ft_printf preci -8: *");
+	ft_printf(test_str, 27);
+	ft_printf("*\n\n");
+
+	char *test_str2 = "%.-1d";
+	printf("printf preci -1   : *"),
+	printf(test_str2, 27);
+	printf("*\n");
+
+	ft_printf("ft_printf preci -1: *");
+	ft_printf(test_str2, 27);
+	ft_printf("*\n\n");
+
 
 	printf("printf width 4 preci 8   : *%4.8d*\n", 312);
 	ft_printf("ft_printf width 4 preci 8: *%4.8d*\n\n", 312);
