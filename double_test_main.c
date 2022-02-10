@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:17:33 by amann             #+#    #+#             */
-/*   Updated: 2022/02/10 15:12:51 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/10 16:25:59 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@ int main(void)
 	printf("printf neg double test   :	*%f*\n", neg_x * 2); 
 	ft_printf("ft_printf neg double test:	*%f*\n\n", neg_x * 2);
 
+	printf("printf integer -999999999.999999999999 test, prec 10   :	*%.10f*\n", -999999999.999999999999);
+	ft_printf("ft_printf integer -999999999.999999999999 test, prec 10:	*%.10f*\n\n", -999999999.999999999999);
+
+	printf("printf double no prec 10dp neg rounding test   :	*%f*\n", -123.4567898234);
+	ft_printf("ft_printf double no prec 10dp neg rounding test:	*%f*\n\n", -123.4567898234);
+
 	printf("printf double no prec test   :	*%f*\n", x_point_3);
 	ft_printf("ft_printf double no prec test:	*%f*\n\n", x_point_3);
 
@@ -107,6 +113,25 @@ int main(void)
 	printf("printf double prec 20 L flag test   :	*%.20Lf*\n", F2);
 	ft_printf("ft_printf double prec 20 L flag test:	*%.20Lf*\n\n", F2);
 
+	printf("printf integer 1.7 test, width 10   :	*%10f*\n", 1.7);
+	ft_printf("ft_printf integer 1.7 test, width 10:	*%10f*\n\n", 1.7);
+	
+	printf("printf integer 1.7 test, prec 0, width 10, left aligned   :	*%-10.0f*\n", 1.7);
+	ft_printf("ft_printf integer 1.7 test, prec 0, width 10, left aligned:	*%-10.0f*\n\n", 1.7);
 
+	printf("printf integer 9999.99999 test, prec 0, width 1   :	*%1.0f*\n", 9999.99999);
+	ft_printf("ft_printf integer 9999.99999 test, prec 0, width 1:	*%1.0f*\n\n", 9999.99999);
+
+	printf("printf integer 999999999.999999999999 test, prec 10, width 30   :	*%30.10f*\n", 999999999.999999999999);
+	ft_printf("ft_printf integer 999999999.999999999999 test, prec 10, width 30:	*%30.10f*\n\n", 999999999.999999999999);
+
+	printf("printf integer -1.7 test, width 8   :	*%8f*\n", -1.7);
+	ft_printf("ft_printf integer -1.7 test, width 8:	*%8f*\n\n", -1.7);
+
+	printf("printf integer -1.7 test, width 9   :	*%9f*\n", -1.7);
+	ft_printf("ft_printf integer -1.7 test, width 9:	*%9f*\n\n", -1.7);
+	
+	printf("printf integer -1.7 test, width 7   :	*%10f*\n", -1.7);
+	ft_printf("ft_printf integer -1.7 test, width 7:	*%10f*\n\n", -1.7);
 	return (0);
 }
