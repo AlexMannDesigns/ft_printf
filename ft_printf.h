@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/02/09 16:22:27 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/11 15:02:25 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ typedef struct s_conv
 	unsigned int	p;
 }					t_conv;
 
-
 typedef struct s_flags
 {
 	unsigned int	h;
@@ -57,12 +56,12 @@ typedef struct s_flags
 	unsigned int	big_l;
 	unsigned int	hash;
 	unsigned int	zero;
+	unsigned int	nil;
 	unsigned int	left;
 	unsigned int	plus;
 	unsigned int	space;
 	t_conv			conv;
 }					t_flags;
-
 
 /***** FUNCTION PROTOTYPING *****/
 
@@ -70,26 +69,34 @@ typedef struct s_flags
 int			ft_printf(char *s, ...);
 
 /* set_flags.c */
-void		set_flags_and_length(char *s, t_flags *flag, int *h_i, t_width width);
+void		set_flags_and_length(char *s, t_flags *flag, int *h_i, \
+				t_width width);
 void		initialise_structs(t_flags *flag, t_width *width);
 
 /* width_precision.c */
 void		set_width_precision(char *s, t_width *data, int *helper_i);
 
 /* conversion_control.c */
-char		*conversion_control(char *s, va_list lst, t_flags *flag, t_width *width);
-
+char		*conversion_control(char *s, va_list lst, t_flags *flag, \
+				t_width *width);
 /* numeric_conversion.c */
-void		numeric_conv_dispatcher(char c, va_list lst, char **res, t_flags *flags);
-
+void		numeric_conv_dispatcher(char c, va_list lst, char **res, \
+				t_flags *flags);
 /* handle_double.c */
 char		*handle_double(double x, t_flags *flag, t_width width);
+void		chop_chop(char **res_str, size_t prec);
+char		*rounding_algo(char *res);
+
+/* handle_long_double.c */
+char		*handle_long_double(long double x, t_flags *flag, t_width width);
 
 /* flag_control.c */
 char		*flag_control(char *res, t_flags flag, t_width width);
 
 /* length_control.c */
 void		length_control(long int *x, va_list lst, t_flags *flags);
+char		*length_dispatcher(char *(*p[4])(long), t_flags *flags, char c, \
+				long int x);
 
 /* hash_flag.c */
 char		*handle_hash(char *res, t_conv conv, t_width width, t_flags flag);

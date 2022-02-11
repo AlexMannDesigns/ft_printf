@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:31:56 by amann             #+#    #+#             */
-/*   Updated: 2022/02/10 16:21:07 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/11 13:03:35 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 *	otherwise, pad out the number with 0s - remember to free memory!
 */
 
-static void	chop_chop(char **res_str, size_t prec)
+void	chop_chop(char **res_str, size_t prec)
 {
 	size_t	i;
 	size_t	total;
@@ -76,7 +76,7 @@ static void	algo_helper(char **res, size_t *len)
 *	otherwise, we need to go into our rounding algorithm
 */
 
-static char	*rounding_algo(char *res)
+char	*rounding_algo(char *res)
 {
 	size_t	len;
 	char	*new;

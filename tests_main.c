@@ -44,6 +44,42 @@ int	main(void)
 	// printf("% d\n", 25);
 	// printf("% d\n", -25);
 	// printf("note with width set to '5', the sign is included\n");
+	
+	
+	// system("ft_printf leaks");
+
+	ft_printf("\n\n***** length modifier testing *****\n\n");
+	int   aRegularInt     = 64;
+	short aShortInt       = 64;
+	short anegShortInt    = -64;
+	char  aReallyShortInt = 64;
+
+	printf( "aRegularInt     = %d\n",   aRegularInt );
+	printf( "aShortInt       = %hd\n",  aShortInt );
+	printf( "aReallyShortInt = %hhd\n", aReallyShortInt );
+	printf( "aReallyShortInt = %c\n",   aReallyShortInt );
+
+	printf( "printf unsigned int     = %u\n",   23 );
+	printf( "printf unsigned int     = %u\n",   -23 );
+
+	ft_printf( "ft_printf unsigned int     = %u\n",   23 );
+	ft_printf( "ft_printf unsigned int     = %u\n",   -23 );
+
+	printf( "printf short int     = %hd\n",  aShortInt  );
+	printf( "printf short int     = %hd\n",   anegShortInt  );
+
+
+	ft_printf( "ft_printf short int     = %hd\n",  aShortInt  );
+	ft_printf( "ft_printf short int     = %hd\n",   anegShortInt  );
+
+
+
+
+	printf( "signed int     = %d\n",   -23 );
+	printf( "aShortInt       = %hd\n",  aShortInt );
+	printf( "aReallyShortInt = %hhd\n", aReallyShortInt );
+	printf( "aReallyShortInt = %c\n",   aReallyShortInt );
+
 	ft_printf("\n\n***** memory address testing *****\n\n");
 	int i = 5;
 	char *ptr2 = "hello world";
@@ -200,6 +236,27 @@ int	main(void)
 	ft_printf("ft_printf hash flag with upper hex and with 10: *%#10X*\n", 234);
 	printf("printf hash flag with upper hex and with 10 and precision 6   : *%#10.6X*\n", 234);
 	ft_printf("ft_printf hash flag with upper hex and with 10 and precision 6: *%#10.6X*\n", 234);
+	printf("printf hash flag with upper hex and with 10 and precision blank   : *%#10.X*\n", 234);
+	ft_printf("ft_printf hash flag with upper hex and with 10 and precision blank: *%#10.X*\n", 234);
+
+	printf("printf hash flag with upper hex 0 and with 10 and precision blank, val 0   : *%#10.X*\n", 0);
+	ft_printf("ft_printf hash flag with upper hex 0 and with 10 and precision blank, val 0: *%#10.X*\n", 0);
+
+
+	printf("printf no flag with upper hex and with 10 and precision blank   : *%10.X*\n", 234);
+	ft_printf("ft_printf no flag with upper hex and with 10 and precision blank: *%10.X*\n", 234);
+
+	printf("printf no flag with upper hex and with 10 and precision 0   : *%10.0X*\n", 234);
+	ft_printf("ft_printf no flag with upper hex and with 10 and precision 0: *%10.0X*\n", 234);
+
+	
+	printf("printf no flag with decimal 0 and with 10 and precision 0   : *%10.0d*\n", 0);
+	ft_printf("ft_printf no flag with decimal 0 and with 10 and precision 0: *%10.0d*\n", 0);
+	printf("printf no flag with octal 0 and with 10 and precision 0   : *%10.0o*\n", 0);
+	ft_printf("ft_printf no flag with octal 0 and with 10 and precision 0: *%10.0o*\n", 0);
+	printf("printf no flag with decimal 0 and no width and precision 0   : *%.0d*\n", 0);
+	ft_printf("ft_printf no flag with decimal 0 and no width and precision 0: *%.0d*\n", 0);
+
 	printf("printf with upper hex and with 10 and precision 6   : *%10.6X*\n", 789);
 	ft_printf("ft_printf with upper hex and with 10 and precision 6: *%10.6X*\n", 789);
 	printf("printf hash flag with octal and with 10 and precision 6   : *%#10.6o*\n", 543);
@@ -248,6 +305,11 @@ int	main(void)
 
 	printf("printf width 10 precision 4   : *%10.4d*\n", 15);
 	ft_printf("ft_printf width 10 precision 4: *%10.4d*\n\n", 15);
+
+	printf("printf width 10 precision 04   : *%10.04d*\n", 15);
+	ft_printf("ft_printf width 10 precision 04: *%10.04d*\n\n", 15);
+	printf("printf precision 04   : *%.04d*\n", 15);
+	ft_printf("ft_printf precision 04: *%.04d*\n\n", 15);
 
 	printf("printf width 20 precision 6   : *%20.6d*\n", 234);
 	ft_printf("ft_printf width 20 precision 6: *%20.6d*\n\n", 234);
@@ -327,6 +389,21 @@ int	main(void)
 	ft_printf("\n---------\n");
 	ft_printf("ft_printf octal: %o\n", 24);
 	printf("printf octal   : %o\n", 24);
+	ft_printf("\n---------\n");
+	ft_printf("ft_printf neg octal: %o\n", -5);
+	printf("printf neg octal   : %o\n", -5);
+	ft_printf("\n---------\n");
+	ft_printf("ft_printf neg octal: %o\n", -512);
+	printf("printf neg octal   : %o\n", -512);
+	ft_printf("\n---------\n");
+	ft_printf("ft_printf neg octal: %o\n", -7000003);
+	printf("printf neg octal   : %o\n", -7000003);
+	ft_printf("\n---------\n");
+	ft_printf("ft_printf neg octal: %o\n", -916);
+	printf("printf neg octal   : %o\n", -916);
+	ft_printf("\n---------\n");
+	ft_printf("ft_printf neg octal: %o\n", -24);
+	printf("printf neg octal   : %o\n", -24);
 	
 	ft_printf("\nhexadecimal conversions:\n\n");
 	ft_printf("ft_printf hexadecimal: %x\n", 5);
@@ -343,6 +420,21 @@ int	main(void)
 	ft_printf("\n---------\n");
 	ft_printf("ft_printf uppercase hexadecimal: %X\n", 10527024);
 	printf("printf uppercase hexadecimal   : %X\n", 10527024);
+	ft_printf("\n---------\n");
+	ft_printf("ft_printf neg hexadecimal: %x\n", -5);
+	printf("printf neg hexadecimal   : %x\n", -5);
+	ft_printf("\n---------\n");
+	ft_printf("ft_printf neg hexadecimal: %x\n", -512);
+	printf("printf neg hexadecimal   : %x\n", -512);
+	ft_printf("\n---------\n");
+	ft_printf("ft_printf neg hexadecimal: %x\n", -7000003);
+	printf("printf neg hexadecimal   : %x\n", -7000003);
+	ft_printf("\n---------\n");
+	ft_printf("ft_printf neg uppercase hexadecimal: %X\n", -1916);
+	printf("printf neg uppercase hexadecimal   : %X\n", -1916);
+	ft_printf("\n---------\n");
+	ft_printf("ft_printf neg uppercase hexadecimal: %X\n", -10527024);
+	printf("printf neg uppercase hexadecimal   : %X\n", -10527024);
 
 	char *str = "...and this is a string in a variable";
 	char a = 'a';

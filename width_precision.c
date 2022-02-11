@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:00:09 by amann             #+#    #+#             */
-/*   Updated: 2022/02/09 15:54:22 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/11 11:41:26 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,16 @@ static void	set_precision(char *s, t_width *data, int *helper_i)
 	size_t	len;
 	char	*pres_str;
 
+	data->prec_set = TRUE;
 	len = 0;
 	while (ft_isdigit(s[len]))
 		len++;
 	pres_str = ft_strndup(s, len);
+	if (!pres_str)
+	{
+		data->prec = 0;
+		return ;
+	}
 	data->prec = (size_t)ft_atoi(pres_str);
 	free(pres_str);
 	if (len > 1)
@@ -37,9 +43,10 @@ void	set_width_precision(char *s, t_width *data, int *helper_i)
 	if (s[0] == '.')
 	{
 		set_precision(s + 1, data, helper_i);
-		data->prec_set = TRUE;
 		return ;
 	}
+	if (data->prec_set)
+		return ;
 	len = 0;
 	while (ft_isdigit(s[len]))
 		len++;

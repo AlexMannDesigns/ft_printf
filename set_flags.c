@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:25:40 by amann             #+#    #+#             */
-/*   Updated: 2022/02/09 15:55:04 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/11 10:38:34 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	initialise_structs(t_flags *flag, t_width *width)
 	flag->big_l = FALSE;
 	flag->hash = FALSE;
 	flag->zero = FALSE;
+	flag->nil = FALSE;
 	flag->left = FALSE;
 	flag->plus = FALSE;
 	flag->space = FALSE;

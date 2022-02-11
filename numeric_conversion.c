@@ -46,16 +46,18 @@ static char	*convert_digit(long int nb)
 
 void	numeric_conv_dispatcher(char c, va_list lst, char **res, t_flags *flags)
 {
-	char		*(*p[4])(long int nb);
-	long int	x;
+	char			*(*p[4])(long int nb);
+	long int		x;
 
 	p[0] = convert_digit;
 	p[1] = convert_octal;
 	p[2] = convert_hex_lower;
 	p[3] = convert_hex_upper;
 	length_control(&x, lst, flags);
-	if (x < 0)
+	if (x < 0 && (c != 'u' && c != 'x' && c != 'X' && c != 'o' && c != 'p'))
 		flags->conv.neg = TRUE;
+	if (c != 'p' && (flags->h || flags->hh || c == 'u'))
+		*res = length_dispatcher(p, flags, c, x);
 	if (c == 'd' || c == 'i')
 		*res = (*p[0])(x);
 	else if (c == 'o')

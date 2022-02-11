@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:37:43 by amann             #+#    #+#             */
-/*   Updated: 2022/02/08 15:30:16 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/11 11:41:32 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,12 @@ void	print_result(char *s, t_width w, t_flags flag)
 		return ;
 	if (!flag.conv.big_x && !flag.conv.x && !flag.conv.p && flag.conv.numeric)
 		precision_helper(s, res, w, flag);
+	if (flag.conv.numeric && w.prec == 0 && w.prec_set && flag.nil && w.width)
+		ft_memset(res, ' ', ft_strlen(res));
+	else if (flag.conv.numeric && w.prec == 0 && w.prec_set && flag.nil)
+	{
+		free(res);
+		res = ft_strdup("");
+	}
 	ft_putstr(res);
 }

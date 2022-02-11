@@ -77,6 +77,8 @@ char	*conversion_control(char *s, va_list lst, t_flags *flag, t_width *width)
 		res = handle_char(va_arg(lst, unsigned int));
 	else if (s[0] == '%')
 		res = handle_percent();
+	else if (s[0] == 'f' && flag->big_l)
+		res = handle_long_double(va_arg(lst, long double), flag, *width);
 	else if (s[0] == 'f')
 		res = handle_double(va_arg(lst, double), flag, *width);
 	else
