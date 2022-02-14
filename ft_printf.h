@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/02/11 15:02:25 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/14 16:20:59 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,10 @@ char		*ft_itoa_base(const long int value, int base);
 long int	ft_abs_long(long int i);
 
 /* print_result.c */
-void		print_result(char *s, t_width w, t_flags flag);
+void		print_result(char *s, t_width w, t_flags flag, int *printf_res);
+
+/* ft_printf_putstr.c */
+void	ft_printf_putstr(char const *str, int *printf_res);
+void	ft_printf_putchar(char c, int *printf_res);
+
 #endif

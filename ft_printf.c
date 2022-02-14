@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:42:19 by amann             #+#    #+#             */
-/*   Updated: 2022/02/11 11:02:36 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/14 16:44:50 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 *	resulting string.
 */
 
-static void	ft_printf_helper(char *s, va_list lst, int *printf_i)
+static void	ft_printf_helper(char *s, va_list lst, int *printf_i, int *p_res)
 {
 	int		i;
 	t_flags	flag_data;
@@ -42,7 +42,7 @@ static void	ft_printf_helper(char *s, va_list lst, int *printf_i)
 	}
 	res = conversion_control(s + i, lst, &flag_data, &width_data);
 	res = flag_control(res, flag_data, width_data);
-	print_result(res, width_data, flag_data);
+	print_result(res, width_data, flag_data, p_res);
 	if (res)
 		free(res);
 	*printf_i += i + 1;
@@ -54,17 +54,19 @@ int	ft_printf(char *s, ...)
 {
 	va_list	lst;
 	int		i;
+	int		res;
 
 	va_start(lst, s);
 	i = 0;
+	res = 0;
 	while (s[i] != '\0')
 	{
 		if (s[i] == '%')
-			ft_printf_helper(&s[i + 1], lst, &i);
+			ft_printf_helper(&s[i + 1], lst, &i, &res);
 		else
-			ft_putchar(s[i]);
+			ft_printf_putchar(s[i], &res);
 		i++;
 	}
 	va_end(lst);
-	return (i);
+	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:31:56 by amann             #+#    #+#             */
-/*   Updated: 2022/02/11 13:03:35 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/14 16:43:50 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	chop_chop(char **res_str, size_t prec)
 	*res_str = new;
 }
 
+/* need to change the logic here, we should do the rounding first, then truncate the string */
+
 static void	algo_helper(char **res, size_t *len)
 {
 	size_t	check;
@@ -57,15 +59,20 @@ static void	algo_helper(char **res, size_t *len)
 			(*len)--;
 		if ((*res)[*len - check] == '.')
 			check = 2;
-		if ((*res)[*len - check] < '9')
-		{
-			(*res)[*len - check] += 1;
-			break ;
-		}
-		else
+		if ((*res)[*len - check] == '9')
 		{
 			(*res)[*len - check] = '0';
 			(*len)--;
+		}
+		else 
+		{
+			if ((*res)[*len] == '5') //check if any number after 5 is not a 0
+			{
+				if (((*res)[*len - check] + 1) % 2 != 0)
+					break ;
+			}
+			(*res)[*len - check] += 1;
+			break ;
 		}
 	}
 }

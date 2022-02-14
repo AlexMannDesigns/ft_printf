@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:17:33 by amann             #+#    #+#             */
-/*   Updated: 2022/02/11 13:10:47 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/14 14:38:11 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ int main(void)
 	double neg_x = -123;
 	double x_point_3 = 123.456;
 	ft_printf("\n\n ***** FLOAT TESTS ***** \n\n");
+
+	printf("printf rounding test:    %.f %.f %.f %.f %.f %.f %.f %.f %.f %.f\n", 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5);
+	ft_printf("ft_printf rounding test: %.f %.f %.f %.f %.f %.f %.f %.f %.f %.f\n\n", 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5);
+
+	printf("printf rounding test:    %.f %.f %.f %.f %.f %.f %.f %.f\n", 1000.5, 1001.5, 1002.5, 1003.5, 1004.5, 1005.5, 999.5, 998.5);
+	ft_printf("ft_printf rounding test: %.f %.f %.f %.f %.f %.f %.f %.f\n\n", 1000.5, 1001.5, 1002.5, 1003.5, 1004.5, 1005.5, 999.5, 998.5);
+
+	printf("printf rounding test:     %.f %.f %.f %.3f %.3f %.5f %.8f %.10f %.1f %.f\n", 0.54,  0.5000000000000001, 0.556500, 0.5595, 0.5585, 1.5555555555555, 2.5555555555555, 3.5555555555555, 4.5555555555555, 5.5555555555555);
+	ft_printf("ft_printf rounding test:  %.f %.f %.f %.3f %.3f %.5f %.8f %.10f %.1f %.f\n\n", 0.54, 0.5000000000000001, 0.556500, 0.5595, 0.5585, 1.5555555555555, 2.5555555555555, 3.5555555555555, 4.5555555555555, 5.5555555555555);
+	
 	printf("printf 0.0 test   :	*%f*\n", 0.0);
 	ft_printf("ft_printf 0.0 test:	*%f*\n\n", 0.0);
 	
@@ -83,6 +93,13 @@ int main(void)
 
 	printf("printf double prec 0 test   :	*%.0f*\n", x_point_3);
 	ft_printf("ft_printf double prec 0 test:	*%.0f*\n\n", x_point_3);
+
+	printf("printf double prec blank test   :	*%.f*\n", x_point_3);
+	ft_printf("ft_printf double prec blank test:	*%.f*\n\n", x_point_3);
+
+	printf("printf double prec blank test   :	*%.f*\n", 123.5);
+	ft_printf("ft_printf double prec blank test:	*%.f*\n\n", 123.5);
+
 
 	printf("printf double no prec 10dp rounding test   :	*%f*\n", 123.4567898234);
 	ft_printf("ft_printf double no prec 10dp rounding test:	*%f*\n\n", 123.4567898234);
