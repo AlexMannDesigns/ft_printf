@@ -6,7 +6,7 @@
 #    By: amann <amann@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 12:30:40 by amann             #+#    #+#              #
-#    Updated: 2022/02/16 15:48:59 by amann            ###   ########.fr        #
+#    Updated: 2022/02/16 18:23:57 by amann            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,5 +51,15 @@ test: $(NAME)
 
 float: $(NAME)
 	gcc $(FLAGS) -o test $(DOUBLE_TEST) $(NAME) -I $(LIB_DIR) $(ARC)
+
+leak_comp:
+	@@gcc $(FLAGS) $(LEAK_TEST) -c $(SRCS)
+	@@ar rcs $(NAME) $(OBJ)
+
+float_leak: leak_comp
+	gcc $(FLAGS) $(LEAK_TEST) -o test $(DOUBLE_TEST) $(NAME) -I $(LIB_DIR) $(ARC)
+
+test_leak: leak_comp
+	gcc $(FLAGS) $(LEAK_TEST) -o test $(TEST) $(NAME) -I $(LIB_DIR) $(ARC)
 
 .PHONY: all clean fclean re test float ref

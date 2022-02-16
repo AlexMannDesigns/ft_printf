@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:31:56 by amann             #+#    #+#             */
-/*   Updated: 2022/02/16 15:48:43 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/16 18:55:52 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,11 @@ char	*handle_double(long double x, t_flags *flag, t_width width)
 		flag->conv.neg = TRUE;
 		x *= -1;
 	}
+	//printf("\nx = %Lf\n", x);
 	left_dp = (long int) x;
-	right_dp = ((x - (long double)left_dp) * 10e+17L);
+	//printf("\nleft :%Lf\n", (long double)left_dp);
+	right_dp = ((x - (long double)left_dp) * 10e+17L); // need to separate this into a function which finds first significant digit
+	printf("\nright :%Lf || left :%li\n", right_dp, left_dp);
 	res_str = create_string(left_dp, right_dp);
 	if (width.prec > 17)
 		res_str = rounding_algo(res_str, 17);

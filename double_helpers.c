@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 15:47:33 by amann             #+#    #+#             */
-/*   Updated: 2022/02/16 15:51:57 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/16 18:21:41 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,25 +43,28 @@ static void	algo_helper(char **res, size_t *len)
 {
 	size_t	check;
 
-	while (*len)
+	while ((*len - 1) >= 0 && (*len))
 	{
 		check = 1;
 		if ((*res)[*len] == '.')
 			(*len)--;
-		if ((*res)[*len - check] == '.')
-			check = 2;
-		if ((*res)[*len - check] == '9')
+		else 
 		{
-			(*res)[*len - check] = '0';
-			(*len)--;
-		}
-		else
-		{
-			if ((*res)[*len] == '5' && !algo_helper_part2(res, len) \
-				&& ((*res)[*len - check] + 1) % 2 != 0)
+			if ((*res)[*len - check] == '.')
+				check = 2;
+			if ((*res)[*len - check] == '9')
+			{
+				(*res)[*len - check] = '0';
+				(*len)--;
+			}
+			else
+			{
+				if ((*res)[*len] == '5' && !algo_helper_part2(res, len) \
+					&& ((*res)[*len - check] + 1) % 2 != 0)
+					break ;
+				(*res)[*len - check] += 1;
 				break ;
-			(*res)[*len - check] += 1;
-			break ;
+			}
 		}
 	}
 }
@@ -69,12 +72,16 @@ static void	algo_helper(char **res, size_t *len)
 char	*rounding_algo(char *res, size_t prec)
 {
 	size_t	len;
+	size_t	res_len;
 	char	*new;
 
 	len = 0;
 	while (res[len] != '.')
 		len++;
 	len += prec + 1;
+	res_len = ft_strlen(res);
+	if (len > res_len)
+		len = res_len;
 	if (res[len] < '5')
 	{
 		new = ft_strndup(res, len);

@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 11:00:46 by amann             #+#    #+#             */
-/*   Updated: 2022/02/09 14:07:50 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/16 17:13:02 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ char	*ft_itoa_base(const long int value, int base)
 	if (value == 0)
 		return (ft_strdup("0"));
 	if (value < 0 && base == 10)
-		res = (char *) malloc(sizeof(char) * (i + 1));
+		res = ft_strnew(i + 1);
 	else
-		res = (char *) malloc(sizeof(char) * i);
+		res = ft_strnew(i + 1);
 	if (!res)
 		return (NULL);
 	if (value < 0)
