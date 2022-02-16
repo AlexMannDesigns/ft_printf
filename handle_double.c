@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:31:56 by amann             #+#    #+#             */
-/*   Updated: 2022/02/14 16:43:50 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/16 15:48:43 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,75 +46,7 @@ void	chop_chop(char **res_str, size_t prec)
 	*res_str = new;
 }
 
-/* need to change the logic here, we should do the rounding first, then truncate the string */
-
-static void	algo_helper(char **res, size_t *len)
-{
-	size_t	check;
-
-	while (*len)
-	{
-		check = 1;
-		if ((*res)[*len] == '.')
-			(*len)--;
-		if ((*res)[*len - check] == '.')
-			check = 2;
-		if ((*res)[*len - check] == '9')
-		{
-			(*res)[*len - check] = '0';
-			(*len)--;
-		}
-		else 
-		{
-			if ((*res)[*len] == '5') //check if any number after 5 is not a 0
-			{
-				if (((*res)[*len - check] + 1) % 2 != 0)
-					break ;
-			}
-			(*res)[*len - check] += 1;
-			break ;
-		}
-	}
-}
-
-/*	
-*	len can be used to point to end of string
-*	if the last digit is less than 5, we can return the number as is
-*	otherwise, we need to go into our rounding algorithm
-*/
-
-char	*rounding_algo(char *res)
-{
-	size_t	len;
-	char	*new;
-
-	len = ft_strlen(res) - 1;
-	if (res[len] < '5')
-	{
-		new = ft_strndup(res, len);
-		free(res);
-		return (new);
-	}
-	if (res[len] >= '5')
-		algo_helper(&res, &len);
-	if (len == 0 && (res)[len] == '0')
-	{
-		new = ft_strjoin("1", res);
-		free(res);
-		return (new);
-	}
-	return (res);
-}
-
-/*	
-*	we can convert our double to a string by casting to an int
-*	this rounds the number down, so we have the left side of the dp
-*	to get the fractional part, we simply subtract the casted number
-*	from the original double, then multiply that by whatever factor
-*	of precision we would like. 15 decimal places feels about right
-*/
-
-static char	*create_string(long int left_dp, double right_dp, size_t prec)
+static char	*create_string(long int left_dp, long double right_dp)
 {
 	char		*int_str;
 	char		*dec_str;
@@ -123,7 +55,7 @@ static char	*create_string(long int left_dp, double right_dp, size_t prec)
 
 	int_str = ft_itoa_base(left_dp, 10);
 	res_str = ft_itoa_base((long int)right_dp, 10);
-	dec_str = ft_strndup(res_str, prec);
+	dec_str = ft_strdup(res_str);
 	free(res_str);
 	temp_str = ft_strjoin(".", dec_str);
 	res_str = ft_strjoin(int_str, temp_str);
@@ -133,12 +65,11 @@ static char	*create_string(long int left_dp, double right_dp, size_t prec)
 	return (res_str);
 }
 
-char	*handle_double(double x, t_flags *flag, t_width width)
+char	*handle_double(long double x, t_flags *flag, t_width width)
 {
 	char		*res_str;
-	char		*neg_res;
 	long int	left_dp;
-	double		right_dp;
+	long double	right_dp;
 
 	if (!width.prec_set)
 		width.prec = 6;
@@ -148,15 +79,13 @@ char	*handle_double(double x, t_flags *flag, t_width width)
 		x *= -1;
 	}
 	left_dp = (long int) x;
-	right_dp = ((x - (double)left_dp) * 10e+17L);
-	res_str = create_string(left_dp, right_dp, (width.prec + 1));
-	res_str = rounding_algo(res_str);
+	right_dp = ((x - (long double)left_dp) * 10e+17L);
+	res_str = create_string(left_dp, right_dp);
+	if (width.prec > 17)
+		res_str = rounding_algo(res_str, 17);
+	else
+		res_str = rounding_algo(res_str, width.prec);
 	chop_chop(&res_str, width.prec);
-	if (flag->conv.neg)
-	{
-		neg_res = ft_strjoin("-", res_str);
-		free(res_str);
-		return (neg_res);
-	}	
+	res_str = neg_float_handler(res_str, flag);
 	return (res_str);
 }

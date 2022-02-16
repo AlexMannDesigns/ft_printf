@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/02/14 16:20:59 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/16 15:51:40 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int			ft_printf(char *s, ...);
 
 /* set_flags.c */
 void		set_flags_and_length(char *s, t_flags *flag, int *h_i, \
-				t_width width);
+t_width width);
 void		initialise_structs(t_flags *flag, t_width *width);
 
 /* width_precision.c */
@@ -83,12 +83,11 @@ char		*conversion_control(char *s, va_list lst, t_flags *flag, \
 void		numeric_conv_dispatcher(char c, va_list lst, char **res, \
 				t_flags *flags);
 /* handle_double.c */
-char		*handle_double(double x, t_flags *flag, t_width width);
-void		chop_chop(char **res_str, size_t prec);
-char		*rounding_algo(char *res);
+char		*handle_double(long double x, t_flags *flag, t_width width);
 
-/* handle_long_double.c */
-char		*handle_long_double(long double x, t_flags *flag, t_width width);
+/* double_helpers.c */
+char		*neg_float_handler(char *res, t_flags *flag);
+char		*rounding_algo(char *res, size_t prec);
 
 /* flag_control.c */
 char		*flag_control(char *res, t_flags flag, t_width width);
@@ -97,7 +96,6 @@ char		*flag_control(char *res, t_flags flag, t_width width);
 void		length_control(long int *x, va_list lst, t_flags *flags);
 char		*length_dispatcher(char *(*p[4])(long), t_flags *flags, char c, \
 				long int x);
-
 /* hash_flag.c */
 char		*handle_hash(char *res, t_conv conv, t_width width, t_flags flag);
 
@@ -114,7 +112,7 @@ long int	ft_abs_long(long int i);
 void		print_result(char *s, t_width w, t_flags flag, int *printf_res);
 
 /* ft_printf_putstr.c */
-void	ft_printf_putstr(char const *str, int *printf_res);
-void	ft_printf_putchar(char c, int *printf_res);
+void		ft_printf_putstr(char const *str, int *printf_res);
+void		ft_printf_putchar(char c, int *printf_res);
 
 #endif

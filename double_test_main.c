@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:17:33 by amann             #+#    #+#             */
-/*   Updated: 2022/02/14 14:38:11 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/16 14:57:54 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,9 @@ int main(void)
 
 	printf("printf double prec 20 L flag test   :	*%.20Lf*\n", negF2);
 	ft_printf("ft_printf double prec 20 L flag test:	*%.20Lf*\n\n", negF2);
+
+	printf("printf double prec 30 L flag test   :	*%.30Lf*\n", negF2);
+	ft_printf("ft_printf double prec 30 L flag test:	*%.30Lf*\n\n", negF2);
 
 	printf("printf integer 1.7 test, width 10   :	*%10f*\n", 1.7);
 	ft_printf("ft_printf integer 1.7 test, width 10:	*%10f*\n\n", 1.7);

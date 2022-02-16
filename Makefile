@@ -6,17 +6,18 @@
 #    By: amann <amann@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 12:30:40 by amann             #+#    #+#              #
-#    Updated: 2022/02/14 16:22:43 by amann            ###   ########.fr        #
+#    Updated: 2022/02/16 15:48:59 by amann            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #VARIABLES
 NAME = libftprintf.a
 FLAGS = -Wall -Wextra -Werror -ansi -pedantic -std=c99 -O3
+LEAK_TEST = -g -fsanitize=address
 SRCS = conversion_control.c ft_itoa_base.c ft_printf.c	set_flags.c 			\
 		numeric_conversion.c width_precision.c 	print_result.c	flag_control.c	\
 		hash_flag.c plus_flag.c ft_abs_long.c length_control.c handle_double.c	\
-		handle_long_double.c ft_printf_putstr.c
+		ft_printf_putstr.c double_helpers.c
 OBJ = $(SRCS:.c=.o)
 TEST = tests_main.c
 DOUBLE_TEST = double_test_main.c
@@ -24,20 +25,23 @@ LIB_DIR = libft/
 ARC = $(LIB_DIR)libft.a
 
 #RULES
-all: $(NAME)
+all:
+	@@$(MAKE) -C $(LIB_DIR)
+	@@$(MAKE) $(NAME)
 
 $(NAME):
 	@@gcc $(FLAGS) -c $(SRCS)
 	@@ar rcs $(NAME) $(OBJ)
-	@@ranlib $(NAME)
 
 clean:
 	@@/bin/rm -f $(OBJ)
+	@@make -C $(LIB_DIR) clean
 
 fclean: clean
-	@@/bin/rm -f $(NAME)
+	@@/bin/rm -f $(NAME) test
+	@@make -C $(LIB_DIR) fclean
 	
-re: fclean $(NAME) #remember to change this before submitting!!
+re: fclean all #remember to change this before submitting!!
 
 #ref: fclean float #remember to change this before submitting!!
 

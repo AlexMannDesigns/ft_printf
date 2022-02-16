@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:42:19 by amann             #+#    #+#             */
-/*   Updated: 2022/02/14 16:44:50 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/16 15:22:16 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ static void	ft_printf_helper(char *s, va_list lst, int *printf_i, int *p_res)
 		free(res);
 	*printf_i += i + 1;
 }
-
-/*add a percentage flag to the struct to save space*/
 
 int	ft_printf(char *s, ...)
 {
