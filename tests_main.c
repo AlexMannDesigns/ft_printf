@@ -60,10 +60,7 @@ int	main(void)
 
 	printf("printf    long length mod test: %d %ld %lld %f %Lf %hhd %Lf %hd %ld %hd %s %p %d %ld %lld %lf %Lf %hhd %Lf %hd %ld %hd %s %p\n", 123, alongint, alonglongint, 0.999, alonglongdouble, aReallyShortInt, alongdouble, aShortInt, alongint, aShortInt, "hello", (void *)&aShortInt, 123, alongint, alonglongint, 0.999, alonglongdouble, aReallyShortInt, alongdouble, aShortInt, alongint, aShortInt, "hello", (void *)&aShortInt);
 	ft_printf("ft_printf long length mod test: %d %ld %lld %f %Lf %hhd %Lf %hd %ld %hd %s %p %d %ld %lld %lf %Lf %hhd %Lf %hd %ld %hd %s %p\n\n", 123, alongint, alonglongint, 0.999, alonglongdouble, aReallyShortInt, alongdouble, aShortInt, alongint, aShortInt, "hello", &aShortInt, 123, alongint, alonglongint, 0.999, alonglongdouble, aReallyShortInt, alongdouble, aShortInt, alongint, aShortInt, "hello", &aShortInt);
- 	
-	
-	
-	
+
 	printf( "aRegularInt     = %d\n",   aRegularInt );
 	printf( "aShortInt       = %hd\n",  aShortInt );
 	printf( "aReallyShortInt = %hhd\n", aReallyShortInt );
@@ -291,23 +288,25 @@ int	main(void)
 
 	printf("printf preci 8   : *%.8d*\n", 27);
 	ft_printf("ft_printf preci 8: *%.8d*\n\n", 27);
-	char *test_str = "%.-8d";
-	printf("printf preci -8   : *"),
-	printf(test_str, 27);
-	printf("*\n");
 
-	ft_printf("ft_printf preci -8: *");
-	ft_printf(test_str, 27);
-	ft_printf("*\n\n");
+	/* address san doesnt like negative prec */
+	// char *test_str = "%.-8d";
+	// printf("printf preci -8   : *"),
+	// printf(test_str, 27);
+	// printf("*\n");
 
-	char *test_str2 = "%.-1d";
-	printf("printf preci -1   : *"),
-	printf(test_str2, 27);
-	printf("*\n");
+	// ft_printf("ft_printf preci -8: *");
+	// ft_printf(test_str, 27);
+	// ft_printf("*\n\n");
 
-	ft_printf("ft_printf preci -1: *");
-	ft_printf(test_str2, 27);
-	ft_printf("*\n\n");
+	// char *test_str2 = "%.-1d";
+	// printf("printf preci -1   : *"),
+	// printf(test_str2, 27);
+	// printf("*\n");
+
+	// ft_printf("ft_printf preci -1: *");
+	// ft_printf(test_str2, 27);
+	// ft_printf("*\n\n");
 
 
 	printf("printf width 4 preci 8   : *%4.8d*\n", 312);
@@ -347,19 +346,25 @@ int	main(void)
 
 	printf("printf precision 6, left aligned   : *%-.6d*\n", 212);
 	ft_printf("ft_printf precision 6, left aligned: *%-.6d*\n\n", 212);
+
 	printf("printf precision 6, width 6   : *%6.6d*\n", 765);
 	ft_printf("ft_printf precision 6, width 6: *%6.6d*\n\n", 765);
+
 	printf("printf precision 6, width 7 left aligned   : *%-7.6d*\n", 341);
 	ft_printf("ft_printf precision 6, width 7 left aligned: *%-7.6d*\n\n", 341);
+
 	printf("printf width 20 precision 6, left aligned   : *%-20.6d*\n", 129856);
 	ft_printf("ft_printf width 20 precision 6, left aligned: *%-20.6d*\n\n", 129856);
 
 	printf("printf neg precision 6, left aligned   : *%-.6d*\n", -212);
 	ft_printf("ft_printf neg precision 6, left aligned: *%-.6d*\n\n", -212);
+
 	printf("printf neg precision 6, width 6   : *%6.6d*\n", -765);
 	ft_printf("ft_printf neg precision 6, width 6: *%6.6d*\n\n", -765);
+
 	printf("printf neg precision 6, width 7 left aligned   : *%-7.6d*\n", -341);
 	ft_printf("ft_printf neg precision 6, width 7 left aligned: *%-7.6d*\n\n", -341);
+
 	printf("printf neg width 20 precision 6, left aligned   : *%-20.6d*\n", -129856);
 	ft_printf("ft_printf neg width 20 precision 6, left aligned: *%-20.6d*\n\n", -129856);
 
@@ -371,8 +376,8 @@ int	main(void)
 	ft_printf("ft_printf string test width 20 precision 20: *%20.20s*\n\n", "hello world");
 	printf("printf string test precision 20   : *%.20s*\n", "hello world");
 	ft_printf("ft_printf string test precision 20: *%.20s*\n\n", "hello world");
-	// //undefined behaviour printf("printf char test precision 20   : *%.20c*\n", 'c');
-	// //undefined behaviour ft_printf("ft_printf char test precision 20: *%.20c*\n\n", 'c');
+	//undefined behaviour printf("printf char test precision 20   : *%.20c*\n", 'c');
+	//undefined behaviour ft_printf("ft_printf char test precision 20: *%.20c*\n\n", 'c');
 	printf("printf hex test width 20 precision 20   : *%20.20x*\n", 1234);
 	ft_printf("ft_printf hex test width 20 precision 20: *%20.20x*\n\n", 1234);
 	printf("printf oct test width 20 precision 20   : *%20.20o*\n", 1234);

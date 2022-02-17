@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:37:43 by amann             #+#    #+#             */
-/*   Updated: 2022/02/14 16:21:37 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/17 15:29:06 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,7 @@ static void	precision_helper(char *s, char *res, t_width w, t_flags flag)
 
 	len = ft_strlen(s);
 	if (flag.conv.neg && w.prec > (len - 1))
-	{
-		s[0] = '0';
 		w.prec += 1;
-	}
 	precision_helper_part_2(s, res, w, len);
 	if (w.prec > len && w.width && flag.left)
 	{
@@ -69,14 +66,17 @@ static void	precision_helper(char *s, char *res, t_width w, t_flags flag)
 	}
 }
 
-void	print_result(char *s, t_width w, t_flags flag, int *printf_res)
+static char	*set_memory(char *s, t_width w, t_flags flag)
 {
 	char	*res;
 	size_t	len;
 
-	if (!s)
-		return ;
 	len = ft_strlen(s);
+	if (flag.conv.neg && w.prec > (len - 1))
+	{
+		s[0] = '0';
+		w.prec += 1;
+	}
 	if (w.prec && w.prec > len && w.width < w.prec && flag.conv.numeric
 		&& !flag.conv.big_x && !flag.conv.x && !flag.conv.p)
 		res = ft_strnew(w.prec);
@@ -84,6 +84,16 @@ void	print_result(char *s, t_width w, t_flags flag, int *printf_res)
 		res = width_helper(s, len, w, flag);
 	else
 		res = ft_strdup(s);
+	return (res);
+}
+
+void	print_result(char *s, t_width w, t_flags flag, int *printf_res)
+{
+	char	*res;
+
+	if (!s)
+		return ;
+	res = set_memory(s, w, flag);
 	if (!res)
 		return ;
 	if (!flag.conv.big_x && !flag.conv.x && !flag.conv.p && flag.conv.numeric)

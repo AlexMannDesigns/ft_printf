@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:31:56 by amann             #+#    #+#             */
-/*   Updated: 2022/02/16 18:55:52 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/17 12:48:02 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,67 @@ void	chop_chop(char **res_str, size_t prec)
 	*res_str = new;
 }
 
-static char	*create_string(long int left_dp, long double right_dp)
+static char	*create_str_helper(char *int_str, char *dec_str, size_t signif)
 {
-	char		*int_str;
-	char		*dec_str;
-	char		*res_str;
-	char		*temp_str;
+	char	*zero_str;
+	char	*temp_str;
+	char	*res_str;
 
-	int_str = ft_itoa_base(left_dp, 10);
-	res_str = ft_itoa_base((long int)right_dp, 10);
-	dec_str = ft_strdup(res_str);
-	free(res_str);
-	temp_str = ft_strjoin(".", dec_str);
-	res_str = ft_strjoin(int_str, temp_str);
-	free(int_str);
-	free(dec_str);
+	zero_str = ft_strnew(signif);
+	if (!zero_str)
+		return (NULL);
+	ft_memset((void *)zero_str, '0', signif);
+	temp_str = ft_strjoin(".", zero_str);
+	free(zero_str);
+	zero_str = ft_strjoin(temp_str, dec_str);
+	res_str = ft_strjoin(int_str, zero_str);
+	free(zero_str);
 	free(temp_str);
 	return (res_str);
+}
+
+static char	*create_string(long int l_dp, long double r_dp, size_t signif)
+{
+	char	*int_str;
+	char	*dec_str;
+	char	*res_str;
+	char	*temp_str;
+
+	int_str = ft_itoa_base(l_dp, 10);
+	dec_str = ft_itoa_base((long int)r_dp, 10);
+	if (signif)
+		res_str = create_str_helper(int_str, dec_str, signif);
+	else
+	{
+		temp_str = ft_strjoin(".", dec_str);
+		res_str = ft_strjoin(int_str, temp_str);
+		free(temp_str);
+	}
+	free(int_str);
+	free(dec_str);
+	return (res_str);
+}
+
+static size_t	check_sig_dig(long int l_dp, long double *r_dp, long double x)
+{
+	size_t		i;
+	long double	temp;
+	long double	zero;
+
+	*r_dp = x - (long double)l_dp;
+	temp = *r_dp;
+	*r_dp *= 10e+17L;
+	zero = 0;
+	i = 0;
+	while (temp < 1 && temp != zero)
+	{
+		temp *= 10;
+		i++;
+	}
+	if (i > 0)
+		return (i - 1);
+	else
+		return (i);
 }
 
 char	*handle_double(long double x, t_flags *flag, t_width width)
@@ -70,6 +114,7 @@ char	*handle_double(long double x, t_flags *flag, t_width width)
 	char		*res_str;
 	long int	left_dp;
 	long double	right_dp;
+	size_t		signif;
 
 	if (!width.prec_set)
 		width.prec = 6;
@@ -78,12 +123,9 @@ char	*handle_double(long double x, t_flags *flag, t_width width)
 		flag->conv.neg = TRUE;
 		x *= -1;
 	}
-	//printf("\nx = %Lf\n", x);
 	left_dp = (long int) x;
-	//printf("\nleft :%Lf\n", (long double)left_dp);
-	right_dp = ((x - (long double)left_dp) * 10e+17L); // need to separate this into a function which finds first significant digit
-	printf("\nright :%Lf || left :%li\n", right_dp, left_dp);
-	res_str = create_string(left_dp, right_dp);
+	signif = check_sig_dig(left_dp, &right_dp, x);
+	res_str = create_string(left_dp, right_dp, signif);
 	if (width.prec > 17)
 		res_str = rounding_algo(res_str, 17);
 	else

@@ -6,7 +6,7 @@
 #    By: amann <amann@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 12:30:40 by amann             #+#    #+#              #
-#    Updated: 2022/02/16 18:23:57 by amann            ###   ########.fr        #
+#    Updated: 2022/02/17 14:36:18 by amann            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ all:
 
 $(NAME):
 	@@gcc $(FLAGS) -c $(SRCS)
-	@@ar rcs $(NAME) $(OBJ)
+	@@ar rcs $(NAME) $(OBJ) $(LIB_DIR)*.o
 
 clean:
 	@@/bin/rm -f $(OBJ)

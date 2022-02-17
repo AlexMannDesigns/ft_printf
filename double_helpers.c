@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 15:47:33 by amann             #+#    #+#             */
-/*   Updated: 2022/02/16 18:21:41 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/17 14:21:02 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*neg_float_handler(char *res, t_flags *flag)
 	return (res);
 }
 
-static char	algo_helper_part2(char **res, size_t *len)
+static char	a_h2(char **res, size_t *len)
 {
 	size_t	i;
 
@@ -39,41 +39,39 @@ static char	algo_helper_part2(char **res, size_t *len)
 	return ((*res)[*len + i]);
 }
 
-static void	algo_helper(char **res, size_t *len)
+static void	algo_helper(char **r, size_t *l)
 {
-	size_t	check;
+	size_t	c;
 
-	while ((*len - 1) >= 0 && (*len))
+	while ((*l - 1) >= 0 && (*l))
 	{
-		check = 1;
-		if ((*res)[*len] == '.')
-			(*len)--;
-		else 
+		c = 1;
+		if ((*r)[*l] == '.')
+			(*l)--;
+		else
 		{
-			if ((*res)[*len - check] == '.')
-				check = 2;
-			if ((*res)[*len - check] == '9')
+			if ((*r)[*l - c] == '.')
+				c = 2;
+			if ((*r)[*l - c] == '9')
 			{
-				(*res)[*len - check] = '0';
-				(*len)--;
+				(*r)[*l - c] = '0';
+				(*l)--;
 			}
 			else
 			{
-				if ((*res)[*len] == '5' && !algo_helper_part2(res, len) \
-					&& ((*res)[*len - check] + 1) % 2 != 0)
+				if ((*r)[*l] == '5' && !a_h2(r, l) && ((*r)[*l - c] + 1) % 2)
 					break ;
-				(*res)[*len - check] += 1;
+				(*r)[*l - c] += 1;
 				break ;
 			}
 		}
 	}
 }
 
-char	*rounding_algo(char *res, size_t prec)
+static size_t	set_len(char *res, size_t prec)
 {
 	size_t	len;
 	size_t	res_len;
-	char	*new;
 
 	len = 0;
 	while (res[len] != '.')
@@ -82,6 +80,15 @@ char	*rounding_algo(char *res, size_t prec)
 	res_len = ft_strlen(res);
 	if (len > res_len)
 		len = res_len;
+	return (len);
+}
+
+char	*rounding_algo(char *res, size_t prec)
+{
+	size_t	len;
+	char	*new;
+
+	len = set_len(res, prec);
 	if (res[len] < '5')
 	{
 		new = ft_strndup(res, len);
