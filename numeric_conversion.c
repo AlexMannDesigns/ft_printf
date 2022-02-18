@@ -46,8 +46,9 @@ static char	*convert_digit(long int nb)
 
 void	numeric_conv_dispatcher(char c, va_list lst, char **res, t_flags *flags)
 {
-	char			*(*p[4])(long int nb);
-	long int		x;
+	char		*(*p[4])(long int nb);
+	char		*temp;
+	long int	x;
 
 	p[0] = convert_digit;
 	p[1] = convert_octal;
@@ -67,5 +68,9 @@ void	numeric_conv_dispatcher(char c, va_list lst, char **res, t_flags *flags)
 	else if (c == 'X')
 		*res = (*p[3])(x);
 	if (flags->conv.neg)
+	{
+		temp = *res;
 		*res = ft_strjoin("-", *res);
+		free(temp);
+	}
 }

@@ -6,7 +6,7 @@
 #    By: amann <amann@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 12:30:40 by amann             #+#    #+#              #
-#    Updated: 2022/02/17 14:36:18 by amann            ###   ########.fr        #
+#    Updated: 2022/02/18 08:56:49 by amann            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,8 +40,8 @@ clean:
 fclean: clean
 	@@/bin/rm -f $(NAME) test
 	@@make -C $(LIB_DIR) fclean
-	
-re: fclean all #remember to change this before submitting!!
+
+re: fclean all
 
 #ref: fclean float #remember to change this before submitting!!
 
@@ -53,6 +53,7 @@ float: $(NAME)
 	gcc $(FLAGS) -o test $(DOUBLE_TEST) $(NAME) -I $(LIB_DIR) $(ARC)
 
 leak_comp:
+	@@$(MAKE) -C $(LIB_DIR)
 	@@gcc $(FLAGS) $(LEAK_TEST) -c $(SRCS)
 	@@ar rcs $(NAME) $(OBJ)
 
