@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 11:00:46 by amann             #+#    #+#             */
-/*   Updated: 2022/02/21 18:40:24 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/21 18:58:32 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	*ft_itoa_base(const long long int value, int base)
 	n = value;
 	i = 0;
 	while (n / base > 0)
-	{	
+	{
 		n = n / base;
 		i++;
 	}

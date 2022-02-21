@@ -6,7 +6,7 @@
 #    By: amann <amann@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 12:30:40 by amann             #+#    #+#              #
-#    Updated: 2022/02/21 17:57:38 by amann            ###   ########.fr        #
+#    Updated: 2022/02/21 18:58:49 by amann            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,8 +62,15 @@ clean:
 fclean: clean
 	@@/bin/rm -f $(NAME) test
 	@@make -C $(LIB_DIR) fclean
+<<<<<<< HEAD
 	
 re: fclean all 
+=======
+
+re: fclean all
+
+#ref: fclean float #remember to change this before submitting!!
+>>>>>>> a8227fab10edf68d12b3b0e2f4988cb66512e8bd
 
 #the below is just for testing with my main - creates a binary called test
 test: $(NAME)
@@ -74,6 +81,7 @@ float: $(NAME)
 
 #compiles the above tests, but will reveal any mem issues
 leak_comp:
+	@@$(MAKE) -C $(LIB_DIR)
 	@@gcc $(FLAGS) $(LEAK_TEST) -c $(SRCS)
 	@@ar rcs $(NAME) $(OBJ)
 

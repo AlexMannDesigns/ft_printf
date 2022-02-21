@@ -361,9 +361,9 @@ int	main(void)
 	// printf(test_str, 27);
 	// printf("*\n");
 
-	// ft_printf("ft_printf preci -8: *");
-	// ft_printf(test_str, 27);
-	// ft_printf("*\n\n");
+	// // ft_printf("ft_printf preci -8: *");
+	// // ft_printf(test_str, 27);
+	// // ft_printf("*\n\n");
 
 	// char *test_str2 = "%.-1d";
 	// printf("printf preci -1   : *"),

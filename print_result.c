@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:37:43 by amann             #+#    #+#             */
-/*   Updated: 2022/02/21 18:10:06 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/21 18:58:55 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,4 +108,5 @@ void	print_result(char *s, t_flags flag, int *printf_res)
 		res = ft_strdup("");
 	}
 	ft_printf_putstr(res, printf_res);
+	free(res);
 }
