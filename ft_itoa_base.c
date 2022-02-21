@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 11:00:46 by amann             #+#    #+#             */
-/*   Updated: 2022/02/16 17:13:02 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/21 18:40:24 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*itoa_reverse(char *str)
 	return (str);
 }
 
-static char	*itoa_helper_neg(int nb, int base, char *res)
+static char	*itoa_helper_neg(long long int nb, int base, char *res)
 {
 	char	*arr;
 	int		i;
@@ -48,7 +48,7 @@ static char	*itoa_helper_neg(int nb, int base, char *res)
 	return (res);
 }
 
-static char	*itoa_helper(long int nb, int base, char *res)
+static char	*itoa_helper(long long int nb, int base, char *res)
 {
 	char	*arr;
 	int		i;
@@ -65,7 +65,7 @@ static char	*itoa_helper(long int nb, int base, char *res)
 	return (res);
 }
 
-static char	*negative_control(int value, int base, char *res)
+static char	*negative_control(long long int value, int base, char *res)
 {
 	value = value * -1;
 	if (base == 10)
@@ -75,11 +75,11 @@ static char	*negative_control(int value, int base, char *res)
 	return (res);
 }
 
-char	*ft_itoa_base(const long int value, int base)
+char	*ft_itoa_base(const long long int value, int base)
 {
-	char		*res;
-	int			i;
-	long int	n;
+	char			*res;
+	int				i;
+	long long int	n;
 
 	n = value;
 	i = 0;
@@ -100,5 +100,44 @@ char	*ft_itoa_base(const long int value, int base)
 		res = negative_control(value, base, res);
 	else
 		res = itoa_helper(value, base, res);
+	return (itoa_reverse(res));
+}
+
+static char	*itoa_helper_unsigned(unsigned long long nb, int base, char *res)
+{
+	char	*arr;
+	int		i;
+
+	arr = "0123456789ABCDEF";
+	i = 0;
+	while (nb > 0)
+	{
+		res[i] = arr[nb % base];
+		nb = nb / base;
+		i++;
+	}
+	res[i] = '\0';
+	return (res);
+}
+
+char	*ft_itoa_base_unsigned(const unsigned long long value, int base)
+{
+	char				*res;
+	int					i;
+	unsigned long long	n;
+
+	n = value;
+	i = 0;
+	while (n / base > 0)
+	{	
+		n = n / base;
+		i++;
+	}
+	if (value == 0)
+		return (ft_strdup("0"));
+	res = ft_strnew(i + 1);
+	if (!res)
+		return (NULL);
+	res = itoa_helper_unsigned(value, base, res);
 	return (itoa_reverse(res));
 }

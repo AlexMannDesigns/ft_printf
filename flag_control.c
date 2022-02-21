@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:14:26 by amann             #+#    #+#             */
-/*   Updated: 2022/02/08 12:29:43 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/21 17:15:31 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,14 @@ static char	*handle_zero(char *res, t_conv conv, size_t width, t_flags flag)
 	return (new);
 }
 
-char	*flag_control(char *res, t_flags flag, t_width width)
+char	*flag_control(char *res, t_flags flag)
 {
 	size_t	len;
 	t_conv	c;
+	t_width	width;
 
 	c = flag.conv;
+	width = flag.width;
 	if (!res)
 		return (NULL);
 	if ((flag.hash && c.numeric) || ((c.x || c.big_x) && width.prec) || c.p)

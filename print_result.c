@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:37:43 by amann             #+#    #+#             */
-/*   Updated: 2022/02/17 15:29:06 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/21 18:10:06 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,12 @@ static char	*set_memory(char *s, t_width w, t_flags flag)
 	return (res);
 }
 
-void	print_result(char *s, t_width w, t_flags flag, int *printf_res)
+void	print_result(char *s, t_flags flag, int *printf_res)
 {
 	char	*res;
+	t_width	w;
 
+	w = flag.width;
 	if (!s)
 		return ;
 	res = set_memory(s, w, flag);

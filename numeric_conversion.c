@@ -5,67 +5,101 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/20 11:55:46 by amann             #+#    #+#             */
-/*   Updated: 2022/01/20 11:55:46 by amann            ###   ########.fr       */
+/*   Created: 2022/02/21 15:26:46 by amann             #+#    #+#             */
+/*   Updated: 2022/02/21 18:42:16 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*convert_hex_upper(long int nb)
+static char	*convert_digit_helper(long long int ll_x, t_flags *flag)
 {
-	return (ft_itoa_base((long int)nb, 16));
-}
+	int			x;
+	long int	l_x;
+	short		h_x;
+	char		hh_x;
 
-static char	*convert_hex_lower(long int nb)
-{
-	char	*res;
-	int		i;
-
-	res = ft_itoa_base((long int)nb, 16);
-	if (!res)
-		return (NULL);
-	i = 0;
-	while (res[i] != '\0')
+	if (flag->big_l)
+		return (ft_itoa_base(ll_x, 10));
+	else if (flag->l)
 	{
-		res[i] = ft_tolower(res[i]);
-		i++;
+		l_x = (long int) ll_x;
+		return (ft_itoa_base((long long int)l_x, 10));
 	}
-	return (res);
+	else if (flag->h)
+	{
+		h_x = (short) ll_x;
+		return (ft_itoa_base((long long int)h_x, 10));
+	}
+	else if (flag->hh)
+	{
+		hh_x = (char) ll_x;
+		return (ft_itoa_base((long long int)hh_x, 10));
+	}
+	x = (int) ll_x;
+	return (ft_itoa_base((long long int)x, 10));
 }
 
-static char	*convert_octal(long int nb)
+char	*convert_digit(va_list lst, t_flags *flag)
 {
-	return (ft_itoa_base((long int)nb, 8));
+	long long int	ll_x;
+
+	ll_x = va_arg(lst, long long int);
+	if (ll_x < 0)
+		flag->conv.neg = TRUE;
+	return (convert_digit_helper(ll_x, flag));
 }
 
-static char	*convert_digit(long int nb)
+static char	*convert_us_helper(unsigned long long ll_x, t_flags *flag, int base)
 {
-	return (ft_itoa_base(ft_abs_long(nb), 10));
+	unsigned int		x;
+	unsigned long		l_x;
+	unsigned short		h_x;
+	unsigned char		hh_x;
+
+	if (flag->big_l)
+		return (ft_itoa_base_unsigned(ll_x, 10));
+	else if (flag->l)
+	{
+		l_x = (unsigned long) ll_x;
+		return (ft_itoa_base_unsigned((unsigned long long)l_x, base));
+	}
+	else if (flag->h)
+	{
+		h_x = (unsigned short) ll_x;
+		return (ft_itoa_base_unsigned((unsigned long long)h_x, base));
+	}
+	else if (flag->hh)
+	{
+		hh_x = (unsigned char) ll_x;
+		return (ft_itoa_base_unsigned((unsigned long long)hh_x, base));
+	}
+	x = (unsigned int) ll_x;
+	return (ft_itoa_base_unsigned((unsigned long long)x, base));
 }
 
-void	numeric_conv_dispatcher(char c, va_list lst, char **res, t_flags *flags)
+char	*convert_unsigned(va_list lst, t_flags *flag)
 {
-	char			*(*p[4])(long int nb);
-	long int		x;
+	unsigned long long	ll_x;
+	size_t				i;
+	char				*res;
 
-	p[0] = convert_digit;
-	p[1] = convert_octal;
-	p[2] = convert_hex_lower;
-	p[3] = convert_hex_upper;
-	length_control(&x, lst, flags);
-	if (x < 0 && (c != 'u' && c != 'x' && c != 'X' && c != 'o' && c != 'p'))
-		flags->conv.neg = TRUE;
-	if (c != 'p' && (flags->h || flags->hh || c == 'u'))
-		*res = length_dispatcher(p, flags, c, x);
-	if (c == 'd' || c == 'i')
-		*res = (*p[0])(x);
-	else if (c == 'o')
-		*res = (*p[1])(x);
-	else if (c == 'x' || c == 'p')
-		*res = (*p[2])(x);
-	else if (c == 'X')
-		*res = (*p[3])(x);
-	if (flags->conv.neg)
-		*res = ft_strjoin("-", *res);
+	ll_x = va_arg(lst, unsigned long long);
+	if (flag->conv.u)
+		return (convert_us_helper(ll_x, flag, 10));
+	else if (flag->conv.o)
+		return (convert_us_helper(ll_x, flag, 8));
+	else if (flag->conv.big_x)
+		return (convert_us_helper(ll_x, flag, 16));
+	else
+	{
+		res = convert_us_helper(ll_x, flag, 16);
+		i = 0;
+		while (res[i] != '\0')
+		{
+			res[i] = ft_tolower(res[i]);
+			i++;
+		}
+		return (res);
+	}
 }

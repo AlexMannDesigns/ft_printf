@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:31:56 by amann             #+#    #+#             */
-/*   Updated: 2022/02/17 12:48:02 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/21 17:57:15 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,15 +109,17 @@ static size_t	check_sig_dig(long int l_dp, long double *r_dp, long double x)
 		return (i);
 }
 
-char	*handle_double(long double x, t_flags *flag, t_width width)
+char	*convert_double(va_list lst, t_flags *flag)
 {
 	char		*res_str;
 	long int	left_dp;
 	long double	right_dp;
+	long double	x;
 	size_t		signif;
 
-	if (!width.prec_set)
-		width.prec = 6;
+	set_x(lst, flag, &x);
+	if (!flag->width.prec_set)
+		flag->width.prec = 6;
 	if (x < 0)
 	{
 		flag->conv.neg = TRUE;
@@ -126,11 +128,11 @@ char	*handle_double(long double x, t_flags *flag, t_width width)
 	left_dp = (long int) x;
 	signif = check_sig_dig(left_dp, &right_dp, x);
 	res_str = create_string(left_dp, right_dp, signif);
-	if (width.prec > 17)
+	if (flag->width.prec > 17)
 		res_str = rounding_algo(res_str, 17);
 	else
-		res_str = rounding_algo(res_str, width.prec);
-	chop_chop(&res_str, width.prec);
+		res_str = rounding_algo(res_str, flag->width.prec);
+	chop_chop(&res_str, flag->width.prec);
 	res_str = neg_float_handler(res_str, flag);
 	return (res_str);
 }

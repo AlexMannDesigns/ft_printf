@@ -6,13 +6,32 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:25:40 by amann             #+#    #+#             */
-/*   Updated: 2022/02/11 10:38:34 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/21 17:45:45 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 /*	each time a new conversion starts, flag should all be set to FALSE */
-void	initialise_structs(t_flags *flag, t_width *width)
+static void	intialiser_helper(t_flags *flag)
+{
+	flag->width.prec = 0;
+	flag->width.width = 0;
+	flag->width.prec_set = FALSE;
+	flag->conv.numeric = FALSE;
+	flag->conv.percent = FALSE;
+	flag->conv.d = FALSE;
+	flag->conv.o = FALSE;
+	flag->conv.u = FALSE;
+	flag->conv.x = FALSE;
+	flag->conv.big_x = FALSE;
+	flag->conv.f = FALSE;
+	flag->conv.p = FALSE;
+	flag->conv.c = FALSE;
+	flag->conv.s = FALSE;
+	flag->conv.neg = FALSE;
+}
+
+void	initialise_structs(t_flags *flag)
 {
 	flag->h = FALSE;
 	flag->hh = FALSE;
@@ -25,28 +44,16 @@ void	initialise_structs(t_flags *flag, t_width *width)
 	flag->left = FALSE;
 	flag->plus = FALSE;
 	flag->space = FALSE;
-	width->prec = 0;
-	width->width = 0;
-	width->prec_set = FALSE;
-	flag->conv.numeric = FALSE;
-	flag->conv.percent = FALSE;
-	flag->conv.d = FALSE;
-	flag->conv.o = FALSE;
-	flag->conv.u = FALSE;
-	flag->conv.x = FALSE;
-	flag->conv.big_x = FALSE;
-	flag->conv.f = FALSE;
-	flag->conv.p = FALSE;
-	flag->conv.neg = FALSE;
+	intialiser_helper(flag);
 }
 
-static void	set_flags(char *s, t_flags *flag, t_width width)
+static void	set_flags(char *s, t_flags *flag)
 {
 	if (s[0] == 'L')
 		flag->big_l = TRUE;
 	else if (s[0] == '#')
 		flag->hash = TRUE;
-	else if (s[0] == '0' && !width.width && !width.prec)
+	else if (s[0] == '0' && !flag->width.width && !flag->width.prec)
 		flag->zero = TRUE;
 	else if (s[0] == '-')
 		flag->left = TRUE;
@@ -56,9 +63,9 @@ static void	set_flags(char *s, t_flags *flag, t_width width)
 		flag->space = TRUE;
 }
 
-void	set_flags_and_length(char *s, t_flags *flag, int *h_i, t_width width)
+void	set_flags_and_length(char *s, t_flags *flag, int *h_i)
 {
-	set_flags(s, flag, width);
+	set_flags(s, flag);
 	if (s[0] == 'h' && s[1] == 'h')
 	{
 		flag->hh = TRUE;

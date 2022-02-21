@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/02/16 15:51:40 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/21 18:40:10 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_conv
 	unsigned int	big_x;
 	unsigned int	f;
 	unsigned int	p;
+	unsigned int	c;
+	unsigned int	s;
 }					t_conv;
 
 typedef struct s_flags
@@ -61,6 +63,7 @@ typedef struct s_flags
 	unsigned int	plus;
 	unsigned int	space;
 	t_conv			conv;
+	t_width			width;
 }					t_flags;
 
 /***** FUNCTION PROTOTYPING *****/
@@ -69,33 +72,34 @@ typedef struct s_flags
 int			ft_printf(char *s, ...);
 
 /* set_flags.c */
-void		set_flags_and_length(char *s, t_flags *flag, int *h_i, \
-t_width width);
-void		initialise_structs(t_flags *flag, t_width *width);
+void		set_flags_and_length(char *s, t_flags *flag, int *h_i);
+void		initialise_structs(t_flags *flag);
 
 /* width_precision.c */
 void		set_width_precision(char *s, t_width *data, int *helper_i);
 
 /* conversion_control.c */
-char		*conversion_control(char *s, va_list lst, t_flags *flag, \
-				t_width *width);
+char		*conversion_control(char *s, va_list lst, t_flags *flag);
 /* numeric_conversion.c */
 void		numeric_conv_dispatcher(char c, va_list lst, char **res, \
 				t_flags *flags);
 /* handle_double.c */
-char		*handle_double(long double x, t_flags *flag, t_width width);
+char		*convert_double(va_list lst, t_flags *flag);
 
 /* double_helpers.c */
 char		*neg_float_handler(char *res, t_flags *flag);
 char		*rounding_algo(char *res, size_t prec);
 
-/* flag_control.c */
-char		*flag_control(char *res, t_flags flag, t_width width);
+/* double_helpers2.c */
+void		set_x(va_list lst, t_flags *flag, long double *x);
 
-/* length_control.c */
-void		length_control(long int *x, va_list lst, t_flags *flags);
-char		*length_dispatcher(char *(*p[4])(long), t_flags *flags, char c, \
-				long int x);
+/* flag_control.c */
+char		*flag_control(char *res, t_flags flag);
+
+/*	decimal_conv.c */
+char		*convert_digit(va_list lst, t_flags *flag);
+char		*convert_unsigned(va_list lst, t_flags *flag);
+
 /* hash_flag.c */
 char		*handle_hash(char *res, t_conv conv, t_width width, t_flags flag);
 
@@ -103,13 +107,14 @@ char		*handle_hash(char *res, t_conv conv, t_width width, t_flags flag);
 char		*handle_plus(char *res, t_flags flag, t_width width, size_t len);
 
 /* ft_itoa_base.c */
-char		*ft_itoa_base(const long int value, int base);
+char		*ft_itoa_base(const long long int value, int base);
+char		*ft_itoa_base_unsigned(const unsigned long long value, int base);
 
 /* ft_abs_long.c */
 long int	ft_abs_long(long int i);
 
 /* print_result.c */
-void		print_result(char *s, t_width w, t_flags flag, int *printf_res);
+void		print_result(char *s, t_flags flag, int *printf_res);
 
 /* ft_printf_putstr.c */
 void		ft_printf_putstr(char const *str, int *printf_res);
