@@ -6,7 +6,7 @@
 #    By: amann <amann@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 12:30:40 by amann             #+#    #+#              #
-#    Updated: 2022/02/21 18:58:49 by amann            ###   ########.fr        #
+#    Updated: 2022/02/22 16:50:03 by amann            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,10 +38,11 @@ LIBFT =  $(LIB_DIR)ft_atoi.c $(LIB_DIR)ft_bzero.c $(LIB_DIR)ft_isalnum.c		\
 		$(LIB_DIR)ft_strrchr.c $(LIB_DIR)ft_toupper.c $(LIB_DIR)ft_isupper.c	\
 		$(LIB_DIR)ft_lstadd_back.c $(LIB_DIR)ft_strndup.c
 LIBFT_OBJ = $(LIBFT:.c=.o)
-SRCS = conversion_control.c ft_itoa_base.c ft_printf.c	set_flags.c 			\
-		numeric_conversion.c width_precision.c 	print_result.c	flag_control.c	\
-		hash_flag.c plus_flag.c ft_abs_long.c handle_double.c					\
-		ft_printf_putstr.c double_helpers.c double_helpers2.c #length_control.c
+SRCS = conversion_control.c ft_printf.c	set_flags.c print_result.c hash_flag.c	\
+		flag_control.c	numeric_conversion.c width_precision.c plus_flag.c		\
+		ft_abs_long.c handle_double.c ft_printf_putstr.c double_helpers.c		\
+		double_helpers2.c ft_itoa_base.c ft_itoa_base_unsigned.c				\
+		signed_conversion_handlers.c
 OBJ = $(SRCS:.c=.o)
 TEST = tests_main.c
 DOUBLE_TEST = double_test_main.c
@@ -62,15 +63,8 @@ clean:
 fclean: clean
 	@@/bin/rm -f $(NAME) test
 	@@make -C $(LIB_DIR) fclean
-<<<<<<< HEAD
 	
 re: fclean all 
-=======
-
-re: fclean all
-
-#ref: fclean float #remember to change this before submitting!!
->>>>>>> a8227fab10edf68d12b3b0e2f4988cb66512e8bd
 
 #the below is just for testing with my main - creates a binary called test
 test: $(NAME)
@@ -81,7 +75,6 @@ float: $(NAME)
 
 #compiles the above tests, but will reveal any mem issues
 leak_comp:
-	@@$(MAKE) -C $(LIB_DIR)
 	@@gcc $(FLAGS) $(LEAK_TEST) -c $(SRCS)
 	@@ar rcs $(NAME) $(OBJ)
 

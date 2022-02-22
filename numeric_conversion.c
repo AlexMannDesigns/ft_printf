@@ -6,48 +6,29 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 15:26:46 by amann             #+#    #+#             */
-/*   Updated: 2022/02/21 18:58:59 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/22 16:47:10 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*convert_digit_helper(long long int ll_x, t_flags *flag)
-{
-	int			x;
-	long int	l_x;
-	short		h_x;
-	char		hh_x;
-
-	if (flag->big_l)
-		return (ft_itoa_base(ll_x, 10));
-	else if (flag->l)
-	{
-		l_x = (long int) ll_x;
-		return (ft_itoa_base((long long int)l_x, 10));
-	}
-	else if (flag->h)
-	{
-		h_x = (short) ll_x;
-		return (ft_itoa_base((long long int)h_x, 10));
-	}
-	else if (flag->hh)
-	{
-		hh_x = (char) ll_x;
-		return (ft_itoa_base((long long int)hh_x, 10));
-	}
-	x = (int) ll_x;
-	return (ft_itoa_base((long long int)x, 10));
-}
-
 char	*convert_digit(va_list lst, t_flags *flag)
 {
-	long long int	ll_x;
+	long long	ll_x;
 
-	ll_x = va_arg(lst, long long int);
-	if (ll_x < 0)
-		flag->conv.neg = TRUE;
-	return (convert_digit_helper(ll_x, flag));
+	ll_x = va_arg(lst, long long);
+	if (ll_x == 0)
+		flag->nil = TRUE;
+	if (flag->ll)
+		return (handle_ll(ll_x, flag));
+	else if (flag->l)
+		return (handle_l(ll_x, flag));
+	else if (flag->h)
+		return (handle_h(ll_x, flag));
+	else if (flag->hh)
+		return (handle_hh(ll_x, flag));
+	else
+		return (handle_int(ll_x, flag));
 }
 
 static char	*convert_us_helper(unsigned long long ll_x, t_flags *flag, int base)
@@ -57,8 +38,8 @@ static char	*convert_us_helper(unsigned long long ll_x, t_flags *flag, int base)
 	unsigned short		h_x;
 	unsigned char		hh_x;
 
-	if (flag->big_l)
-		return (ft_itoa_base_unsigned(ll_x, 10));
+	if (flag->ll)
+		return (ft_itoa_base_unsigned(ll_x, base));
 	else if (flag->l)
 	{
 		l_x = (unsigned long) ll_x;
@@ -85,15 +66,17 @@ char	*convert_unsigned(va_list lst, t_flags *flag)
 	char				*res;
 
 	ll_x = va_arg(lst, unsigned long long);
+	if (ll_x == 0)
+		flag->nil = TRUE;
 	if (flag->conv.u)
-		return (convert_us_helper(ll_x, flag, 10));
+		return (convert_us_helper(ll_x, flag, BASE_TEN));
 	else if (flag->conv.o)
-		return (convert_us_helper(ll_x, flag, 8));
+		return (convert_us_helper(ll_x, flag, BASE_EIGHT));
 	else if (flag->conv.big_x)
-		return (convert_us_helper(ll_x, flag, 16));
+		return (convert_us_helper(ll_x, flag, BASE_SIXTEEN));
 	else
 	{
-		res = convert_us_helper(ll_x, flag, 16);
+		res = convert_us_helper(ll_x, flag, BASE_SIXTEEN);
 		i = 0;
 		while (res[i] != '\0')
 		{

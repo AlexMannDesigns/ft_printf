@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/02/21 18:40:10 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/22 16:50:41 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@
 
 # define TRUE 1
 # define FALSE 0
+# define ZERO_LONG_DOUBLE 0.0L
+# define BASE_TEN 10
+# define BASE_EIGHT 8
+# define BASE_SIXTEEN 16
+# define SPACE 32
 
 /***** STRUCT PROTOTYPING *****/
 
@@ -80,9 +85,17 @@ void		set_width_precision(char *s, t_width *data, int *helper_i);
 
 /* conversion_control.c */
 char		*conversion_control(char *s, va_list lst, t_flags *flag);
+
 /* numeric_conversion.c */
 void		numeric_conv_dispatcher(char c, va_list lst, char **res, \
 				t_flags *flags);
+/* signed_conversion_handlers.c */
+char		*handle_ll(long long ll_x, t_flags *flag);
+char		*handle_l(long long ll_x, t_flags *flag);
+char		*handle_h(long long ll_x, t_flags *flag);
+char		*handle_hh(long long ll_x, t_flags *flag);
+char		*handle_int(long long ll_x, t_flags *flag);
+
 /* handle_double.c */
 char		*convert_double(va_list lst, t_flags *flag);
 
@@ -101,17 +114,21 @@ char		*convert_digit(va_list lst, t_flags *flag);
 char		*convert_unsigned(va_list lst, t_flags *flag);
 
 /* hash_flag.c */
-char		*handle_hash(char *res, t_conv conv, t_width width, t_flags flag);
+char		*handle_hash(char *res, t_flags flag);
 
 /* plus_flag.c */
-char		*handle_plus(char *res, t_flags flag, t_width width, size_t len);
+char		*handle_plus(char *res, t_flags flag, size_t len);
 
 /* ft_itoa_base.c */
-char		*ft_itoa_base(const long long int value, int base);
-char		*ft_itoa_base_unsigned(const unsigned long long value, int base);
+char		*ft_itoa_base(const long long value, int base);
+char		*itoa_reverse(char *str);
+
+/* ft_itoa_base_unsigned.c */
+char		*ft_itoa_base_unsigned(const unsigned long long value, \
+				int base);
 
 /* ft_abs_long.c */
-long int	ft_abs_long(long int i);
+long long	ft_abs_long(long long i);
 
 /* print_result.c */
 void		print_result(char *s, t_flags flag, int *printf_res);

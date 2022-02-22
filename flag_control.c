@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:14:26 by amann             #+#    #+#             */
-/*   Updated: 2022/02/21 17:15:31 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/22 16:30:59 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,50 +41,65 @@ static void	hash_zero_hex(char *new, char x)
 	new[1] = x;
 }
 
-static char	*handle_zero(char *res, t_conv conv, size_t width, t_flags flag)
+static void	handle_zero_neg(char *res, size_t len)
+{
+	char	*temp;
+
+	temp = ft_strnew(len);
+	ft_strcpy(temp, res + 1);
+	free(res);
+	res = ft_strdup(temp);
+	free(temp);
+}
+
+static char	*handle_zero(char *res, t_flags flag)
 {
 	char	*new;
 	size_t	len;
 
-	if (!res)
-		return (NULL);
 	len = ft_strlen(res);
-	if (len > width)
+	if (flag.conv.neg && flag.conv.d)
+		handle_zero_neg(res, --len);
+	if (len > flag.width.width)
 		return (res);
-	new = ft_strnew(width + 1);
+	new = ft_strnew(flag.width.width + 1);
 	if (!new)
 	{
 		ft_memdel((void **)&res);
 		return (NULL);
 	}
-	ft_memset(new, '0', width - len);
-	ft_strcpy(new + width - len, res);
+	ft_memset(new, '0', flag.width.width - len);
+	ft_strcpy(new + flag.width.width - len, res);
 	free(res);
-	if (conv.big_x && flag.hash)
+	if (flag.conv.big_x && flag.hash)
 		hash_zero_hex(new, 'X');
-	if (conv.x && flag.hash)
+	if (flag.conv.x && flag.hash)
 		hash_zero_hex(new, 'x');
+	if (flag.conv.neg && flag.conv.d)
+		new[0] = '-';
 	return (new);
 }
 
 char	*flag_control(char *res, t_flags flag)
 {
 	size_t	len;
-	t_conv	c;
-	t_width	width;
 
-	c = flag.conv;
-	width = flag.width;
 	if (!res)
 		return (NULL);
-	if ((flag.hash && c.numeric) || ((c.x || c.big_x) && width.prec) || c.p)
-		res = handle_hash(res, c, width, flag);
-	if (flag.zero && c.numeric && width.width && !width.prec && !flag.left)
-		res = handle_zero(res, c, width.width, flag);
-	if ((flag.plus || flag.space) && c.d && !c.neg && res)
+	if (((flag.hash && flag.conv.numeric) || ((flag.conv.x || flag.conv.big_x)
+				&& flag.width.prec) || flag.conv.p) && res[0] != '0')
+	{
+		res = handle_hash(res, flag);
+	}
+	if (flag.zero && flag.conv.numeric && flag.width.width && !flag.width.prec
+		&& !flag.left)
+	{
+		res = handle_zero(res, flag);
+	}
+	if ((flag.plus || flag.space) && flag.conv.d && !flag.conv.neg && res)
 	{
 		len = ft_strlen(res);
-		res = handle_plus(res, flag, width, len);
+		res = handle_plus(res, flag, len);
 	}
 	return (res);
 }

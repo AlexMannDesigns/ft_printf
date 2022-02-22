@@ -51,17 +51,64 @@ int	main(void)
 
 	int forty_two = -42;
 	unsigned long int neg_42 = (unsigned long int) forty_two;
-	printf("printf negative unsigned long:    %lu\n", neg_42);
-	ft_printf("ft_printf negative unsigned long: %lu\n\n", neg_42);
+	printf("printf negative unsigned long:    *%lu*\n", neg_42);
+	ft_printf("ft_printf negative unsigned long: *%lu*\n\n", neg_42);
  	
-	long long big =  9223372036854775807;
-	long long neg_big =  -9223372036854775807;
+	long long max_ll =  9223372036854775807;
+	long long min_ll =  -9223372036854775807;
 
-	printf("%lld\n", big);
-	ft_printf("%lld\n\n", big);
+	printf("printf signed long long max   : *%lld*\n", max_ll);
+	ft_printf("ft_printf signed long long max: *%lld*\n\n", max_ll);
 
-	printf("%lld\n", neg_big);
-	ft_printf("%lld\n\n", neg_big);
+	printf("printf signed long long min   : *%lld*\n", min_ll);
+	ft_printf("ft_printf signed long long min: *%lld*\n\n", min_ll);
+
+	printf("printf signed long long max, hexadecimal   : *%llx*\n", max_ll);
+	ft_printf("ft_printf signed long long max, hexadecimal: *%llx*\n\n", max_ll);
+
+	printf("printf signed long long min, hexadecimal   : *%llx*\n", min_ll);
+	ft_printf("ft_printf signed long long min, hexadecimal: *%llx*\n\n", min_ll);
+
+	printf("printf, long long caps hex:    *%llX*\n", (long long)4294967296);
+	ft_printf("ft_printf, long long caps hex: *%llX*\n\n", (long long)4294967296);
+
+	printf("printf, hex nil value and hash flag:    *%#x*\n", 0);
+ 	ft_printf("ft_printf, hex nil value and hash flag: *%#x*\n\n", 0);
+
+	printf("printf:   hex nil value, hash flag, zero precision: *%#.x* *%#.0x*\n", 0, 0);
+ 	ft_printf("ft_printf hex nil value, hash flag, zero precision: *%#.x* *%#.0x*\n\n", 0, 0);
+
+	printf("printf, hex and hash flag:    *%#x*\n", 7);
+ 	ft_printf("ft_printf, hex and hash flag: *%#x*\n\n", 7);
+
+	printf("printf:   hex, hash flag, zero precision: *%#.x* *%#.0x*\n", 7, 7);
+ 	ft_printf("ft_printf hex, hash flag, zero precision: *%#.x* *%#.0x*\n\n", 7, 7);
+ 	
+ 	printf("printf:   hex nil value, zero precision: *%.x* *%.0x*\n", 0, 0);
+	ft_printf("ft_printf hex nil value, zero precision: *%.x* *%.0x*\n\n", 0, 0);
+ 	
+ 	printf("printf:   hex, nil value width 5, precision zero: *%5.x* *%5.0x*\n", 0, 0);
+	ft_printf("ft_printf hex, nil value width 5, precision zero: *%5.x* *%5.0x*\n\n", 0, 0);
+
+	printf("printf:   hex, zero precision: *%.x* *%.0x*\n", 8, 8);
+	ft_printf("ft_printf hex, zero precision: *%.x* *%.0x*\n\n", 8, 8);
+ 	
+ 	printf("printf:   hex, width 5, precision zero: *%5.x* *%5.0x*\n", 8, 8);
+	ft_printf("ft_printf hex, width 5, precision zero: *%5.x* *%5.0x*\n\n", 8, 8);
+
+	printf("printf, neg, 0 flag   :		*%05d*\n", -42);
+	ft_printf("ft_printf printf, neg, 0 flag:	*%05d*\n\n", -42);
+ 	
+	printf("printf, neg, 0 and plus flags   :	*%0+5d*\n", -42);
+ 	ft_printf("ft_printf, neg, 0 and plus flags:	*%0+5d*\n\n", -42);
+
+	printf("printf, NULL char   :	*%c*\n", 0);
+ 	ft_printf("ft_printf, NULL char:	*%c*\n\n", 0);
+
+	printf("printf, NULL char, width 3   :	*%3c*\n", 0);
+	ft_printf("ft_printf, NULL char, width 3:	*%3c*\n\n", 0);
+	
+ 	
 	// char    *format_trick1 = "	*%x*\n";
 	// char    *format_trick2 = "	*%X*\n";
 	// char    *format_trick3 = "	*%hx*\n";
@@ -361,9 +408,9 @@ int	main(void)
 	// printf(test_str, 27);
 	// printf("*\n");
 
-	// // ft_printf("ft_printf preci -8: *");
-	// // ft_printf(test_str, 27);
-	// // ft_printf("*\n\n");
+	// ft_printf("ft_printf preci -8: *");
+	// ft_printf(test_str, 27);
+	// ft_printf("*\n\n");
 
 	// char *test_str2 = "%.-1d";
 	// printf("printf preci -1   : *"),

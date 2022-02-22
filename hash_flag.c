@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:43:01 by amann             #+#    #+#             */
-/*   Updated: 2022/02/08 12:24:36 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/22 16:17:11 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ static char	*hex_precision(char *res, size_t prec)
 	return (res);
 }
 
-char	*handle_hash(char *res, t_conv conv, t_width width, t_flags flag)
+char	*handle_hash(char *res, t_flags flag)
 {
 	char	*new;
 
-	if (conv.o)
+	if (flag.conv.o)
 	{
 		new = ft_strnew(ft_strlen(res) + 1);
 		if (!new)
@@ -81,13 +81,13 @@ char	*handle_hash(char *res, t_conv conv, t_width width, t_flags flag)
 		free(res);
 		return (new);
 	}
-	else if (conv.x || conv.big_x || conv.p)
+	else if (flag.conv.x || flag.conv.big_x || flag.conv.p)
 	{
-		res = hex_precision(res, width.prec);
+		res = hex_precision(res, flag.width.prec);
 		if (!res)
 			return (NULL);
-		if (flag.hash || conv.p)
-			return (hex_hash_helper(res, conv, ft_strlen(res)));
+		if (flag.hash || flag.conv.p)
+			return (hex_hash_helper(res, flag.conv, ft_strlen(res)));
 	}
 	return (res);
 }

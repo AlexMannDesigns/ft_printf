@@ -6,13 +6,13 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:29:45 by amann             #+#    #+#             */
-/*   Updated: 2022/02/08 16:04:40 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/22 15:20:21 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-long int	ft_abs_long(long int i)
+long long	ft_abs_long(long long i)
 {
 	if (i >= 0)
 		return (i);

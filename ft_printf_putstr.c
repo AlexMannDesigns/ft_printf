@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 15:12:50 by amann             #+#    #+#             */
-/*   Updated: 2022/02/18 08:50:09 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/14 16:34:22 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 void	ft_printf_putchar(char c, int *printf_res)
 {
-	if (write(1, &c, 1))
-		return ;
+	write(1, &c, 1);
 	*printf_res += 1;
 }
 

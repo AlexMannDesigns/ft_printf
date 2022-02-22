@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:31:56 by amann             #+#    #+#             */
-/*   Updated: 2022/02/21 18:58:46 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/22 15:08:04 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ static char	*create_string(long int l_dp, long double r_dp, size_t signif)
 	char	*res_str;
 	char	*temp_str;
 
-	int_str = ft_itoa_base(l_dp, 10);
-	dec_str = ft_itoa_base((long int)r_dp, 10);
+	int_str = ft_itoa_base(l_dp, BASE_TEN);
+	dec_str = ft_itoa_base((long int)r_dp, BASE_TEN);
 	if (signif)
 		res_str = create_str_helper(int_str, dec_str, signif);
 	else
@@ -91,14 +91,12 @@ static size_t	check_sig_dig(long int l_dp, long double *r_dp, long double x)
 {
 	size_t		i;
 	long double	temp;
-	long double	zero;
 
 	*r_dp = x - (long double)l_dp;
 	temp = *r_dp;
 	*r_dp *= 10e+17L;
-	zero = 0;
 	i = 0;
-	while (temp < 1 && temp != zero)
+	while (temp < 1 && temp != ZERO_LONG_DOUBLE)
 	{
 		temp *= 10;
 		i++;
