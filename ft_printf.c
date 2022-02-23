@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:42:19 by amann             #+#    #+#             */
-/*   Updated: 2022/02/22 13:17:33 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/23 13:48:09 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,27 @@ static void	ft_printf_helper(char *s, va_list lst, int *printf_i, int *p_res)
 int	ft_printf(char *s, ...)
 {
 	va_list	lst;
+	t_flags	temp;
 	int		i;
 	int		res;
+	int		count;
 
 	va_start(lst, s);
+	initialise_structs(&temp);
 	i = 0;
 	res = 0;
+	count = 0;
 	while (s[i] != '\0')
 	{
 		if (s[i] == '%')
+		{
+			ft_printf_putchar(s + count, i - count, &res, temp);
 			ft_printf_helper(&s[i + 1], lst, &i, &res);
-		else
-			ft_printf_putchar(s[i], &res);
+			count = i + 1;
+		}
 		i++;
 	}
+	ft_printf_putchar(s + count, i - count, &res, temp);
 	va_end(lst);
 	return (res);
 }

@@ -32,8 +32,6 @@ static void	set_conv_type(char c, t_conv *conv)
 		conv->x = TRUE;
 	else if (c == 'X')
 		conv->big_x = TRUE;
-	else if (c == 'p')
-		conv->p = TRUE;
 	else if (c == 'f')
 		conv->f = TRUE;
 	else if (c == '%')
@@ -42,6 +40,8 @@ static void	set_conv_type(char c, t_conv *conv)
 		conv->c = TRUE;
 	else if (c == 's')
 		conv->s = TRUE;
+	else if (c == 'p')
+		conv->p = TRUE;
 }
 
 static char	*handle_percent(void)
@@ -60,11 +60,16 @@ static char	*convert_char(va_list lst, t_flags *flag)
 	char			*res;
 	unsigned char	c;
 
-	if (flag->conv.c)
-		c = (unsigned char ) va_arg(lst, int);
-	res = ft_strnew(2);
-	if (!res || !c)
+	c = (unsigned char) va_arg(lst, int);
+	res = ft_strnew(1);
+	if (!res)
 		return (NULL);
+	if (!c)
+	{
+		flag->nil = TRUE;
+		res[0] = '0';
+		return (res);
+	}
 	res[0] = c;
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 15:26:46 by amann             #+#    #+#             */
-/*   Updated: 2022/02/22 16:47:10 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/23 13:01:20 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	*convert_us_helper(unsigned long long ll_x, t_flags *flag, int base)
 
 	if (flag->ll)
 		return (ft_itoa_base_unsigned(ll_x, base));
-	else if (flag->l)
+	else if (flag->l || flag->conv.p)
 	{
 		l_x = (unsigned long) ll_x;
 		return (ft_itoa_base_unsigned((unsigned long long)l_x, base));

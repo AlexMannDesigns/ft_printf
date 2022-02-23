@@ -6,19 +6,27 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 15:12:50 by amann             #+#    #+#             */
-/*   Updated: 2022/02/14 16:34:22 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/23 14:21:28 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printf_putchar(char c, int *printf_res)
+void	ft_printf_putchar(char const *str, int i, int *printf_res, t_flags flag)
 {
-	write(1, &c, 1);
-	*printf_res += 1;
+	int		count;
+	char	*temp;
+
+	if (flag.conv.c && flag.nil)
+	{
+		temp = ft_strchr(str, '0');
+		*temp = '\0';
+	}
+	count = write(1, str, i);
+	*printf_res += count;
 }
 
-void	ft_printf_putstr(char const *str, int *printf_res)
+void	ft_printf_putstr(char const *str, int *printf_res, t_flags flag)
 {
 	int	i;
 
@@ -26,8 +34,6 @@ void	ft_printf_putstr(char const *str, int *printf_res)
 		return ;
 	i = 0;
 	while (str[i] != '\0')
-	{
-		ft_printf_putchar(str[i], printf_res);
 		i++;
-	}
+	ft_printf_putchar(str, i, printf_res, flag);
 }

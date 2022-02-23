@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/02/22 16:50:41 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/23 15:18:16 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void		set_width_precision(char *s, t_width *data, int *helper_i);
 char		*conversion_control(char *s, va_list lst, t_flags *flag);
 
 /* numeric_conversion.c */
-void		numeric_conv_dispatcher(char c, va_list lst, char **res, \
+void		numeric_conv_dispatcher(char c, va_list lst, char **res,		\
 				t_flags *flags);
 /* signed_conversion_handlers.c */
 char		*handle_ll(long long ll_x, t_flags *flag);
@@ -124,9 +124,8 @@ char		*ft_itoa_base(const long long value, int base);
 char		*itoa_reverse(char *str);
 
 /* ft_itoa_base_unsigned.c */
-char		*ft_itoa_base_unsigned(const unsigned long long value, \
+char		*ft_itoa_base_unsigned(const unsigned long long value,			\
 				int base);
-
 /* ft_abs_long.c */
 long long	ft_abs_long(long long i);
 
@@ -134,7 +133,7 @@ long long	ft_abs_long(long long i);
 void		print_result(char *s, t_flags flag, int *printf_res);
 
 /* ft_printf_putstr.c */
-void		ft_printf_putstr(char const *str, int *printf_res);
-void		ft_printf_putchar(char c, int *printf_res);
-
+void		ft_printf_putstr(char const *str, int *printf_res, t_flags flag);
+void		ft_printf_putchar(char const *str, int i, int *printf_res,		\
+				t_flags flag);
 #endif

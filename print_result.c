@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:37:43 by amann             #+#    #+#             */
-/*   Updated: 2022/02/22 15:05:23 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/23 15:57:43 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ static void	precision_helper(char *s, char *res, t_width w, t_flags flag)
 	{
 		ft_memset((void *)res, '0', w.prec - len);
 		ft_strcpy(res + w.prec - len, s);
-		ft_memset((void *)(res + w.prec), ' ', w.width - w.prec);
+		if (w.prec < w.width)
+			ft_memset((void *)(res + w.prec), ' ', w.width - w.prec);
+		// else
+		// 	ft_memset((void *)(res + w.prec), ' ', w.prec);
 	}
 	if (flag.conv.neg && w.prec > (len - 1))
 	{
@@ -98,14 +101,15 @@ void	print_result(char *s, t_flags flag, int *printf_res)
 	res = set_memory(s, w, flag);
 	if (!res)
 		return ;
-	if (!flag.conv.big_x && !flag.conv.x && !flag.conv.p && flag.conv.numeric)
+	if (/*!flag.conv.big_x && !flag.conv.x && !flag.conv.p && */flag.conv.numeric)
 		precision_helper(s, res, w, flag);
 	if (flag.conv.numeric && w.prec == 0 && w.prec_set && flag.nil && w.width)
 		ft_memset(res, ' ', ft_strlen(res));
-	else if (flag.conv.numeric && w.prec == 0 && w.prec_set && flag.nil)
+	else if (flag.conv.numeric && w.prec == 0 && w.prec_set && flag.nil
+		&& !(flag.conv.o && flag.hash))
 	{
 		free(res);
 		res = ft_strdup("");
 	}
-	ft_printf_putstr(res, printf_res);
+	ft_printf_putstr(res, printf_res, flag);
 }

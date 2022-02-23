@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:14:26 by amann             #+#    #+#             */
-/*   Updated: 2022/02/22 16:30:59 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/23 15:54:24 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ static void	hash_zero_hex(char *new, char x)
 	int	i;
 
 	i = 0;
+
 	while (new[i] != '\0')
 	{
 		if (new[i] == x)
@@ -86,11 +87,8 @@ char	*flag_control(char *res, t_flags flag)
 
 	if (!res)
 		return (NULL);
-	if (((flag.hash && flag.conv.numeric) || ((flag.conv.x || flag.conv.big_x)
-				&& flag.width.prec) || flag.conv.p) && res[0] != '0')
-	{
+	if (((flag.hash && flag.conv.numeric) || flag.conv.p) && res[0] != '0')
 		res = handle_hash(res, flag);
-	}
 	if (flag.zero && flag.conv.numeric && flag.width.width && !flag.width.prec
 		&& !flag.left)
 	{

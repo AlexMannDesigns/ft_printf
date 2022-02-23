@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:25:40 by amann             #+#    #+#             */
-/*   Updated: 2022/02/22 16:50:26 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/23 15:34:48 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ static void	set_flags(char *s, t_flags *flag)
 	else if (s[0] == '#')
 		flag->hash = TRUE;
 	else if (s[0] == '0' && !flag->width.width && !flag->width.prec)
-		flag->zero = TRUE;
+	{
+		// ft_putstr("hello\n");
+		flag->zero = TRUE;	
+	}
 	else if (s[0] == '-')
 		flag->left = TRUE;
 	else if (s[0] == '+')
@@ -65,6 +68,9 @@ static void	set_flags(char *s, t_flags *flag)
 
 void	set_flags_and_length(char *s, t_flags *flag, int *h_i)
 {
+	// ft_putchar('\n');
+	// ft_putchar(s[0]);
+	// ft_putchar('\n');
 	set_flags(s, flag);
 	if (s[0] == 'h' && s[1] == 'h')
 	{
