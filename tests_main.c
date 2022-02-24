@@ -49,6 +49,29 @@ int	main(void)
 	// system("ft_printf leaks");
 	ft_printf("\n\n***** 42 filechecker testing *****\n\n");
 
+	printf("Le fichier \033[0;31m%s\033[0m contient : \033[0;31m%s\033[0m\n\n", "hello", "world");
+
+	printf("printf,    percent with 0 flag and width 5: *%05%*\n");
+	ft_printf("ft_printf, percent with 0 flag and width 5: *%05%*\n\n");
+	
+	printf("printf,    percent with prec 5 and width 5: *%5.5%*\n");
+	ft_printf("ft_printf, percent with prec 5 and width 5: *%5.5%*\n\n");
+
+	printf("printf,    p flag with NULL: *%p*\n", NULL);
+	ft_printf("ft_printf, p flag with NULL: *%p*\n\n", NULL);
+
+	printf("printf,    width 5 with NULL: *%5p*\n", NULL);
+	ft_printf("ft_printf, width 5 with NULL: *%5p*\n\n", NULL);
+
+	printf("printf,    d with 0 flag, width 4, neg val: *%04d*\n", -4825);
+	ft_printf("ft_printf, d with 0 flag, width 4, neg val: *%04d*\n\n", -4825);
+
+	printf("printf,    i with 0 flag, width 4, neg val: *%04i*\n", -4825);
+	ft_printf("ft_printf, i with 0 flag, width 4, neg val: *%04i*\n\n", -4825);
+
+	printf("printf,    i, width 4, neg val: *%4i*\n", -4825);
+	ft_printf("ft_printf, i, width 4, neg val: *%4i*\n\n", -4825);
+
 	int forty_two = -42;
 	unsigned long int neg_42 = (unsigned long int) forty_two;
 	printf("printf negative unsigned long:    *%lu*\n", neg_42);
@@ -180,6 +203,87 @@ int	main(void)
 	printf("	*%#x*\n", 0);
 	ft_printf("ft_printf 0: ");
 	ft_printf("	*%#x*\n\n", 0);
+
+	ft_printf("\n\n***** star (*) flag testing *****\n\n");
+
+	printf("printf prec 3, neg   : *%.*d*\n", 3, -25);
+	ft_printf("ft_printf prec 3, neg: *%.*d*\n\n", 3, -25);
+
+	printf("printf width 1   : *%*d*\n", 1, 25);
+	ft_printf("ft_printf width 1: *%*d*\n\n", 1, 25);
+
+	printf("printf width 10   : *%*d*\n", 10, 12345);
+	ft_printf("ft_printf width 10: *%*d*\n\n", 10, 12345);
+
+	printf("printf width 20   : *%*d*\n", 20, 78912340);
+	ft_printf("ft_printf width 20: *%*d*\n\n", 20, 78912340);
+
+	printf("printf preci 8   : *%.*d*\n", 8, 27);
+	ft_printf("ft_printf preci 8: *%.*d*\n\n", 8, 27);
+
+	printf("printf width 4 preci 8   : *%*.*d*\n", 4, 8, 312);
+	ft_printf("ft_printf width 4 preci 8: *%*.*d*\n\n", 4, 8, 312);
+
+	printf("printf width 10 precision 4   : *%*.*d*\n", 10, 4, 15);
+	ft_printf("ft_printf width 10 precision 4: *%*.*d*\n\n", 10, 4, 15);
+
+	printf("printf width 20 precision 6   : *%*.*d*\n", 20, 6, 234);
+	ft_printf("ft_printf width 20 precision 6: *%*.*d*\n\n", 20, 6, 234);
+
+	printf("printf neg width 1   : *%*d*\n", 1, -27);
+	ft_printf("ft_printf neg width 1: *%*d*\n\n", 1, -27);
+
+	printf("printf neg width 10   : *%*d*\n", 10, -2785);
+	ft_printf("ft_printf neg width 10: *%*d*\n\n", 10, -2785);
+
+	printf("printf neg width 20   : *%*d*\n", 20, -2905654);
+	ft_printf("ft_printf neg width 20: *%*d*\n\n", 20, -2905654);
+
+	printf("printf neg preci 8   : *%.*d*\n", 8, -3476);
+	ft_printf("ft_printf neg preci 8: *%.*d*\n\n", 8, -3476);
+
+	printf("printf neg width 4 preci 8   : *%*.*d*\n", 4, 8, -271);
+	ft_printf("ft_printf neg width 4 preci 8: *%*.*d*\n\n", 4, 8, -271);
+
+	printf("printf neg width 10 precision 4   : *%*.*d*\n", 10, 4, -3);
+	ft_printf("ft_printf neg width 10 precision 4: *%*.*d*\n\n", 10, 4, -3);
+
+	printf("printf neg width 20 precision 6   : *%*.*d*\n", 20, 6, -34);
+	ft_printf("ft_printf neg width 20 precision 6: *%*.*d*\n\n", 20, 6, -34);
+	
+	printf("printf   : *%.*s*\n", -3, "hello");
+	ft_printf("ft_printf: *%.*s*\n\n", -3, "hello");
+
+	printf("printf   : *%-*.*s*\n", -7, -3, "yolo");
+	ft_printf("ft_printf: *%-*.*s*\n\n", -7, -3, "yolo");
+
+	printf("printf   : *%.*d*\n", -1, 0);
+	ft_printf("ft_printf: *%.*d*\n\n", -1, 0);
+
+	printf("printf   : *%.*u*\n", -1, 0);
+	ft_printf("ft_printf: *%.*u*\n\n", -1, 0);
+
+	printf("printf   : *%.*o*\n", -1, 0);
+	ft_printf("ft_printf: *%.*o*\n\n", -1, 0);
+
+	printf("printf   : *%.*x*\n", -1, 0);
+	ft_printf("ft_printf: *%.*x*\n\n", -1, 0);
+
+	printf("printf   : *%.*X*\n", -1, 0);
+	ft_printf("ft_printf: *%.*X*\n\n", -1, 0);
+
+	printf("printf   : *%.*s*\n", -3, NULL);
+	ft_printf("ft_printf: *%.*s*\n\n", -3, NULL);
+
+	printf("printf   : *%.*s*\n", -1, NULL);
+	ft_printf("ft_printf: *%.*s*\n\n", -1, NULL);
+
+	char *pointer_trick = "printf   : *%.*p*\n";
+	printf(pointer_trick, -3, NULL);
+	ft_printf("ft_printf: *%.*p*\n\n", -3, NULL);
+
+	printf(pointer_trick, -1, NULL);
+	ft_printf("ft_printf: *%.*p*\n\n", -1, NULL);
 
 	ft_printf("\n\n***** length modifier testing *****\n\n");
 	int   aRegularInt     = 64;
@@ -401,8 +505,8 @@ int	main(void)
 	ft_printf("ft_printf with upper hex and with 10 and precision 6: *%10.6X*\n", 789);
 	printf("printf hash flag with octal and with 10 and precision 6   : *%#10.6o*\n", 543);
 	ft_printf("ft_printf hash flag with octal and with 10 and precision 6: *%#10.6o*\n", 543);
-	// //undefined behaviour printf("printf hash flag with decimal and with 10 and precision 6   : *%#10.6d*\n", 234);
-	// //undefined behaviour ft_printf("ft_printf hash flag with decimal and with 10 and precision 6: *%#10.6d*\n", 234);
+	// // //undefined behaviour printf("printf hash flag with decimal and with 10 and precision 6   : *%#10.6d*\n", 234);
+	// // //undefined behaviour ft_printf("ft_printf hash flag with decimal and with 10 and precision 6: *%#10.6d*\n", 234);
 
 	ft_printf("\n\n***** precision and width testing *****\n\n");
 
@@ -533,10 +637,10 @@ int	main(void)
 	printf("printf oct test width 20 precision 20   : *%20.20o*\n", 1234);
 	ft_printf("ft_printf oct test width 20 precision 20: *%20.20o*\n\n", 1234);
 
-	// int i = ft_printf("hello %10d world", 123);
-	// int j = printf("hello %10d world", 123);
-	// printf("\n\ntesting return values:\nprintf = %d  ft_printf = %d\n", j, i);
-	// ft_printf("%hhLd\n", 5);
+	// // int i = ft_printf("hello %10d world", 123);
+	// // int j = printf("hello %10d world", 123);
+	// // printf("\n\ntesting return values:\nprintf = %d  ft_printf = %d\n", j, i);
+	// // ft_printf("%hhLd\n", 5);
 
 	printf("printf integer 0 test   :	*%d*\n", 0);
 	ft_printf("ft_printf integer 0 test:	*%d*\n\n", 0);

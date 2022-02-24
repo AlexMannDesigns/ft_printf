@@ -6,61 +6,60 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:37:43 by amann             #+#    #+#             */
-/*   Updated: 2022/02/23 15:57:43 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/24 15:22:26 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static char	*width_helper(char *s, size_t len, t_width width, t_flags flag)
+static char	*width_helper(char *s, int len, t_width width, t_flags flag)
 {
 	char	*res;
 
 	res = ft_strnew(width.width);
 	if (!flag.left)
 	{
-		ft_memset((void *)res, ' ', width.width - len);
+		ft_memset((void *)res, ' ', (size_t)(width.width - len));
 		ft_strcpy((res + (width.width - len)), s);
 	}
 	else
 	{
 		ft_strcpy(res, s);
-		ft_memset((void *)(res + len), ' ', width.width - len);
+		ft_memset((void *)(res + len), ' ', (size_t)(width.width - len));
 	}
 	return (res);
 }
 
-static void	precision_helper_part_2(char *s, char *res, t_width w, size_t len)
+static void	precision_helper_part_2(char *s, char *res, t_width w, int len)
 {
 	if (w.prec > len && w.prec > w.width)
 	{
-		ft_memset((void *)res, '0', w.prec - len);
+		ft_memset((void *)res, '0', (size_t)(w.prec - len));
 		ft_strcpy((res + (w.prec - len)), s);
 	}
 	else if (w.prec > len && w.width)
 	{
-		ft_memset((void *)res, ' ', w.width);
-		ft_memset((void *)(res + w.width - w.prec), '0', w.prec - len);
+		ft_memset((void *)res, ' ', (size_t) w.width);
+		ft_memset((void *)(res + w.width - w.prec), '0', \
+			(size_t)(w.prec - len));
 		ft_strcpy((res + (w.width - len)), s);
 	}
 }
 
 static void	precision_helper(char *s, char *res, t_width w, t_flags flag)
 {
-	size_t	len;
+	int	len;
 
-	len = ft_strlen(s);
+	len = (int) ft_strlen(s);
 	if (flag.conv.neg && w.prec > (len - 1))
 		w.prec += 1;
 	precision_helper_part_2(s, res, w, len);
 	if (w.prec > len && w.width && flag.left)
 	{
-		ft_memset((void *)res, '0', w.prec - len);
+		ft_memset((void *)res, '0', (size_t)(w.prec - len));
 		ft_strcpy(res + w.prec - len, s);
 		if (w.prec < w.width)
-			ft_memset((void *)(res + w.prec), ' ', w.width - w.prec);
-		// else
-		// 	ft_memset((void *)(res + w.prec), ' ', w.prec);
+			ft_memset((void *)(res + w.prec), ' ', (size_t)(w.width - w.prec));
 	}
 	if (flag.conv.neg && w.prec > (len - 1))
 	{
@@ -72,9 +71,9 @@ static void	precision_helper(char *s, char *res, t_width w, t_flags flag)
 static char	*set_memory(char *s, t_width w, t_flags flag)
 {
 	char	*res;
-	size_t	len;
+	int		len;
 
-	len = ft_strlen(s);
+	len = (int) ft_strlen(s);
 	if (flag.conv.neg && w.prec > (len - 1))
 	{
 		s[0] = '0';
@@ -101,7 +100,7 @@ void	print_result(char *s, t_flags flag, int *printf_res)
 	res = set_memory(s, w, flag);
 	if (!res)
 		return ;
-	if (/*!flag.conv.big_x && !flag.conv.x && !flag.conv.p && */flag.conv.numeric)
+	if (flag.conv.numeric)
 		precision_helper(s, res, w, flag);
 	if (flag.conv.numeric && w.prec == 0 && w.prec_set && flag.nil && w.width)
 		ft_memset(res, ' ', ft_strlen(res));

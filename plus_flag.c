@@ -33,7 +33,7 @@ static char	*plus_helper(int len, t_width width, char sign, char *res)
 	return (new);
 }
 
-char	*handle_plus(char *res, t_flags flag, size_t len)
+char	*handle_plus(char *res, t_flags flag, int len)
 {
 	char	*new;
 	char	sign;

@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:14:26 by amann             #+#    #+#             */
-/*   Updated: 2022/02/23 15:54:24 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/24 12:32:17 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static void	hash_zero_hex(char *new, char x)
 	int	i;
 
 	i = 0;
-
 	while (new[i] != '\0')
 	{
 		if (new[i] == x)
@@ -42,7 +41,7 @@ static void	hash_zero_hex(char *new, char x)
 	new[1] = x;
 }
 
-static void	handle_zero_neg(char *res, size_t len)
+static void	handle_zero_neg(char *res, int len)
 {
 	char	*temp;
 
@@ -56,10 +55,10 @@ static void	handle_zero_neg(char *res, size_t len)
 static char	*handle_zero(char *res, t_flags flag)
 {
 	char	*new;
-	size_t	len;
+	int		len;
 
-	len = ft_strlen(res);
-	if (flag.conv.neg && flag.conv.d)
+	len = (int) ft_strlen(res);
+	if (flag.conv.neg && flag.conv.d && (flag.width.width > len))
 		handle_zero_neg(res, --len);
 	if (len > flag.width.width)
 		return (res);
@@ -83,20 +82,20 @@ static char	*handle_zero(char *res, t_flags flag)
 
 char	*flag_control(char *res, t_flags flag)
 {
-	size_t	len;
+	int	len;
 
 	if (!res)
 		return (NULL);
-	if (((flag.hash && flag.conv.numeric) || flag.conv.p) && res[0] != '0')
+	if (((flag.hash && flag.conv.numeric) && res[0] != '0') || flag.conv.p)
 		res = handle_hash(res, flag);
-	if (flag.zero && flag.conv.numeric && flag.width.width && !flag.width.prec
-		&& !flag.left)
+	if (flag.zero && (flag.conv.numeric || flag.conv.percent)
+		&& flag.width.width && !flag.width.prec && !flag.left)
 	{
 		res = handle_zero(res, flag);
 	}
 	if ((flag.plus || flag.space) && flag.conv.d && !flag.conv.neg && res)
 	{
-		len = ft_strlen(res);
+		len = (int) ft_strlen(res);
 		res = handle_plus(res, flag, len);
 	}
 	return (res);

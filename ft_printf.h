@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/02/23 15:18:16 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/24 12:37:37 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@
 
 typedef struct s_width
 {
-	size_t	prec;
-	size_t	width;
-	int		prec_set;
-}			t_width;
+	int				prec;
+	int				width;
+	unsigned int	prec_set;
+}					t_width;
 
 typedef struct s_conv
 {
@@ -67,6 +67,7 @@ typedef struct s_flags
 	unsigned int	left;
 	unsigned int	plus;
 	unsigned int	space;
+	unsigned int	star; //maybe not needed
 	t_conv			conv;
 	t_width			width;
 }					t_flags;
@@ -81,7 +82,7 @@ void		set_flags_and_length(char *s, t_flags *flag, int *h_i);
 void		initialise_structs(t_flags *flag);
 
 /* width_precision.c */
-void		set_width_precision(char *s, t_width *data, int *helper_i);
+void		set_width_precision(char *s, t_flags *data, int *helper_i, va_list lst);
 
 /* conversion_control.c */
 char		*conversion_control(char *s, va_list lst, t_flags *flag);
@@ -117,7 +118,7 @@ char		*convert_unsigned(va_list lst, t_flags *flag);
 char		*handle_hash(char *res, t_flags flag);
 
 /* plus_flag.c */
-char		*handle_plus(char *res, t_flags flag, size_t len);
+char		*handle_plus(char *res, t_flags flag, int len);
 
 /* ft_itoa_base.c */
 char		*ft_itoa_base(const long long value, int base);

@@ -48,7 +48,7 @@ static char	*handle_percent(void)
 {
 	char	*res;
 
-	res = ft_strnew(2);
+	res = ft_strnew(1);
 	if (!res)
 		return (NULL);
 	res[0] = '%';
