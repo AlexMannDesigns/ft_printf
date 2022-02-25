@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 15:26:46 by amann             #+#    #+#             */
-/*   Updated: 2022/02/23 13:01:20 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/25 16:04:31 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,16 @@
 
 char	*convert_digit(va_list lst, t_flags *flag)
 {
-	long long	ll_x;
-
-	ll_x = va_arg(lst, long long);
-	if (ll_x == 0)
-		flag->nil = TRUE;
 	if (flag->ll)
-		return (handle_ll(ll_x, flag));
+		return (handle_ll(va_arg(lst, long long), flag));
 	else if (flag->l)
-		return (handle_l(ll_x, flag));
+		return (handle_l(va_arg(lst, long), flag));
 	else if (flag->h)
-		return (handle_h(ll_x, flag));
+		return (handle_h(va_arg(lst, int), flag));
 	else if (flag->hh)
-		return (handle_hh(ll_x, flag));
+		return (handle_hh(va_arg(lst, int), flag));
 	else
-		return (handle_int(ll_x, flag));
+		return (handle_int(va_arg(lst, int), flag));
 }
 
 static char	*convert_us_helper(unsigned long long ll_x, t_flags *flag, int base)
@@ -74,6 +69,8 @@ char	*convert_unsigned(va_list lst, t_flags *flag)
 		return (convert_us_helper(ll_x, flag, BASE_EIGHT));
 	else if (flag->conv.big_x)
 		return (convert_us_helper(ll_x, flag, BASE_SIXTEEN));
+	else if (flag->conv.b)
+		return (convert_us_helper(ll_x, flag, BASE_TWO));
 	else
 	{
 		res = convert_us_helper(ll_x, flag, BASE_SIXTEEN);

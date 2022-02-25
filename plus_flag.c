@@ -41,7 +41,7 @@ char	*handle_plus(char *res, t_flags flag, int len)
 	sign = sign_selector(flag);
 	if (flag.width.prec > len)
 		new = plus_helper(len, flag.width, sign, res);
-	else if (!flag.zero)
+	else if (!flag.zero || len > flag.width.width)
 	{
 		new = ft_strnew(len + 1);
 		if (!new)
@@ -55,5 +55,6 @@ char	*handle_plus(char *res, t_flags flag, int len)
 		return (res);
 	}
 	free(res);
+	
 	return (new);
 }

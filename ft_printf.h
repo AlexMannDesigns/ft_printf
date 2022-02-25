@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/02/24 12:37:37 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/25 16:07:12 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,17 @@
 
 # include "libft/libft.h"
 # include <stdarg.h>
-# include <stdio.h> /* printf needed for testing */
+
+/* needed for testing */
+# include <limits.h>
+# include <stdio.h> 
 
 /***** MACROS *****/
 
 # define TRUE 1
 # define FALSE 0
 # define ZERO_LONG_DOUBLE 0.0L
+# define BASE_TWO 2
 # define BASE_TEN 10
 # define BASE_EIGHT 8
 # define BASE_SIXTEEN 16
@@ -49,6 +53,7 @@ typedef struct s_conv
 	unsigned int	x;
 	unsigned int	big_x;
 	unsigned int	f;
+	unsigned int	b;
 	unsigned int	p;
 	unsigned int	c;
 	unsigned int	s;
@@ -92,10 +97,10 @@ void		numeric_conv_dispatcher(char c, va_list lst, char **res,		\
 				t_flags *flags);
 /* signed_conversion_handlers.c */
 char		*handle_ll(long long ll_x, t_flags *flag);
-char		*handle_l(long long ll_x, t_flags *flag);
-char		*handle_h(long long ll_x, t_flags *flag);
-char		*handle_hh(long long ll_x, t_flags *flag);
-char		*handle_int(long long ll_x, t_flags *flag);
+char		*handle_l(long l_x, t_flags *flag);
+char		*handle_h(int x, t_flags *flag);
+char		*handle_hh(int x, t_flags *flag);
+char		*handle_int(int x, t_flags *flag);
 
 /* handle_double.c */
 char		*convert_double(va_list lst, t_flags *flag);

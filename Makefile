@@ -6,7 +6,7 @@
 #    By: amann <amann@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 12:30:40 by amann             #+#    #+#              #
-#    Updated: 2022/02/22 16:50:03 by amann            ###   ########.fr        #
+#    Updated: 2022/02/24 16:57:34 by amann            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,7 @@ float: $(NAME)
 
 #compiles the above tests, but will reveal any mem issues
 leak_comp:
+	@@$(MAKE) -C $(LIB_DIR)
 	@@gcc $(FLAGS) $(LEAK_TEST) -c $(SRCS)
 	@@ar rcs $(NAME) $(OBJ)
 

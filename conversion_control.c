@@ -20,7 +20,7 @@
 static void	set_conv_type(char c, t_conv *conv)
 {
 	if (c == 'd' || c == 'i' || c == 'o' || c == 'u' || c == 'x' || c == 'X'
-		|| c == 'p')
+		|| c == 'p' || c == 'b')
 		conv->numeric = TRUE;
 	if (c == 'd' || c == 'i')
 		conv->d = TRUE;
@@ -32,6 +32,8 @@ static void	set_conv_type(char c, t_conv *conv)
 		conv->x = TRUE;
 	else if (c == 'X')
 		conv->big_x = TRUE;
+	else if (c == 'b')
+		conv->b = TRUE;
 	else if (c == 'f')
 		conv->f = TRUE;
 	else if (c == '%')
@@ -109,7 +111,7 @@ char	*conversion_control(char *s, va_list lst, t_flags *flag)
 	if (flag->conv.d)
 		res = (*p[0])(lst, flag);
 	else if (flag->conv.u || flag->conv.o || flag->conv.x || flag->conv.big_x
-		|| flag->conv.p)
+		|| flag->conv.p || flag->conv.b)
 		res = (*p[1])(lst, flag);
 	else if (flag->conv.c)
 		res = (*p[2])(lst, flag);
