@@ -6,22 +6,23 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 16:39:08 by amann             #+#    #+#             */
-/*   Updated: 2022/02/25 16:33:18 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/28 15:06:03 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	add_sign(char *res)
+char	*add_sign(char *res)
 {
-	char	*new;
+	char	*temp;
+	size_t	len;
 
-	new = ft_strnew(ft_strlen(res) + 1);
-	new[0] = '-';
-	ft_strcpy(new + 1, res);
+	len = ft_strlen(res) + 1;
+	temp = ft_strnew(len);
+	temp[0] = '-';
+	ft_strcpy(temp + 1, res);
 	free(res);
-	res = (char *) ft_strdup(new);
-	free(new);
+	return (temp);
 }
 
 char	*handle_ll(long long ll_x, t_flags *flag)
@@ -34,7 +35,7 @@ char	*handle_ll(long long ll_x, t_flags *flag)
 		flag->nil = TRUE;
 	res = ft_itoa_base(ft_abs_long(ll_x), BASE_TEN);
 	if (flag->conv.neg)
-	 	add_sign(res);
+	 	res = add_sign(res);
 	return (res);
 }
 
@@ -48,7 +49,13 @@ char	*handle_l(long l_x, t_flags *flag)
 		flag->nil = TRUE;
 	res = ft_itoa_base(ft_abs_long(l_x), BASE_TEN);
 	if (flag->conv.neg)
-	 	add_sign(res);
+	{
+		// ft_putstr("here    ");
+	 	res = add_sign(res);
+	}
+	// ft_putchar('\n');
+	// ft_putstr(res);
+	// ft_putchar('\n');
 	return (res);
 }
 
@@ -64,7 +71,7 @@ char	*handle_h(int x, t_flags *flag)
 		flag->nil = TRUE;
 	res = ft_itoa_base((long long) ft_abs((int)h_x), BASE_TEN);
 	if (flag->conv.neg)
-	 	add_sign(res);
+	 	res = add_sign(res);
 	return (res);
 }
 
@@ -80,7 +87,7 @@ char	*handle_hh(int x, t_flags *flag)
 		flag->nil = TRUE;
 	res = ft_itoa_base((long long) ft_abs((int)hh_x), BASE_TEN);
 	if (flag->conv.neg)
-	 	add_sign(res);
+	 	res = add_sign(res);
 	return (res);
 }
 
@@ -89,11 +96,22 @@ char	*handle_int(int x, t_flags *flag)
 	char	*res;
 
 	if (x < 0)
+	{
+		// ft_putstr("here    ");
 		flag->conv.neg = TRUE;
+	}
 	if (x == 0)
 		flag->nil = TRUE;
+	// ft_putchar('\n');
+	// ft_putnbr(x);
+	// ft_putchar('\n');
 	res = ft_itoa_base((long long) ft_abs(x), BASE_TEN);
+	
 	if (flag->conv.neg)
-	 	add_sign(res);
+	{
+		res = add_sign(res);
+	}
+	// ft_putstr(res);
+	// ft_putchar('\n');
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:37:43 by amann             #+#    #+#             */
-/*   Updated: 2022/02/25 16:38:37 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/28 15:53:23 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	precision_helper_part_2(char *s, char *res, t_width w, int len)
 {
 	if (w.prec > len && w.prec > w.width)
 	{
+		
 		ft_memset((void *)res, '0', (size_t)(w.prec - len));
 		ft_strcpy((res + (w.prec - len)), s);
 	}
@@ -78,9 +79,11 @@ static char	*set_memory(char *s, t_width w, t_flags flag)
 	{
 		s[0] = '0';
 		w.prec += 1;
+		// ft_putstr(s);
+		// ft_putchar('\n');	
 	}
 	if (w.prec && w.prec > len && w.width < w.prec && flag.conv.numeric
-		&& !flag.conv.big_x && !flag.conv.x && !flag.conv.p)
+		/*&& !flag.conv.big_x && !flag.conv.x && !flag.conv.p*/)
 		res = ft_strnew(w.prec);
 	else if (w.width && w.width > len)
 		res = width_helper(s, len, w, flag);
@@ -110,5 +113,7 @@ void	print_result(char *s, t_flags flag, int *printf_res)
 		free(res);
 		res = ft_strdup("");
 	}
+	// ft_putstr(res);
+	// ft_putchar('\n');
 	ft_printf_putstr(res, printf_res, flag);
 }

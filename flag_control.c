@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:14:26 by amann             #+#    #+#             */
-/*   Updated: 2022/02/24 16:19:18 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/28 15:27:20 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,14 @@ static void	hash_zero_hex(char *new, char x)
 	new[1] = x;
 }
 
-static void	handle_zero_neg(char *res, int len)
+static char	*handle_zero_neg(char *res, int len)
 {
 	char	*temp;
 
 	temp = ft_strnew(len);
 	ft_strcpy(temp, res + 1);
 	free(res);
-	res = ft_strdup(temp);
-	free(temp);
+	return (temp);
 }
 
 static char	*handle_zero(char *res, t_flags flag)
@@ -59,7 +58,10 @@ static char	*handle_zero(char *res, t_flags flag)
 
 	len = (int) ft_strlen(res);
 	if (flag.conv.neg && flag.conv.d && (flag.width.width > len))
-		handle_zero_neg(res, --len);
+		res = handle_zero_neg(res, --len);
+	// ft_putchar('\n');
+	// ft_putstr(res);
+	// ft_putchar('\n');
 	if (len > flag.width.width)
 		return (res);
 	new = ft_strnew(flag.width.width + 1);
@@ -70,6 +72,9 @@ static char	*handle_zero(char *res, t_flags flag)
 	}
 	ft_memset(new, '0', flag.width.width - len);
 	ft_strcpy(new + flag.width.width - len, res);
+	// ft_putchar('\n');
+	// ft_putstr(new);
+	// ft_putchar('\n');
 	free(res);
 	if (flag.conv.big_x && flag.hash)
 		hash_zero_hex(new, 'X');

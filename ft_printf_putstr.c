@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 15:12:50 by amann             #+#    #+#             */
-/*   Updated: 2022/02/23 14:21:28 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/28 15:44:13 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ void	ft_printf_putstr(char const *str, int *printf_res, t_flags flag)
 	i = 0;
 	while (str[i] != '\0')
 		i++;
+	// ft_putnbr(i);
+	// ft_putchar('\n');
 	ft_printf_putchar(str, i, printf_res, flag);
 }

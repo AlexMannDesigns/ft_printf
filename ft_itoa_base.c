@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 11:00:46 by amann             #+#    #+#             */
-/*   Updated: 2022/02/25 16:35:32 by amann            ###   ########.fr       */
+/*   Updated: 2022/02/28 15:34:07 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,9 @@ char	*ft_itoa_base(const long long value, int base)
 
 	n = ft_abs_long(value);
 	i = 0;
-	ft_putnbr(n);
-	ft_putchar('\n');
+	// ft_putstr("itoa num: ");
+	// ft_putnbr(n);
+	// ft_putchar('\n');
 	while (n / base > 0)
 	{	
 		n = n / base;
@@ -97,7 +98,7 @@ char	*ft_itoa_base(const long long value, int base)
 	// if (value < 0 && base == 10)
 	// 	res = ft_strnew(i + 1);
 	else
-		res = ft_strnew(i);
+		res = ft_strnew(i + 1);
 	if (!res)
 		return (NULL);
 	// if (value < 0)
