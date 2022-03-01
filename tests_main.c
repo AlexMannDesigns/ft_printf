@@ -48,15 +48,15 @@ int	main(void)
 	
 	
 	// system("ft_printf leaks");
-	// ft_printf("\n\n***** binary (b) flag testing *****\n\n");
-	// ft_printf("binary test (expected output = 1111011): %b\n", 123);
-	// ft_printf("binary test (expected output = 11110000001111000): %b\n", 123000);
-	// ft_printf("binary test (expected output = 1100010101): %b\n", 789);
-	// ft_printf("binary test (expected output = 11111111111111111111111111101100): %b\n", -20);
-	// ft_printf("binary test (expected output = 11111111111111111111111111111111): %b\n", LLONG_MAX);
-	// ft_printf("binary test (expected output = 0):	%b\n", LLONG_MIN);
-	// ft_printf("binary test (expected output = 11):	%b\n", 3);
-	// ft_printf("binary test (expected output = 0):	%b\n", 0);
+	ft_printf("\n\n***** binary (b) flag testing *****\n\n");
+	ft_printf("binary test (expected output = 1111011): %b\n", 123);
+	ft_printf("binary test (expected output = 11110000001111000): %b\n", 123000);
+	ft_printf("binary test (expected output = 1100010101): %b\n", 789);
+	ft_printf("binary test (expected output = 11111111111111111111111111101100): %b\n", -20);
+	ft_printf("binary test (expected output = 11111111111111111111111111111111): %b\n", LLONG_MAX);
+	ft_printf("binary test (expected output = 0):	%b\n", LLONG_MIN);
+	ft_printf("binary test (expected output = 11):	%b\n", 3);
+	ft_printf("binary test (expected output = 0):	%b\n", 0);
 
 	ft_printf("\n\n***** 42 filechecker testing *****\n\n");
 	
@@ -69,22 +69,33 @@ int	main(void)
 	printf("printf   : *%s*\n", percent);
 	ft_printf("ft_printf: *%s*\n\n", percent);
 
-	// printf("printf:    *%ld*\n", LONG_MIN);
-	// ft_printf("ft_printf: *%ld*\n\n", LONG_MIN);
+	printf("printf CHAR_MIN:   	*%d*\n", CHAR_MIN);
+	ft_printf("ft_printf CHAR_MIN:	*%d*\n\n", CHAR_MIN);
 
-	// printf("printf:    *%lld*\n", LLONG_MIN);
-	// ft_printf("ft_printf: *%lld*\n\n", LLONG_MIN);
+	printf("printf INT_MIN:   	*%d*\n", INT_MIN);
+	ft_printf("ft_printf INT_MIN:	*%d*\n\n", INT_MIN);
+
+	printf("printf LONG_MIN:   	*%ld*\n", LONG_MIN);
+	ft_printf("ft_printf LONG_MIN:	*%ld*\n\n", LONG_MIN);
+
+	printf("printf LLONG_MIN:   	*%lld*\n", LLONG_MIN);
+	ft_printf("ft_printf LLONG_MIN:	*%lld*\n\n", LLONG_MIN);
+
+	printf("printf INT_MAX:   	*%d*\n", INT_MAX);
+	ft_printf("ft_printf INT_MAX:	*%d*\n\n", INT_MAX);
+
+	printf("printf LONG_MAX:   	*%ld*\n", LONG_MAX);
+	ft_printf("ft_printf LONG_MAX:	*%ld*\n\n", LONG_MAX);
+
+	printf("printf LLONG_MAX:   	*%lld*\n", LLONG_MAX);
+	ft_printf("ft_printf LLONG_MAX:	*%lld*\n\n", LLONG_MAX);
 
 	printf("printf:    *%+03d*\n", 123456);
 	ft_printf("ft_printf: *%+03d*\n\n", 123456);
 
-	char *fu_compiler1 =	"printf   :    *%.0p*, *%.p*\n";
-	char *fu_compiler2 =	"ft_printf:    *%.0p*, *%.p*\n\n";
-	printf(fu_compiler1, NULL, NULL);
-	ft_printf(fu_compiler2, NULL, NULL);
 
-	printf(fu_compiler1, NULL, NULL);
-	ft_printf(fu_compiler2, NULL, NULL);
+	// printf(fu_compiler1, NULL, NULL);
+	// ft_printf(fu_compiler2, NULL, NULL);
 	printf("Le fichier \033[0;31m%s\033[0m contient : \033[0;31m%s\033[0m\n\n", "hello", "world");
 
 	printf("printf,    percent with 0 flag and width 5: *%05%*\n");
@@ -167,10 +178,10 @@ int	main(void)
 	printf("printf, NULL char, width 3   :	*%3c*\n", 0);
 	ft_printf("ft_printf, NULL char, width 3:	*%3c*\n\n", 0);
 
-	//printf("printf, NULL char, space flag:	*% c*\n", 0);
-	ft_printf("ft_printf,    NULL char, space flag:	*% c*\n\n", 0);
-	//printf("printf, NULL char, prec 2:	*%.2c*\n", NULL);
-	ft_printf("ft_printf,    NULL char, prec 2:	*%.2c*\n\n", NULL);
+	// //printf("printf, NULL char, space flag:	*% c*\n", 0);
+	// ft_printf("ft_printf,    NULL char, space flag:	*% c*\n\n", 0);
+	// //printf("printf, NULL char, prec 2:	*%.2c*\n", NULL);
+	// ft_printf("ft_printf,    NULL char, prec 2:	*%.2c*\n\n", NULL);
 
 	printf("printf    decimal, left aligned, width 5, precision 10: *%-5.10d*\n", 2500);
 	ft_printf("ft-printf decimal, left aligned, width 5, precision 10: *%5.10d*\n\n", 2500);
@@ -321,44 +332,44 @@ int	main(void)
 	printf(pointer_trick, -1, NULL);
 	ft_printf("ft_printf: *%.*p*\n\n", -1, NULL);
 
-	// // ft_printf("\n\n***** length modifier testing *****\n\n");
-	// // int   aRegularInt     = 64;
-	// // short aShortInt       = 64;
-	// // short anegShortInt    = -64;
-	// // char  aReallyShortInt = 64;
-	// // int long alongint = 12345678998765432;
-	// // int long long alonglongint = 123456;
-	// // long double alongdouble = 9999.9999999999999999;
-	// // long double alonglongdouble = 9999.9999999999999999999999999999999;
+	ft_printf("\n\n***** length modifier testing *****\n\n");
+	int   aRegularInt     = 64;
+	short aShortInt       = 64;
+	short anegShortInt    = -64;
+	char  aReallyShortInt = 64;
+	int long alongint = 12345678998765432;
+	int long long alonglongint = 123456;
+	long double alongdouble = 9999.9999999999999999;
+	long double alonglongdouble = 9999.9999999999999999999999999999999;
 
-	// // printf("printf    long length mod test:    %d %ld %lld %f %Lf %hhd %Lf %hd %ld %hd %s %p %d %ld %lld %lf %Lf %hhd %Lf %hd %ld %hd %s %p  \n", 123, alongint, alonglongint, 0.999, alonglongdouble, aReallyShortInt, alongdouble, aShortInt, alongint, aShortInt, "hello", (void *)&aShortInt, 123, alongint, alonglongint, 0.999, alonglongdouble, aReallyShortInt, alongdouble, aShortInt, alongint, aShortInt, "hello", (void *)&aShortInt);
-	// // ft_printf("ft_printf long length mod test: %d %ld %lld %f %Lf %hhd %Lf %hd %ld %hd %s %p %d %ld %lld %lf %Lf %hhd %Lf %hd %ld %hd %s %p\n\n", 123, alongint, alonglongint, 0.999, alonglongdouble, aReallyShortInt, alongdouble, aShortInt, alongint, aShortInt, "hello", &aShortInt, 123, alongint, alonglongint, 0.999, alonglongdouble, aReallyShortInt, alongdouble, aShortInt, alongint, aShortInt, "hello", &aShortInt);
+	printf("printf    long length mod test:    %d %ld %lld %f %Lf %hhd %Lf %hd %ld %hd %s %p %d %ld %lld %lf %Lf %hhd %Lf %hd %ld %hd %s %p  \n", 123, alongint, alonglongint, 0.999, alonglongdouble, aReallyShortInt, alongdouble, aShortInt, alongint, aShortInt, "hello", (void *)&aShortInt, 123, alongint, alonglongint, 0.999, alonglongdouble, aReallyShortInt, alongdouble, aShortInt, alongint, aShortInt, "hello", (void *)&aShortInt);
+	ft_printf("ft_printf long length mod test: %d %ld %lld %f %Lf %hhd %Lf %hd %ld %hd %s %p %d %ld %lld %lf %Lf %hhd %Lf %hd %ld %hd %s %p\n\n", 123, alongint, alonglongint, 0.999, alonglongdouble, aReallyShortInt, alongdouble, aShortInt, alongint, aShortInt, "hello", &aShortInt, 123, alongint, alonglongint, 0.999, alonglongdouble, aReallyShortInt, alongdouble, aShortInt, alongint, aShortInt, "hello", &aShortInt);
 
-	// // printf( "aRegularInt     = %d\n",   aRegularInt );
-	// // printf( "aShortInt       = %hd\n",  aShortInt );
-	// // printf( "aReallyShortInt = %hhd\n", aReallyShortInt );
-	// // printf( "aReallyShortInt = %c\n",   aReallyShortInt );
+	printf( "aRegularInt     = %d\n",   aRegularInt );
+	printf( "aShortInt       = %hd\n",  aShortInt );
+	printf( "aReallyShortInt = %hhd\n", aReallyShortInt );
+	printf( "aReallyShortInt = %c\n",   aReallyShortInt );
 
-	// // printf( "printf unsigned int     = %u\n",   23 );
-	// // printf( "printf unsigned int     = %u\n",   -23 );
+	printf( "printf unsigned int     = %u\n",   23 );
+	printf( "printf unsigned int     = %u\n",   -23 );
 
-	// // ft_printf( "ft_printf unsigned int     = %u\n",   23 );
-	// // ft_printf( "ft_printf unsigned int     = %u\n",   -23 );
+	ft_printf( "ft_printf unsigned int     = %u\n",   23 );
+	ft_printf( "ft_printf unsigned int     = %u\n",   -23 );
 
-	// // printf( "printf short int     = %hd\n",  aShortInt  );
-	// // printf( "printf short int     = %hd\n",   anegShortInt  );
-
-
-	// // ft_printf( "ft_printf short int     = %hd\n",  aShortInt  );
-	// // ft_printf( "ft_printf short int     = %hd\n",   anegShortInt  );
+	printf( "printf short int     = %hd\n",  aShortInt  );
+	printf( "printf short int     = %hd\n",   anegShortInt  );
 
 
+	ft_printf( "ft_printf short int     = %hd\n",  aShortInt  );
+	ft_printf( "ft_printf short int     = %hd\n",   anegShortInt  );
 
 
-	// // printf( "signed int     = %d\n",   -23 );
-	// // printf( "aShortInt       = %hd\n",  aShortInt );
-	// // printf( "aReallyShortInt = %hhd\n", aReallyShortInt );
-	// // printf( "aReallyShortInt = %c\n",   aReallyShortInt );
+
+
+	printf( "signed int     = %d\n",   -23 );
+	printf( "aShortInt       = %hd\n",  aShortInt );
+	printf( "aReallyShortInt = %hhd\n", aReallyShortInt );
+	printf( "aReallyShortInt = %c\n",   aReallyShortInt );
 
 	ft_printf("\n\n***** memory address testing *****\n\n");
 	int i = 5;
@@ -377,6 +388,14 @@ int	main(void)
 
 	printf("printf    address test, width 20, left aligned: *%-20p*\n", (void *)ptr);
 	ft_printf("ft_printf address test, width 20, left aligned: *%-20p*\n\n", ptr);
+
+	printf("printf    NULL address test: *%p*\n", NULL);
+	ft_printf("ft_printf NULL address test: *%p*\n\n", NULL);
+
+	char *fu_compiler1 =	"printf    NULL address, 0 precision:	*%.0p*	*%.p*\n";
+	char *fu_compiler2 =	"ft_printf NULL address, 0 precision:	*%.0p*	*%.p*\n\n";
+	printf(fu_compiler1, NULL, NULL);
+	ft_printf(fu_compiler2, NULL, NULL);
 
 	ft_printf("\n\n***** BIG number testing *****\n\n");
 	long long int super_big = 2345678923456781234; //19 digit number is about the limit
@@ -670,10 +689,10 @@ int	main(void)
 	printf("printf oct test width 20 precision 20   : *%20.20o*\n", 1234);
 	ft_printf("ft_printf oct test width 20 precision 20: *%20.20o*\n\n", 1234);
 
-	// // int i = ft_printf("hello %10d world", 123);
-	// // int j = printf("hello %10d world", 123);
-	// // printf("\n\ntesting return values:\nprintf = %d  ft_printf = %d\n", j, i);
-	// // ft_printf("%hhLd\n", 5);
+	// // // int i = ft_printf("hello %10d world", 123);
+	// // // int j = printf("hello %10d world", 123);
+	// // // printf("\n\ntesting return values:\nprintf = %d  ft_printf = %d\n", j, i);
+	// // // ft_printf("%hhLd\n", 5);
 
 	printf("printf integer 0 test   :	*%d*\n", 0);
 	ft_printf("ft_printf integer 0 test:	*%d*\n\n", 0);

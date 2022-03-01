@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/02/25 16:07:12 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/01 16:21:19 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ void		set_flags_and_length(char *s, t_flags *flag, int *h_i);
 void		initialise_structs(t_flags *flag);
 
 /* width_precision.c */
-void		set_width_precision(char *s, t_flags *data, int *helper_i, va_list lst);
+void		set_width_precision(char *s, t_flags *data, int *helper_i,		\
+				 va_list lst);
 
 /* conversion_control.c */
 char		*conversion_control(char *s, va_list lst, t_flags *flag);
@@ -95,12 +96,23 @@ char		*conversion_control(char *s, va_list lst, t_flags *flag);
 /* numeric_conversion.c */
 void		numeric_conv_dispatcher(char c, va_list lst, char **res,		\
 				t_flags *flags);
+
 /* signed_conversion_handlers.c */
 char		*handle_ll(long long ll_x, t_flags *flag);
 char		*handle_l(long l_x, t_flags *flag);
 char		*handle_h(int x, t_flags *flag);
 char		*handle_hh(int x, t_flags *flag);
 char		*handle_int(int x, t_flags *flag);
+
+/* add_sign.c */
+char		*add_sign(char *res);
+
+/* unsigned_conversion_handlers.c */
+char		*handle_ull(unsigned long long ll_x, t_flags *flag, int base);
+char		*handle_ul(unsigned long l_x, t_flags *flag, int base);
+char		*handle_uh(unsigned int x, t_flags *flag, int base);
+char		*handle_uhh(unsigned int x, t_flags *flag, int base);
+char		*handle_uint(unsigned int x, t_flags *flag, int base);
 
 /* handle_double.c */
 char		*convert_double(va_list lst, t_flags *flag);
