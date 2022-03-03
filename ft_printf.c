@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:42:19 by amann             #+#    #+#             */
-/*   Updated: 2022/03/02 16:57:04 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/03 14:02:37 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,7 @@ int	ft_printf(char *s, ...)
 		{
 			ft_printf_putchar(s + count, i - count, &ret, temp);
 			if (s[i + 1] == '\0')
-			{
-				ft_putstr("hello ");
-				ft_printf_helper((s + i), lst, &i, &ret);	
-			}
+				ft_printf_helper((s + i), lst, &i, &ret);
 			else
 				ft_printf_helper((s + i + 1), lst, &i, &ret);
 			count = i + 1;

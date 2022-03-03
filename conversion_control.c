@@ -124,7 +124,7 @@ char	*conversion_control(char *s, va_list lst, t_flags *flag)
 		res = (*p[4])(lst, flag);
 	else if (flag->conv.percent)
 	{
-		printf("hello again! ");
+		// ft_putstr("hello again! ");
 		res = handle_percent();
 	}
 	//printf("%s\n", res);

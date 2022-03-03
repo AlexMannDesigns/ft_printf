@@ -6,7 +6,7 @@
 #    By: amann <amann@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 12:30:40 by amann             #+#    #+#              #
-#    Updated: 2022/03/01 16:22:25 by amann            ###   ########.fr        #
+#    Updated: 2022/03/03 14:07:12 by amann            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,8 +63,8 @@ clean:
 fclean: clean
 	@@/bin/rm -f $(NAME) test
 	@@make -C $(LIB_DIR) fclean
-	
-re: fclean all 
+
+re: fclean all
 
 #the below is just for testing with my main - creates a binary called test
 test: $(NAME)
