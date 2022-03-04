@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:21:09 by amann             #+#    #+#             */
-/*   Updated: 2022/03/04 17:01:39 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/04 17:12:43 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,6 @@ static void	print_colour_code(int i)
 	ft_putstr(colour_code_arr[i]);
 }
 
-void	initialise_colour_arr(char **colour_str_arr)
-{
-	colour_str_arr[0] = ft_strdup("{black}");
-	colour_str_arr[1] = ft_strdup("{red}");
-	colour_str_arr[2] = ft_strdup("{green}");
-	colour_str_arr[3] = ft_strdup("{yellow}");
-	colour_str_arr[4] = ft_strdup("{blue}");
-	colour_str_arr[5] = ft_strdup("{purple}");
-	colour_str_arr[6] = ft_strdup("{cyan}");
-	colour_str_arr[7] = ft_strdup("{white}");
-	colour_str_arr[8] = ft_strdup("{reset}");
-}
-
 static size_t	set_len(char *s)
 {
 	size_t	len;
@@ -51,17 +38,20 @@ static size_t	set_len(char *s)
 	return (len);
 }
 
-void	check_colour(char *s, int *cursor, int *printf_ret)
+static int	check_colour_loop(char *s, size_t len)
 {
 	int		i;
-	size_t	len;
-	char	**colour_str_arr;
+	char	*colour_str_arr[9];
 
-	colour_str_arr = (char **) ft_memalloc(sizeof(char *) * 9);
-	initialise_colour_arr(colour_str_arr);
-	len = set_len(s);
-	if (s[len] == '\0')
-		return ;
+	colour_str_arr[0] = "{black}";
+	colour_str_arr[1] = "{red}";
+	colour_str_arr[2] = "{green}";
+	colour_str_arr[3] = "{yellow}";
+	colour_str_arr[4] = "{blue}";
+	colour_str_arr[5] = "{purple}";
+	colour_str_arr[6] = "{cyan}";
+	colour_str_arr[7] = "{white}";
+	colour_str_arr[8] = "{reset}";
 	i = 0;
 	while (i < 9)
 	{
@@ -72,9 +62,20 @@ void	check_colour(char *s, int *cursor, int *printf_ret)
 		}
 		i++;
 	}
+	return (i);
+}
+
+void	check_colour(char *s, int *cursor, int *printf_ret)
+{
+	int		i;
+	size_t	len;
+
+	len = set_len(s);
+	if (s[len] == '\0')
+		return ;
+	i = check_colour_loop(s, len);
 	if (i != 9)
 		*cursor += (int) len;
 	else
 		ft_printf_putchar("{", 1, printf_ret);
-	ft_freearray((void ***)&colour_str_arr, 9);
 }
