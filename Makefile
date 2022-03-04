@@ -6,7 +6,7 @@
 #    By: amann <amann@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 12:30:40 by amann             #+#    #+#              #
-#    Updated: 2022/03/01 16:22:25 by amann            ###   ########.fr        #
+#    Updated: 2022/03/04 13:38:20 by amann            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,8 @@ SRCS = conversion_control.c ft_printf.c	set_flags.c print_result.c hash_flag.c	\
 		flag_control.c	numeric_conversion.c width_precision.c plus_flag.c		\
 		ft_abs_long.c handle_double.c ft_printf_putstr.c double_helpers.c		\
 		double_helpers2.c ft_itoa_base.c ft_itoa_base_unsigned.c				\
-		signed_conversion_handlers.c unsigned_conversion_handlers.c add_sign.c
+		signed_conversion_handlers.c unsigned_conversion_handlers.c add_sign.c	\
+		n_conversion.c set_conv_type.c
 OBJ = $(SRCS:.c=.o)
 TEST = tests_main.c
 DOUBLE_TEST = double_test_main.c

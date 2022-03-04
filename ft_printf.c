@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:42:19 by amann             #+#    #+#             */
-/*   Updated: 2022/03/04 11:39:50 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/04 13:30:03 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,12 @@ static void	ft_printf_helper(char *s, va_list lst, int *printf_i, int *p_ret)
 		set_flags_and_length(s + i, &flag_data, &i);
 		i++;
 	}
-	res = conversion_control(s + i, lst, &flag_data);
-	res = flag_control(res, flag_data);
-	print_result(res, flag_data, p_ret);
+	res = conversion_control(s + i, lst, &flag_data, p_ret);
+	if (!flag_data.conv.n)
+	{
+		res = flag_control(res, flag_data);
+		print_result(res, flag_data, p_ret);
+	}
 	if (res)
 		free(res);
 	*printf_i += i + 1;

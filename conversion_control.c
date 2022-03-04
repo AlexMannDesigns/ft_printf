@@ -17,34 +17,6 @@
 *	ft_is... functions might be needed for error handling
 *	p & f conversions still needed
 */
-static void	set_conv_type(char c, t_conv *conv)
-{
-	if (c == 'd' || c == 'i' || c == 'o' || c == 'u' || c == 'x' || c == 'X'
-		|| c == 'p' || c == 'b')
-		conv->numeric = TRUE;
-	if (c == 'd' || c == 'i')
-		conv->d = TRUE;
-	else if (c == 'o')
-		conv->o = TRUE;
-	else if (c == 'u')
-		conv->u = TRUE;
-	else if (c == 'x')
-		conv->x = TRUE;
-	else if (c == 'X')
-		conv->big_x = TRUE;
-	else if (c == 'b')
-		conv->b = TRUE;
-	else if (c == 'f')
-		conv->f = TRUE;
-	else if (c == '%')
-		conv->percent = TRUE;
-	else if (c == 'c')
-		conv->c = TRUE;
-	else if (c == 's')
-		conv->s = TRUE;
-	else if (c == 'p')
-		conv->p = TRUE;
-}
 
 static char	*handle_percent(void)
 {
@@ -96,7 +68,28 @@ static char	*convert_string(va_list lst, t_flags *flag)
 	return (res);
 }
 
-char	*conversion_control(char *s, va_list lst, t_flags *flag)
+static char	*conversion_dispatcher(char *(*p[5])(va_list lst, t_flags *flag),	\
+		va_list lst, t_flags *flag, int *p_ret)
+{
+	if (flag->conv.d)
+		return ((*p[0])(lst, flag));
+	else if (flag->conv.u || flag->conv.o || flag->conv.x || flag->conv.big_x	\
+		|| flag->conv.p || flag->conv.b)
+		return ((*p[1])(lst, flag));
+	else if (flag->conv.c)
+		return ((*p[2])(lst, flag));
+	else if (flag->conv.s)
+		return ((*p[3])(lst, flag));
+	else if (flag->conv.f)
+		return ((*p[4])(lst, flag));
+	else if (flag->conv.percent)
+		return (handle_percent());
+	else if (flag->conv.n)
+		convert_n(lst, flag, p_ret);
+	return (NULL);
+}
+
+char	*conversion_control(char *s, va_list lst, t_flags *flag, int *p_ret)
 {
 	char	*(*p[5])(va_list lst, t_flags *flag);
 	char	*res;
@@ -108,18 +101,6 @@ char	*conversion_control(char *s, va_list lst, t_flags *flag)
 	p[4] = convert_double;
 	res = NULL;
 	set_conv_type(s[0], &(flag->conv));
-	if (flag->conv.d)
-		res = (*p[0])(lst, flag);
-	else if (flag->conv.u || flag->conv.o || flag->conv.x || flag->conv.big_x
-		|| flag->conv.p || flag->conv.b)
-		res = (*p[1])(lst, flag);
-	else if (flag->conv.c)
-		res = (*p[2])(lst, flag);
-	else if (flag->conv.s)
-		res = (*p[3])(lst, flag);
-	else if (flag->conv.f)
-		res = (*p[4])(lst, flag);
-	else if (flag->conv.percent)
-		res = handle_percent();
+	res = conversion_dispatcher(p, lst, flag, p_ret);
 	return (res);
 }

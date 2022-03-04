@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:25:40 by amann             #+#    #+#             */
-/*   Updated: 2022/02/25 13:00:30 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/04 13:10:08 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	intialiser_helper(t_flags *flag)
 	flag->conv.big_x = FALSE;
 	flag->conv.f = FALSE;
 	flag->conv.b = FALSE;
+	flag->conv.n = FALSE;
 	flag->conv.p = FALSE;
 	flag->conv.c = FALSE;
 	flag->conv.s = FALSE;

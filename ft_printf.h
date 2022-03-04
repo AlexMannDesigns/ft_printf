@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/03/04 11:36:01 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/04 13:37:53 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_conv
 	unsigned int	big_x;
 	unsigned int	f;
 	unsigned int	b;
+	unsigned int	n;
 	unsigned int	p;
 	unsigned int	c;
 	unsigned int	s;
@@ -91,7 +92,10 @@ void		set_width_precision(char *s, t_flags *data, int *helper_i,		\
 				 va_list lst);
 
 /* conversion_control.c */
-char		*conversion_control(char *s, va_list lst, t_flags *flag);
+char		*conversion_control(char *s, va_list lst, t_flags *flag, int *p_ret);
+
+/* set_conv_type.c */
+void		set_conv_type(char c, t_conv *conv);
 
 /* numeric_conversion.c */
 void		numeric_conv_dispatcher(char c, va_list lst, char **res,		\
@@ -113,6 +117,9 @@ char		*handle_ul(unsigned long l_x, t_flags *flag, int base);
 char		*handle_uh(unsigned int x, t_flags *flag, int base);
 char		*handle_uhh(unsigned int x, t_flags *flag, int base);
 char		*handle_uint(unsigned int x, t_flags *flag, int base);
+
+/* n_conversion.c */
+void	convert_n(va_list lst, t_flags *flag, int *p_ret);
 
 /* handle_double.c */
 char		*convert_double(va_list lst, t_flags *flag);

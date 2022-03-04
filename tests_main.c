@@ -56,6 +56,60 @@ int	main(void)
 	// 	ft_printf("%s", "");
 	// 	i++;
 	// }
+
+	ft_printf("\n\n***** n flag testing *****\n\n");
+	int n_flag = 0;
+	long n_flag_long = 0;
+	long long n_flag_llong = 0;
+	char n_flag_char = 0;
+	short n_flag_short = 0;
+	printf("printf...\n\n");
+	printf("this is%n a test\n", &n_flag);
+	printf("n_flag = %d\n", n_flag);
+	printf("this is another%n test\n", &n_flag);
+	printf("n_flag = %d\n", n_flag);
+	printf("%nthis is yet another test\n", &n_flag);
+	printf("n_flag = %d\n", n_flag);
+	printf("th%nis is yet another test\n", &n_flag);
+	printf("n_flag = %d\n", n_flag);
+	printf("this%ln is yet another test, this time with l mod\n", &n_flag_long);
+	printf("n_flag_long = %ld\n", n_flag_long);
+	printf("this%lln is yet another test, this time with ll mod\n", &n_flag_llong);
+	printf("n_flag_long = %lld\n", n_flag_llong);
+	printf("this%hhn is yet another test, this time with char mod\n", &n_flag_char);
+	printf("n_flag_char = %hhd\n", n_flag_char);
+	printf("this%hn is yet another test, this time with short mod\n", &n_flag_short);
+	printf("n_flag_char = %hd\n\n", n_flag_short);
+
+
+	ft_printf("ft_printf...\n\n");
+	ft_printf("this is%n a test\n", &n_flag);
+	ft_printf("n_flag = %d\n", n_flag);
+	ft_printf("this is another%n test\n", &n_flag);
+	ft_printf("n_flag = %d\n", n_flag);
+	ft_printf("%nthis is yet another test\n", &n_flag);
+	ft_printf("n_flag = %d\n", n_flag);
+	ft_printf("th%nis is yet another test\n", &n_flag);
+	ft_printf("n_flag = %d\n", n_flag);
+	ft_printf("this%ln is yet another test, this time with l mod\n", &n_flag_long);
+	ft_printf("n_flag_long = %ld\n", n_flag_long);
+	ft_printf("this%lln is yet another test, this time with ll mod\n", &n_flag_llong);
+	ft_printf("n_flag_long = %lld\n", n_flag_llong);
+	ft_printf("this%hhn is yet another test, this time with char mod\n", &n_flag_char);
+	ft_printf("n_flag_char = %hhd\n", n_flag_char);
+	ft_printf("this%hn is yet another test, this time with short mod\n", &n_flag_short);
+	ft_printf("n_flag_char = %hd\n\n", n_flag_short);
+
+	char *comp_trck = "printf    this is%10n a test\n";
+	char *comp_trck2 = "printf    this is%10.10n a test\n";
+	ft_printf("n flag undefined behaviours....\n\n");
+	printf(comp_trck, &n_flag);
+	ft_printf("ft_printf this is%10n a test\n", &n_flag);
+	printf(comp_trck2, &n_flag);
+	ft_printf("ft_printf this is%10.10n a test\n", &n_flag);
+
+	//printf("apostrophe flag test: %'d\n", 1000000);
+
 	// ft_printf("\n\n***** binary (b) flag testing *****\n\n");
 	// ft_printf("binary test (expected output = 1111011): %b\n", 123);
 	// ft_printf("binary test (expected output = 11110000001111000): %b\n", 123000);
@@ -73,15 +127,15 @@ int	main(void)
 	
 	// printf("printf new neg process test: %ld\n", 8234561234567891234);
 	// ft_printf("ft_printf new neg process test: %ld\n\n", 8234561234567891234);
-	char *percent = "%";
+	// char *percent = "%";
 	// ft_printf("printf    : *");
-	int ret1 = printf(percent, 0);
+	// int ret1 = printf(percent, 0);
 	// ft_printf("*\n");
 	// ft_printf("ft_printf : *");
-	int ret2 = ft_printf(percent, 0);
+	// int ret2 = ft_printf(percent, 0);
 	// ft_printf("*\n");
-	printf("printf ret    = %d\n", ret1);
-	printf("ft_printf ret = %d\n", ret2);
+	// printf("printf ret    = %d\n", ret1);
+	// printf("ft_printf ret = %d\n", ret2);
 	// printf("printf CHAR_MIN:   	*%d*\n", CHAR_MIN);
 	// ft_printf("ft_printf CHAR_MIN:	*%d*\n\n", CHAR_MIN);
 
@@ -185,11 +239,11 @@ int	main(void)
 	// printf("printf, neg, 0 and plus flags   :	*%0+5d*\n", -42);
  	// ft_printf("ft_printf, neg, 0 and plus flags:	*%0+5d*\n\n", -42);
 
-	printf("printf, NULL char   :	*%c*\n", 0);
- 	ft_printf("ft_printf, NULL char:	*%c*\n\n", 0);
+	// printf("printf, NULL char   :	*%c*\n", 0);
+ 	// ft_printf("ft_printf, NULL char:	*%c*\n\n", 0);
 
-	printf("printf, NULL char, width 3   :	*%3c*\n", 0);
-	ft_printf("ft_printf, NULL char, width 3:	*%3c*\n\n", 0);
+	// printf("printf, NULL char, width 3   :	*%3c*\n", 0);
+	// ft_printf("ft_printf, NULL char, width 3:	*%3c*\n\n", 0);
 
 	// // //printf("printf, NULL char, space flag:	*% c*\n", 0);
 	// // ft_printf("ft_printf,    NULL char, space flag:	*% c*\n\n", 0);
