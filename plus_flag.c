@@ -55,6 +55,5 @@ char	*handle_plus(char *res, t_flags flag, int len)
 		return (res);
 	}
 	free(res);
-	
 	return (new);
 }

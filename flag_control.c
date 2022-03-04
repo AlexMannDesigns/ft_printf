@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:14:26 by amann             #+#    #+#             */
-/*   Updated: 2022/02/28 15:27:20 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/04 11:21:08 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,6 @@ static char	*handle_zero(char *res, t_flags flag)
 	len = (int) ft_strlen(res);
 	if (flag.conv.neg && flag.conv.d && (flag.width.width > len))
 		res = handle_zero_neg(res, --len);
-	// ft_putchar('\n');
-	// ft_putstr(res);
-	// ft_putchar('\n');
 	if (len > flag.width.width)
 		return (res);
 	new = ft_strnew(flag.width.width + 1);
@@ -72,9 +69,6 @@ static char	*handle_zero(char *res, t_flags flag)
 	}
 	ft_memset(new, '0', flag.width.width - len);
 	ft_strcpy(new + flag.width.width - len, res);
-	// ft_putchar('\n');
-	// ft_putstr(new);
-	// ft_putchar('\n');
 	free(res);
 	if (flag.conv.big_x && flag.hash)
 		hash_zero_hex(new, 'X');

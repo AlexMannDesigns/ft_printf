@@ -19,8 +19,6 @@
 */
 static void	set_conv_type(char c, t_conv *conv)
 {
-	// ft_putchar(c);
-	// ft_putchar('\n');
 	if (c == 'd' || c == 'i' || c == 'o' || c == 'u' || c == 'x' || c == 'X'
 		|| c == 'p' || c == 'b')
 		conv->numeric = TRUE;
@@ -83,7 +81,6 @@ static char	*convert_string(va_list lst, t_flags *flag)
 	char	*res;
 	char	*temp;
 
-	//ft_putstr("hello! \n");
 	res = ft_strdup(va_arg(lst, char *));
 	if (!res)
 		res = ft_strdup("(null)");
@@ -123,10 +120,6 @@ char	*conversion_control(char *s, va_list lst, t_flags *flag)
 	else if (flag->conv.f)
 		res = (*p[4])(lst, flag);
 	else if (flag->conv.percent)
-	{
-		// ft_putstr("hello again! ");
 		res = handle_percent();
-	}
-	//printf("%s\n", res);
 	return (res);
 }

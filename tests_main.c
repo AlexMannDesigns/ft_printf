@@ -73,35 +73,15 @@ int	main(void)
 	
 	// printf("printf new neg process test: %ld\n", 8234561234567891234);
 	// ft_printf("ft_printf new neg process test: %ld\n\n", 8234561234567891234);
-	char *percent_end = "test for string ending with a percent sign: *%";
-	char *percent_middle = "test for string % with a percent sign in the middle\n";
 	char *percent = "%";
-	// printf("printf ");
-	// printf(percent, 0);
-
-	printf("printf    ");
-	printf(percent_end, 0);
-	printf("*\n");
-
-	ft_printf("ft_printf ");
-	ft_printf(percent_end, 0);
-	ft_printf("*\n\n");
-
-	printf("printf    ");
-	printf(percent_middle, 0);
-
-	ft_printf("ft_printf ");
-	ft_printf(percent_middle, 0);
-	ft_printf("\n");
-
-	ft_printf("ft_printf, just a percent sign: *");
-	ft_printf(percent, 0);
-	ft_printf("*\n");
-
-	printf("printf,    just a percent sign: *");
-	printf(percent, 0);
-	printf("*\n");
-
+	// ft_printf("printf    : *");
+	int ret1 = printf(percent, 0);
+	// ft_printf("*\n");
+	// ft_printf("ft_printf : *");
+	int ret2 = ft_printf(percent, 0);
+	// ft_printf("*\n");
+	printf("printf ret    = %d\n", ret1);
+	printf("ft_printf ret = %d\n", ret2);
 	// printf("printf CHAR_MIN:   	*%d*\n", CHAR_MIN);
 	// ft_printf("ft_printf CHAR_MIN:	*%d*\n\n", CHAR_MIN);
 
@@ -205,11 +185,11 @@ int	main(void)
 	// printf("printf, neg, 0 and plus flags   :	*%0+5d*\n", -42);
  	// ft_printf("ft_printf, neg, 0 and plus flags:	*%0+5d*\n\n", -42);
 
-	// printf("printf, NULL char   :	*%c*\n", 0);
- 	// ft_printf("ft_printf, NULL char:	*%c*\n\n", 0);
+	printf("printf, NULL char   :	*%c*\n", 0);
+ 	ft_printf("ft_printf, NULL char:	*%c*\n\n", 0);
 
-	// printf("printf, NULL char, width 3   :	*%3c*\n", 0);
-	// ft_printf("ft_printf, NULL char, width 3:	*%3c*\n\n", 0);
+	printf("printf, NULL char, width 3   :	*%3c*\n", 0);
+	ft_printf("ft_printf, NULL char, width 3:	*%3c*\n\n", 0);
 
 	// // //printf("printf, NULL char, space flag:	*% c*\n", 0);
 	// // ft_printf("ft_printf,    NULL char, space flag:	*% c*\n\n", 0);

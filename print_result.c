@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:37:43 by amann             #+#    #+#             */
-/*   Updated: 2022/03/02 14:52:46 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/04 11:24:21 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ static void	precision_helper_part_2(char *res, char *new, t_width w, int len)
 {
 	if (w.prec > len && w.prec > w.width)
 	{
-		
 		ft_memset((void *)new, '0', (size_t)(w.prec - len));
 		ft_strcpy((new + (w.prec - len)), res);
 	}

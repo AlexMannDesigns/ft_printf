@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:42:19 by amann             #+#    #+#             */
-/*   Updated: 2022/03/03 14:02:37 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/04 11:39:50 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,16 @@ static void	ft_printf_helper(char *s, va_list lst, int *printf_i, int *p_ret)
 	initialise_structs(&flag_data);
 	res = NULL;
 	i = 0;
-	while ((!ft_isalpha(s[i]) && s[i] != '%' &&  s[i] != '\0') || s[i] == 'h' || s[i] == 'l'
-		|| s[i] == 'L')
+	while ((!ft_isalpha(s[i]) && s[i] != '%' && s[i] != '\0') || s[i] == 'h'
+		|| s[i] == 'l' || s[i] == 'L')
 	{
-		// ft_putchar(s[i]);
-		// ft_putchar(',');
 		if ((ft_isdigit(s[i]) && s[i] != '0') || s[i] == '.' || s[i] == '*')
 			set_width_precision(s + i, &flag_data, &i, lst);
 		set_flags_and_length(s + i, &flag_data, &i);
 		i++;
 	}
-	//ft_putnbr(i);
-	// ft_putstr("\n");
 	res = conversion_control(s + i, lst, &flag_data);
 	res = flag_control(res, flag_data);
-	// ft_putstr(res);
-	// ft_putchar('\n');
 	print_result(res, flag_data, p_ret);
 	if (res)
 		free(res);
@@ -56,13 +50,11 @@ static void	ft_printf_helper(char *s, va_list lst, int *printf_i, int *p_ret)
 int	ft_printf(char *s, ...)
 {
 	va_list	lst;
-	t_flags	temp;
 	int		i;
 	int		ret;
 	int		count;
 
 	va_start(lst, s);
-	initialise_structs(&temp);
 	i = 0;
 	ret = 0;
 	count = 0;
@@ -70,16 +62,15 @@ int	ft_printf(char *s, ...)
 	{
 		if (s[i] == '%')
 		{
-			ft_printf_putchar(s + count, i - count, &ret, temp);
+			ft_printf_putchar(s + count, i - count, &ret);
 			if (s[i + 1] == '\0')
-				ft_printf_helper((s + i), lst, &i, &ret);
-			else
-				ft_printf_helper((s + i + 1), lst, &i, &ret);
+				break ;
+			ft_printf_helper((s + i + 1), lst, &i, &ret);
 			count = i + 1;
 		}
 		i++;
 	}
-	ft_printf_putchar(s + count, i - count, &ret, temp);
+	ft_printf_putchar(s + count, i - count, &ret);
 	va_end(lst);
 	return (ret);
 }

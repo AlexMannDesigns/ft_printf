@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/03/01 16:41:28 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/04 11:36:01 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,5 @@ void		print_result(char *s, t_flags flag, int *printf_res);
 
 /* ft_printf_putstr.c */
 void		ft_printf_putstr(char const *str, int *printf_res, t_flags flag);
-void		ft_printf_putchar(char const *str, int i, int *printf_res,		\
-				t_flags flag);
+void		ft_printf_putchar(char const *str, int i, int *printf_res);
 #endif

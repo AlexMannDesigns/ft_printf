@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 16:39:08 by amann             #+#    #+#             */
-/*   Updated: 2022/03/01 16:19:12 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/04 11:25:10 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*handle_ll(long long ll_x, t_flags *flag)
 	}
 	res = ft_itoa_base(ft_abs_long(ll_x), BASE_TEN);
 	if (flag->conv.neg)
-	 	res = add_sign(res);
+		res = add_sign(res);
 	if (min_flag)
 		res[ft_strlen(res) - 1] = '8';
 	return (res);
@@ -52,7 +52,7 @@ char	*handle_l(long l_x, t_flags *flag)
 	}
 	res = ft_itoa_base(ft_abs_long(l_x), BASE_TEN);
 	if (flag->conv.neg)
-	 	res = add_sign(res);
+		res = add_sign(res);
 	if (min_flag)
 		res[ft_strlen(res) - 1] = '8';
 	return (res);
@@ -70,7 +70,7 @@ char	*handle_h(int x, t_flags *flag)
 		flag->nil = TRUE;
 	res = ft_itoa_base((long long) ft_abs((int)h_x), BASE_TEN);
 	if (flag->conv.neg)
-	 	res = add_sign(res);
+		res = add_sign(res);
 	return (res);
 }
 
@@ -86,7 +86,7 @@ char	*handle_hh(int x, t_flags *flag)
 		flag->nil = TRUE;
 	res = ft_itoa_base((long long) ft_abs((int)hh_x), BASE_TEN);
 	if (flag->conv.neg)
-	 	res = add_sign(res);
+		res = add_sign(res);
 	return (res);
 }
 
