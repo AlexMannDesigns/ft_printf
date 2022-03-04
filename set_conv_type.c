@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 13:37:03 by amann             #+#    #+#             */
-/*   Updated: 2022/03/04 13:46:29 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/04 13:53:16 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	set_conv_type_helper(char c, t_conv *conv)
 
 void	set_conv_type(char c, t_conv *conv)
 {
-	if (c == 'd' || c == 'i' || c == 'o' || c == 'u' || c == 'x' || c == 'X'	\
+	if (c == 'd' || c == 'i' || c == 'o' || c == 'u' || c == 'x' || c == 'X' \
 		|| c == 'p' || c == 'b')
 		conv->numeric = TRUE;
 	if (c == 'd' || c == 'i')

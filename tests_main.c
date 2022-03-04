@@ -57,56 +57,69 @@ int	main(void)
 	// 	i++;
 	// }
 
-	ft_printf("\n\n***** n flag testing *****\n\n");
-	int n_flag = 0;
-	long n_flag_long = 0;
-	long long n_flag_llong = 0;
-	char n_flag_char = 0;
-	short n_flag_short = 0;
-	printf("printf...\n\n");
-	printf("this is%n a test\n", &n_flag);
-	printf("n_flag = %d\n", n_flag);
-	printf("this is another%n test\n", &n_flag);
-	printf("n_flag = %d\n", n_flag);
-	printf("%nthis is yet another test\n", &n_flag);
-	printf("n_flag = %d\n", n_flag);
-	printf("th%nis is yet another test\n", &n_flag);
-	printf("n_flag = %d\n", n_flag);
-	printf("this%ln is yet another test, this time with l mod\n", &n_flag_long);
-	printf("n_flag_long = %ld\n", n_flag_long);
-	printf("this%lln is yet another test, this time with ll mod\n", &n_flag_llong);
-	printf("n_flag_long = %lld\n", n_flag_llong);
-	printf("this%hhn is yet another test, this time with char mod\n", &n_flag_char);
-	printf("n_flag_char = %hhd\n", n_flag_char);
-	printf("this%hn is yet another test, this time with short mod\n", &n_flag_short);
-	printf("n_flag_char = %hd\n\n", n_flag_short);
+	ft_printf("\n\n***** colour testing *****\n\n");
+
+	
+	int p_ret = printf("printf:    Le fichier \033[0;31m%s\033[0m contient : \033[0;31m%s\033[0m\n\n", "hello", "world");
+
+	int fp_ret = ft_printf("ft_printf: Le fichier {red}%s{reset} contient {basil}: {blue}%s{reset}\n\n", "hello", "world");
+
+	ft_printf("%d\n", p_ret);
+	ft_printf("%d\n", fp_ret);
+	fp_ret = ft_printf("ft_printf: Le fichier %s contient {basil}: %s\n\n", "hello", "world");
+	ft_printf("%d\n", fp_ret);
+
+	ft_printf("\n{red}LOOK{reset} {cyan}AT{reset} {purple}ALL{reset} {green}THE{reset} {yellow}PRETTY{reset} {blue}COLOURS!{reset} {green}ISN'T{reset} {white}THIS{reset} {red}AMAZING{green}!{reset}{black}!{reset}{red}!{reset}{blue}!{reset}{white}!{reset}{purple}!{reset}\n");
+	// ft_printf("\n\n***** n flag testing *****\n\n");
+	// int n_flag = 0;
+	// long n_flag_long = 0;
+	// long long n_flag_llong = 0;
+	// char n_flag_char = 0;
+	// short n_flag_short = 0;
+	// printf("printf...\n\n");
+	// printf("this is%n a test\n", &n_flag);
+	// printf("n_flag = %d\n", n_flag);
+	// printf("this is another%n test\n", &n_flag);
+	// printf("n_flag = %d\n", n_flag);
+	// printf("%nthis is yet another test\n", &n_flag);
+	// printf("n_flag = %d\n", n_flag);
+	// printf("th%nis is yet another test\n", &n_flag);
+	// printf("n_flag = %d\n", n_flag);
+	// printf("this%ln is yet another test, this time with l mod\n", &n_flag_long);
+	// printf("n_flag_long = %ld\n", n_flag_long);
+	// printf("this%lln is yet another test, this time with ll mod\n", &n_flag_llong);
+	// printf("n_flag_long = %lld\n", n_flag_llong);
+	// printf("this%hhn is yet another test, this time with char mod\n", &n_flag_char);
+	// printf("n_flag_char = %hhd\n", n_flag_char);
+	// printf("this%hn is yet another test, this time with short mod\n", &n_flag_short);
+	// printf("n_flag_char = %hd\n\n", n_flag_short);
 
 
-	ft_printf("ft_printf...\n\n");
-	ft_printf("this is%n a test\n", &n_flag);
-	ft_printf("n_flag = %d\n", n_flag);
-	ft_printf("this is another%n test\n", &n_flag);
-	ft_printf("n_flag = %d\n", n_flag);
-	ft_printf("%nthis is yet another test\n", &n_flag);
-	ft_printf("n_flag = %d\n", n_flag);
-	ft_printf("th%nis is yet another test\n", &n_flag);
-	ft_printf("n_flag = %d\n", n_flag);
-	ft_printf("this%ln is yet another test, this time with l mod\n", &n_flag_long);
-	ft_printf("n_flag_long = %ld\n", n_flag_long);
-	ft_printf("this%lln is yet another test, this time with ll mod\n", &n_flag_llong);
-	ft_printf("n_flag_long = %lld\n", n_flag_llong);
-	ft_printf("this%hhn is yet another test, this time with char mod\n", &n_flag_char);
-	ft_printf("n_flag_char = %hhd\n", n_flag_char);
-	ft_printf("this%hn is yet another test, this time with short mod\n", &n_flag_short);
-	ft_printf("n_flag_char = %hd\n\n", n_flag_short);
+	// ft_printf("ft_printf...\n\n");
+	// ft_printf("this is%n a test\n", &n_flag);
+	// ft_printf("n_flag = %d\n", n_flag);
+	// ft_printf("this is another%n test\n", &n_flag);
+	// ft_printf("n_flag = %d\n", n_flag);
+	// ft_printf("%nthis is yet another test\n", &n_flag);
+	// ft_printf("n_flag = %d\n", n_flag);
+	// ft_printf("th%nis is yet another test\n", &n_flag);
+	// ft_printf("n_flag = %d\n", n_flag);
+	// ft_printf("this%ln is yet another test, this time with l mod\n", &n_flag_long);
+	// ft_printf("n_flag_long = %ld\n", n_flag_long);
+	// ft_printf("this%lln is yet another test, this time with ll mod\n", &n_flag_llong);
+	// ft_printf("n_flag_long = %lld\n", n_flag_llong);
+	// ft_printf("this%hhn is yet another test, this time with char mod\n", &n_flag_char);
+	// ft_printf("n_flag_char = %hhd\n", n_flag_char);
+	// ft_printf("this%hn is yet another test, this time with short mod\n", &n_flag_short);
+	// ft_printf("n_flag_char = %hd\n\n", n_flag_short);
 
-	char *comp_trck = "printf    this is%10n a test\n";
-	char *comp_trck2 = "printf    this is%10.10n a test\n";
-	ft_printf("n flag undefined behaviours....\n\n");
-	printf(comp_trck, &n_flag);
-	ft_printf("ft_printf this is%10n a test\n", &n_flag);
-	printf(comp_trck2, &n_flag);
-	ft_printf("ft_printf this is%10.10n a test\n", &n_flag);
+	// char *comp_trck = "printf    this is%10n a test\n";
+	// char *comp_trck2 = "printf    this is%10.10n a test\n";
+	// ft_printf("n flag undefined behaviours....\n\n");
+	// printf(comp_trck, &n_flag);
+	// ft_printf("ft_printf this is%10n a test\n", &n_flag);
+	// printf(comp_trck2, &n_flag);
+	// ft_printf("ft_printf this is%10.10n a test\n", &n_flag);
 
 	//printf("apostrophe flag test: %'d\n", 1000000);
 
@@ -163,7 +176,6 @@ int	main(void)
 
 	// // printf(fu_compiler1, NULL, NULL);
 	// // ft_printf(fu_compiler2, NULL, NULL);
-	// printf("Le fichier \033[0;31m%s\033[0m contient : \033[0;31m%s\033[0m\n\n", "hello", "world");
 
 	// printf("printf,    percent with 0 flag and width 5: *%05%*\n");
 	// ft_printf("ft_printf, percent with 0 flag and width 5: *%05%*\n\n");

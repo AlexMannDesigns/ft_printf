@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/03/04 13:37:53 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/04 16:28:36 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,18 @@
 # define BASE_EIGHT 8
 # define BASE_SIXTEEN 16
 # define SPACE 32
+
+/***** COLOUR MACROS *****/
+
+# define BLACK "\033[0;30m"
+# define RED "\033[0;31m"
+# define GREEN "\033[0;32m"
+# define YELLOW "\033[0;33m"
+# define BLUE "\033[0;34m"
+# define PURPLE "\033[0;35m"
+# define CYAN "\033[0;36m"
+# define WHITE "\033[0;37m"
+# define RESET_COLOUR "\033[0m"
 
 /***** STRUCT PROTOTYPING *****/
 
@@ -160,4 +172,7 @@ void		print_result(char *s, t_flags flag, int *printf_res);
 /* ft_printf_putstr.c */
 void		ft_printf_putstr(char const *str, int *printf_res, t_flags flag);
 void		ft_printf_putchar(char const *str, int i, int *printf_res);
+
+/* colours.c */
+void		check_colour(char *s, int *cursor, int *printf_ret);
 #endif

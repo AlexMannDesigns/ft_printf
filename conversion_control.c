@@ -12,12 +12,6 @@
 
 #include "ft_printf.h"
 
-/*
-*	control function for handling the different types of output conversion
-*	ft_is... functions might be needed for error handling
-*	p & f conversions still needed
-*/
-
 static char	*handle_percent(void)
 {
 	char	*res;
@@ -73,7 +67,7 @@ static char	*conversion_dispatcher(char *(*p[5])(va_list lst, t_flags *flag),	\
 {
 	if (flag->conv.d)
 		return ((*p[0])(lst, flag));
-	else if (flag->conv.u || flag->conv.o || flag->conv.x || flag->conv.big_x	\
+	else if (flag->conv.u || flag->conv.o || flag->conv.x || flag->conv.big_x \
 		|| flag->conv.p || flag->conv.b)
 		return ((*p[1])(lst, flag));
 	else if (flag->conv.c)

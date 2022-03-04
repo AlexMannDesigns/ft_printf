@@ -6,23 +6,29 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:42:19 by amann             #+#    #+#             */
-/*   Updated: 2022/03/04 13:30:03 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/04 16:39:11 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-/*
-*	list of args and address of i needed to determine conversion and how far
-*	increment i process can effectively be split into two parts, one to handle
-*	the flags, one for the conversion the conversion char will always be the
-*	last character we are interested in, so we can iterate until hitting this
-*	then increment the i in printf by the number of characters read.
-*	We also need to handle width, precision and lenght before printing the
-*	resulting string.
-*/
+static int	control_loop(char *s, va_list lst, t_flags *flag_data)
+{
+	int	i;
 
-static void	ft_printf_helper(char *s, va_list lst, int *printf_i, int *p_ret)
+	i = 0;
+	while ((!ft_isalpha(s[i]) && s[i] != '%' && s[i] != '\0') || s[i] == 'h'
+		|| s[i] == 'l' || s[i] == 'L')
+	{
+		if ((ft_isdigit(s[i]) && s[i] != '0') || s[i] == '.' || s[i] == '*')
+			set_width_precision(s + i, flag_data, &i, lst);
+		set_flags_and_length(s + i, flag_data, &i);
+		i++;
+	}
+	return (i);
+}
+
+static void	ft_printf_control(char *s, va_list lst, int *printf_i, int *p_ret)
 {
 	int		i;
 	t_flags	flag_data;
@@ -30,15 +36,7 @@ static void	ft_printf_helper(char *s, va_list lst, int *printf_i, int *p_ret)
 
 	initialise_structs(&flag_data);
 	res = NULL;
-	i = 0;
-	while ((!ft_isalpha(s[i]) && s[i] != '%' && s[i] != '\0') || s[i] == 'h'
-		|| s[i] == 'l' || s[i] == 'L')
-	{
-		if ((ft_isdigit(s[i]) && s[i] != '0') || s[i] == '.' || s[i] == '*')
-			set_width_precision(s + i, &flag_data, &i, lst);
-		set_flags_and_length(s + i, &flag_data, &i);
-		i++;
-	}
+	i = control_loop(s, lst, &flag_data);
 	res = conversion_control(s + i, lst, &flag_data, p_ret);
 	if (!flag_data.conv.n)
 	{
@@ -50,30 +48,39 @@ static void	ft_printf_helper(char *s, va_list lst, int *printf_i, int *p_ret)
 	*printf_i += i + 1;
 }
 
-int	ft_printf(char *s, ...)
+void	ft_printf_loop(char *s, va_list lst, int *ret)
 {
-	va_list	lst;
-	int		i;
-	int		ret;
-	int		count;
+	int	count;
+	int	i;
 
-	va_start(lst, s);
-	i = 0;
-	ret = 0;
 	count = 0;
+	i = 0;
 	while (s[i] != '\0')
 	{
-		if (s[i] == '%')
+		if (s[i] == '%' || s[i] == '{')
 		{
-			ft_printf_putchar(s + count, i - count, &ret);
+			ft_printf_putchar(s + count, i - count, ret);
 			if (s[i + 1] == '\0')
 				break ;
-			ft_printf_helper((s + i + 1), lst, &i, &ret);
+			if (s[i] == '{')
+				check_colour(s + i, &i, ret);
+			else
+				ft_printf_control((s + i + 1), lst, &i, ret);
 			count = i + 1;
 		}
 		i++;
 	}
-	ft_printf_putchar(s + count, i - count, &ret);
+	ft_printf_putchar(s + count, i - count, ret);
+}
+
+int	ft_printf(char *s, ...)
+{
+	va_list	lst;
+	int		ret;
+
+	va_start(lst, s);
+	ret = 0;
+	ft_printf_loop(s, lst, &ret);
 	va_end(lst);
 	return (ret);
 }
