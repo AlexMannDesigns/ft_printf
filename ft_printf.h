@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/03/04 16:28:36 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/07 16:35:51 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define BASE_EIGHT 8
 # define BASE_SIXTEEN 16
 # define SPACE 32
+# define CONV_CHARS "bcdfinouxXps"
 
 /***** COLOUR MACROS *****/
 
@@ -93,18 +94,22 @@ typedef struct s_flags
 /***** FUNCTION PROTOTYPING *****/
 
 /* ft_printf.c */
-int			ft_printf(char *s, ...);
+int			ft_printf(const char *s, ...);
+
+/* ft_printf_control.c */
+void		ft_printf_ctrl(const char *s, va_list lst, int *p_i, int *p_ret);
 
 /* set_flags.c */
-void		set_flags_and_length(char *s, t_flags *flag, int *h_i);
+void		set_flags_and_length(const char *s, t_flags *flag, int *h_i);
 void		initialise_structs(t_flags *flag);
 
 /* width_precision.c */
-void		set_width_precision(char *s, t_flags *data, int *helper_i,		\
-				 va_list lst);
+void		set_width_prec(const char *s, t_flags *data, int *ctrl_i,		\
+				va_list lst);
 
 /* conversion_control.c */
-char		*conversion_control(char *s, va_list lst, t_flags *flag, int *p_ret);
+char		*conversion_ctrl(const char *s, va_list lst, t_flags *flag,		\
+				int *p_ret);
 
 /* set_conv_type.c */
 void		set_conv_type(char c, t_conv *conv);
@@ -131,7 +136,7 @@ char		*handle_uhh(unsigned int x, t_flags *flag, int base);
 char		*handle_uint(unsigned int x, t_flags *flag, int base);
 
 /* n_conversion.c */
-void	convert_n(va_list lst, t_flags *flag, int *p_ret);
+void		convert_n(va_list lst, t_flags *flag, int *p_ret);
 
 /* handle_double.c */
 char		*convert_double(va_list lst, t_flags *flag);
@@ -142,6 +147,9 @@ char		*rounding_algo(char *res, size_t prec);
 
 /* double_helpers2.c */
 void		set_x(va_list lst, t_flags *flag, long double *x);
+
+/* chop_chop.c */
+void		chop_chop(char **res_str, size_t prec);
 
 /* flag_control.c */
 char		*flag_control(char *res, t_flags flag);
@@ -169,10 +177,14 @@ long long	ft_abs_long(long long i);
 /* print_result.c */
 void		print_result(char *s, t_flags flag, int *printf_res);
 
+/* print_result_functions.c */
+void	precision_helper(char *res, char *new, t_width w, t_flags flag);
+char	*set_memory(char *res, t_width w, t_flags flag);
+
 /* ft_printf_putstr.c */
 void		ft_printf_putstr(char const *str, int *printf_res, t_flags flag);
 void		ft_printf_putchar(char const *str, int i, int *printf_res);
 
 /* colours.c */
-void		check_colour(char *s, int *cursor, int *printf_ret);
+void		check_colour(const char *s, int *cursor, int *printf_ret);
 #endif

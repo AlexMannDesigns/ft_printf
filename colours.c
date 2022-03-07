@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:21:09 by amann             #+#    #+#             */
-/*   Updated: 2022/03/04 17:12:43 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/07 16:28:04 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,7 @@ static void	print_colour_code(int i)
 	ft_putstr(colour_code_arr[i]);
 }
 
-static size_t	set_len(char *s)
-{
-	size_t	len;
-
-	len = 0;
-	while (s[len] != '}' && s[len] != '\0')
-		len++;
-	return (len);
-}
-
-static int	check_colour_loop(char *s, size_t len)
+static int	check_colour_loop(const char *s, size_t len)
 {
 	int		i;
 	char	*colour_str_arr[9];
@@ -65,17 +55,30 @@ static int	check_colour_loop(char *s, size_t len)
 	return (i);
 }
 
-void	check_colour(char *s, int *cursor, int *printf_ret)
+static size_t	set_len(const char *s)
+{
+	size_t	len;
+
+	len = 0;
+	while (s[len] != '}' && len < 8)
+		len++;
+	return (len);
+}
+
+void	check_colour(const char *s, int *cursor, int *printf_ret)
 {
 	int		i;
 	size_t	len;
 
 	len = set_len(s);
-	if (s[len] == '\0')
-		return ;
-	i = check_colour_loop(s, len);
-	if (i != 9)
-		*cursor += (int) len;
-	else
-		ft_printf_putchar("{", 1, printf_ret);
+	if (len < 8)
+	{
+		i = check_colour_loop(s, len);
+		if (i < 9)
+		{
+			*cursor += (int) len;
+			return ;
+		}
+	}
+	ft_printf_putchar("{", 1, printf_ret);
 }

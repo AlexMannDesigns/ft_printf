@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:25:40 by amann             #+#    #+#             */
-/*   Updated: 2022/03/04 13:10:08 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/07 16:33:34 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	initialise_structs(t_flags *flag)
 	intialiser_helper(flag);
 }
 
-static void	set_flags(char *s, t_flags *flag)
+static void	set_flags(const char *s, t_flags *flag)
 {
 	if (s[0] == 'L')
 		flag->big_l = TRUE;
@@ -66,7 +66,7 @@ static void	set_flags(char *s, t_flags *flag)
 		flag->space = TRUE;
 }
 
-void	set_flags_and_length(char *s, t_flags *flag, int *h_i)
+void	set_flags_and_length(const char *s, t_flags *flag, int *h_i)
 {
 	set_flags(s, flag);
 	if (s[0] == 'h' && s[1] == 'h')

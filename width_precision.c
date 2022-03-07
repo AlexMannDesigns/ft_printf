@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:00:09 by amann             #+#    #+#             */
-/*   Updated: 2022/02/25 12:25:43 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/07 16:32:28 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,20 @@ static void	check_neg(t_flags *flag)
 	}
 }
 
-static void	set_prec_helper(t_flags *data, va_list lst, int *helper_i)
+static void	set_prec_helper(t_flags *data, va_list lst, int *ctrl_i)
 {
 	data->width.prec = va_arg(lst, int);
-	*helper_i += 1;
+	*ctrl_i += 1;
 }
 
-static void	set_precision(char *s, t_flags *data, int *helper_i, va_list lst)
+static void	set_prec(const char *s, t_flags *data, int *ctrl_i, va_list lst)
 {
 	size_t	len;
 	char	*pres_str;
 
 	data->width.prec_set = TRUE;
 	if (s[0] == '*')
-		set_prec_helper(data, lst, helper_i);
+		set_prec_helper(data, lst, ctrl_i);
 	else
 	{
 		len = 0;
@@ -57,21 +57,21 @@ static void	set_precision(char *s, t_flags *data, int *helper_i, va_list lst)
 		data->width.prec = (size_t)ft_atoi(pres_str);
 		free(pres_str);
 		if (len > 1)
-			*helper_i += (len - 1);
+			*ctrl_i += (len - 1);
 		else
-			*helper_i += 1;
+			*ctrl_i += 1;
 	}
 	check_neg(data);
 }
 
-void	set_width_precision(char *s, t_flags *data, int *helper_i, va_list lst)
+void	set_width_prec(const char *s, t_flags *data, int *ctrl_i, va_list lst)
 {
 	size_t	len;
 	char	*width_str;
 
 	if (s[0] == '.')
 	{
-		set_precision(s + 1, data, helper_i, lst);
+		set_prec(s + 1, data, ctrl_i, lst);
 		return ;
 	}
 	if (data->width.prec_set)
@@ -86,7 +86,7 @@ void	set_width_precision(char *s, t_flags *data, int *helper_i, va_list lst)
 		width_str = ft_strndup(s, len);
 		data->width.width = ft_atoi(width_str);
 		free(width_str);
-		*helper_i += len - 1;
+		*ctrl_i += len - 1;
 	}
 	check_neg(data);
 }

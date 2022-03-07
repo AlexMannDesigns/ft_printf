@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 11:00:46 by amann             #+#    #+#             */
-/*   Updated: 2022/03/04 11:22:58 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/07 16:00:52 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,13 +88,13 @@ char	*ft_itoa_base(const long long value, int base)
 		i++;
 	}
 	if (value == 0)
-		return (ft_strdup("0"));
-	if (value < 0 && base == 10)
-		res = ft_strnew(i + 1);
+		res = ft_strdup("0");
 	else
 		res = ft_strnew(i + 1);
 	if (!res)
 		return (NULL);
+	if (value == 0)
+		return (res);
 	if (value < 0)
 		res = negative_control(value, base, res);
 	else

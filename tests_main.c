@@ -56,20 +56,64 @@ int	main(void)
 	// 	ft_printf("%s", "");
 	// 	i++;
 	// }
+	printf("printf    *% -1.0d*\n", 0);
+	ft_printf("ft_printf *% -1.0d*\n\n", 0);
 
-	ft_printf("\n\n***** colour testing *****\n\n");
+	printf("printf    *%+1.0d*\n", 0);
+	ft_printf("ft_printf *%+1.0d*\n\n", 0);
+	printf("printf    *%+.0d*\n", 42);
+	ft_printf("ft_printf *%+.0d*\n\n", 42);
+
+	printf("printf    *% 1.0d*\n", 0);
+	ft_printf("ft_printf *% 1.0d*\n\n", 0);
+
+	printf("printf    *%1.0d*\n", 0);
+	ft_printf("ft_printf *%1.0d*\n\n", 0);
+
+	printf("printf    *% -.0d*\n", 0);
+	ft_printf("ft_printf *% -.0d*\n\n", 0);
+
+	printf("printf    *% -1d*\n", 0);
+	ft_printf("ft_printf *% -1d*\n\n", 0);
+
+	printf("printf    *% -1.0d*\n", 42);
+	ft_printf("ft_printf *% -1.0d*\n\n", 42);
+
+	short fortytwo = 42;
+	printf("printf    *%05.0hd*\n", fortytwo);
+	ft_printf("ft_printf *%05.0hd*\n\n", fortytwo);
+	printf("printf    *%05.0ld*\n", 42L);
+	ft_printf("ft_printf *%05.0ld*\n\n", 42L);
+	printf("printf    *%05.0d*\n", 42);
+	ft_printf("ft_printf *%05.0d*\n\n", 42);
+
+	printf("printf    *%05.0hu*\n", fortytwo);
+	ft_printf("ft_printf *%05.0hu*\n\n", fortytwo);
+	printf("printf    *%05.0lu*\n", 42L);
+	ft_printf("ft_printf *%05.0lu*\n\n", 42L);
+
+
+	// ft_printf("\n\n***** colour testing *****\n\n");
 
 	
-	int p_ret = printf("printf:    Le fichier \033[0;31m%s\033[0m contient : \033[0;31m%s\033[0m\n\n", "hello", "world");
+	// int p_ret = printf("printf:    Le fichier \033[0;31m%s\033[0m contient : \033[0;31m%s\033[0m\n\n", "hello", "world");
 
-	int fp_ret = ft_printf("ft_printf: Le fichier {red}%s{reset} contient {basil}: {blue}%s{reset}\n\n", "hello", "world");
+	// int fp_ret = ft_printf("ft_printf: Le fichier {red}%s{reset} contient {basil}: {blue}%s{reset}\n\n", "hello", "world");
 
-	ft_printf("%d\n", p_ret);
-	ft_printf("%d\n", fp_ret);
-	fp_ret = ft_printf("ft_printf: Le fichier %s contient {basil}: %s\n\n", "hello", "world");
-	ft_printf("%d\n", fp_ret);
+	// ft_printf("%d\n", p_ret);
+	// ft_printf("%d\n", fp_ret);
+	// fp_ret = ft_printf("ft_printf: Le fichier %s contient {basil}: %s\n\n", "hello", "world");
+	// ft_printf("%d\n", fp_ret);
 
-	ft_printf("\n{red}LOOK{reset} {cyan}AT{reset} {purple}ALL{reset} {green}THE{reset} {yellow}PRETTY{reset} {blue}COLOURS!{reset} {green}ISN'T{reset} {white}THIS{reset} {red}AMAZING{green}!{reset}{black}!{reset}{red}!{reset}{blue}!{reset}{white}!{reset}{purple}!{reset}\n");
+	// ft_printf("ft_printf: {red}Le {blue}fichier %s {green}{bleu}contient{rouge} {purple}{sininen} {red red {re,d}blue}abc{reset}: %s {black\n\n", "hello", "world");
+
+	// ft_putendl("\ntesting all colours with the following string:");
+	// ft_putendl("{red}LOOK {cyan}AT {purple}ALL {green}THE {yellow}PRETTY {blue}COLOURS! {green}ISN'T {white}THIS {red}AMAZING{green}!{black}!{red}!{blue}!{white}!{purple}!{reset}\n");
+	// ft_printf("{red}LOOK {cyan}AT {purple}ALL {green}THE {yellow}PRETTY {blue}COLOURS! {green}ISN'T {white}THIS {red}AMAZING{green}!{black}!{red}!{blue}!{white}!{purple}!{reset}\n\n");
+	// ft_printf("{red}HELLO %d {blue}WORLD {reset}*%-#20.9x{green}*\n", 512, 1234567);
+	// ft_printf("HELLO {reset} WORLD\n\n", 512, 1234567);
+	// ft_printf("HELLO {reset} WORLD{purple}");
+	// ft_printf("\nHELLO {reset} WORLD\n");
 	// ft_printf("\n\n***** n flag testing *****\n\n");
 	// int n_flag = 0;
 	// long n_flag_long = 0;
@@ -121,14 +165,14 @@ int	main(void)
 	// printf(comp_trck2, &n_flag);
 	// ft_printf("ft_printf this is%10.10n a test\n", &n_flag);
 
-	//printf("apostrophe flag test: %'d\n", 1000000);
+	// //printf("apostrophe flag test: %'d\n", 1000000);
 
 	// ft_printf("\n\n***** binary (b) flag testing *****\n\n");
 	// ft_printf("binary test (expected output = 1111011): %b\n", 123);
 	// ft_printf("binary test (expected output = 11110000001111000): %b\n", 123000);
 	// ft_printf("binary test (expected output = 1100010101): %b\n", 789);
 	// ft_printf("binary test (expected output = 11111111111111111111111111101100): %b\n", -20);
-	// ft_printf("binary test (expected output = 11111111111111111111111111111111): %b\n", LLONG_MAX);
+	// ft_printf("binary test (expected output = 111111111111111111111111111111111111111111111111111111111111111): %llb\n", LLONG_MAX);
 	// ft_printf("binary test (expected output = 0):	%b\n", LLONG_MIN);
 	// ft_printf("binary test (expected output = 11):	%b\n", 3);
 	// ft_printf("binary test (expected output = 0):	%b\n", 0);
@@ -174,8 +218,8 @@ int	main(void)
 	// ft_printf("ft_printf: *%+03d*\n\n", 123456);
 
 
-	// // printf(fu_compiler1, NULL, NULL);
-	// // ft_printf(fu_compiler2, NULL, NULL);
+	// printf(fu_compiler1, NULL, NULL);
+	// ft_printf(fu_compiler2, NULL, NULL);
 
 	// printf("printf,    percent with 0 flag and width 5: *%05%*\n");
 	// ft_printf("ft_printf, percent with 0 flag and width 5: *%05%*\n\n");
@@ -257,10 +301,10 @@ int	main(void)
 	// printf("printf, NULL char, width 3   :	*%3c*\n", 0);
 	// ft_printf("ft_printf, NULL char, width 3:	*%3c*\n\n", 0);
 
-	// // //printf("printf, NULL char, space flag:	*% c*\n", 0);
-	// // ft_printf("ft_printf,    NULL char, space flag:	*% c*\n\n", 0);
-	// // //printf("printf, NULL char, prec 2:	*%.2c*\n", NULL);
-	// // ft_printf("ft_printf,    NULL char, prec 2:	*%.2c*\n\n", NULL);
+	// // // //printf("printf, NULL char, space flag:	*% c*\n", 0);
+	// // // ft_printf("ft_printf,    NULL char, space flag:	*% c*\n\n", 0);
+	// // // //printf("printf, NULL char, prec 2:	*%.2c*\n", NULL);
+	// // // ft_printf("ft_printf,    NULL char, prec 2:	*%.2c*\n\n", NULL);
 
 	// printf("printf    decimal, left aligned, width 5, precision 10: *%-5.10d*\n", 2500);
 	// ft_printf("ft-printf decimal, left aligned, width 5, precision 10: *%5.10d*\n\n", 2500);

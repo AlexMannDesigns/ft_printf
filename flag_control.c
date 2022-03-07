@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:14:26 by amann             #+#    #+#             */
-/*   Updated: 2022/03/04 11:21:08 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/07 17:28:54 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,24 @@ static char	*handle_zero_neg(char *res, int len)
 	char	*temp;
 
 	temp = ft_strnew(len);
+	if (!temp)
+	{
+		free(res);
+		return (NULL);
+	}
 	ft_strcpy(temp, res + 1);
 	free(res);
 	return (temp);
+}
+
+static void	handle_zero_helper(char *new, t_flags flag)
+{
+	if (flag.conv.big_x && flag.hash)
+		hash_zero_hex(new, 'X');
+	if (flag.conv.x && flag.hash)
+		hash_zero_hex(new, 'x');
+	if (flag.conv.neg && flag.conv.d)
+		new[0] = '-';
 }
 
 static char	*handle_zero(char *res, t_flags flag)
@@ -59,6 +74,8 @@ static char	*handle_zero(char *res, t_flags flag)
 	len = (int) ft_strlen(res);
 	if (flag.conv.neg && flag.conv.d && (flag.width.width > len))
 		res = handle_zero_neg(res, --len);
+	if (!res)
+		return (NULL);
 	if (len > flag.width.width)
 		return (res);
 	new = ft_strnew(flag.width.width + 1);
@@ -70,12 +87,7 @@ static char	*handle_zero(char *res, t_flags flag)
 	ft_memset(new, '0', flag.width.width - len);
 	ft_strcpy(new + flag.width.width - len, res);
 	free(res);
-	if (flag.conv.big_x && flag.hash)
-		hash_zero_hex(new, 'X');
-	if (flag.conv.x && flag.hash)
-		hash_zero_hex(new, 'x');
-	if (flag.conv.neg && flag.conv.d)
-		new[0] = '-';
+	handle_zero_helper(new, flag);
 	return (new);
 }
 
@@ -88,7 +100,7 @@ char	*flag_control(char *res, t_flags flag)
 	if (((flag.hash && flag.conv.numeric) && res[0] != '0') || flag.conv.p)
 		res = handle_hash(res, flag);
 	if (flag.zero && (flag.conv.numeric || flag.conv.percent)
-		&& flag.width.width && !flag.width.prec && !flag.left)
+		&& flag.width.width && !flag.width.prec_set && !flag.left)
 	{
 		res = handle_zero(res, flag);
 	}

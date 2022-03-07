@@ -49,7 +49,11 @@ static char	*convert_string(va_list lst, t_flags *flag)
 
 	res = ft_strdup(va_arg(lst, char *));
 	if (!res)
+	{
 		res = ft_strdup("(null)");
+		if (!res)
+			return (NULL);
+	}
 	if (flag->width.prec_set)
 	{
 		temp = ft_strnew(flag->width.prec);
@@ -83,7 +87,7 @@ static char	*conversion_dispatcher(char *(*p[5])(va_list lst, t_flags *flag),	\
 	return (NULL);
 }
 
-char	*conversion_control(char *s, va_list lst, t_flags *flag, int *p_ret)
+char	*conversion_ctrl(const char *s, va_list lst, t_flags *flag, int *p_ret)
 {
 	char	*(*p[5])(va_list lst, t_flags *flag);
 	char	*res;

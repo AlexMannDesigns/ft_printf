@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:31:56 by amann             #+#    #+#             */
-/*   Updated: 2022/02/22 15:08:04 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/07 15:46:12 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,6 @@
 *	if we need a shorter number, we chop from the dp + precision
 *	otherwise, pad out the number with 0s - remember to free memory!
 */
-
-void	chop_chop(char **res_str, size_t prec)
-{
-	size_t	i;
-	size_t	total;
-	size_t	len;
-	char	*new;
-
-	len = ft_strlen(*res_str);
-	i = 0;
-	while ((*res_str)[i] != '.')
-		i++;
-	total = prec + i + 1;
-	if (prec == 0)
-		new = ft_strndup(*res_str, i);
-	else if (total < len)
-	{
-		new = ft_strndup(*res_str, total);
-	}
-	else
-	{
-		new = ft_strnew(total);
-		ft_strcpy(new, *res_str);
-		ft_memset((void *)(new + len), '0', total - len);
-	}
-	free(*res_str);
-	*res_str = new;
-}
 
 static char	*create_str_helper(char *int_str, char *dec_str, size_t signif)
 {
