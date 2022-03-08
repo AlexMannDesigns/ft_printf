@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 16:05:46 by amann             #+#    #+#             */
-/*   Updated: 2022/03/07 16:10:55 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/08 12:16:03 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	precision_helper(char *res, char *new, t_width w, t_flags flag)
 	precision_helper_part_2(res, new, w, len);
 	if (w.prec > len && w.width && flag.left)
 	{
+	
 		ft_memset((void *)new, '0', (size_t)(w.prec - len));
 		ft_strcpy(new + w.prec - len, res);
 		if (w.prec < w.width)

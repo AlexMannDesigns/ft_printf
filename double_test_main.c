@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 11:17:33 by amann             #+#    #+#             */
-/*   Updated: 2022/02/21 18:09:42 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/08 15:19:26 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ int main(void)
 	double neg_x = -123;
 	double x_point_3 = 123.456;
 	ft_printf("\n\n ***** FLOAT TESTS ***** \n\n");
+
+	printf("printf 0.0 and -0.0 test   : *%f* *%f*\n", 0.0, -0.0);
+	ft_printf("ft_printf 0.0 and -0.0 test: *%f* *%f*\n\n", 0.0, -0.0);
 
 	printf("printf rounding test:    %.f %.f %.f %.f %.f %.f %.f %.f %.f %.f\n", 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5);
 	ft_printf("ft_printf rounding test: %.f %.f %.f %.f %.f %.f %.f %.f %.f %.f\n\n", 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5);

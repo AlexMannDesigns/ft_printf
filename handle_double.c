@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:31:56 by amann             #+#    #+#             */
-/*   Updated: 2022/03/07 15:46:12 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/08 15:23:48 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,22 @@ static size_t	check_sig_dig(long int l_dp, long double *r_dp, long double x)
 		return (i);
 }
 
+static void	check_neg_double(long double *x, t_flags *flag)
+{
+	float	test;
+	int		*ptr;
+	
+	if (*x == 0)
+	{
+		test = (float) *x;
+		ptr = (int *) &test;
+		if (((int) *ptr & 1 << 31) == 0)
+			return ;
+	}
+	flag->conv.neg = TRUE;
+	*x *= -1;
+}
+
 char	*convert_double(va_list lst, t_flags *flag)
 {
 	char		*res_str;
@@ -90,11 +106,8 @@ char	*convert_double(va_list lst, t_flags *flag)
 	set_x(lst, flag, &x);
 	if (!flag->width.prec_set)
 		flag->width.prec = 6;
-	if (x < 0)
-	{
-		flag->conv.neg = TRUE;
-		x *= -1;
-	}
+	if (x <= 0)
+		check_neg_double(&x, flag);
 	left_dp = (long int) x;
 	signif = check_sig_dig(left_dp, &right_dp, x);
 	res_str = create_string(left_dp, right_dp, signif);

@@ -14,8 +14,12 @@
 
 static char	sign_selector(t_flags flag)
 {
+	
 	if (flag.plus)
+	{
+		//ft_putendl("here");
 		return ('+');
+	}
 	else
 		return (SPACE);
 }
@@ -47,7 +51,9 @@ char	*handle_plus(char *res, t_flags flag, int len)
 		if (!new)
 			return (NULL);
 		new[0] = sign;
+	
 		ft_strcpy(new + 1, res);
+		//ft_putendl(new);
 	}
 	else
 	{

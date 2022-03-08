@@ -25,8 +25,29 @@
 *		- precision and width handling
 */
 
+int check_sign_bit(int a)   
+{
+    if ((a & 1<<31) == 0) 
+		return 0;
+    else
+		return 1; 
+}
+
 int	main(void)
 {
+	long double a = 0.000000;
+	long double neg = -0.000000;
+	float b = (float)a; 
+	float c = (float)neg;
+	int	*ptr;
+
+	ptr = (int *)&b;
+	if (a == 0)
+    	ft_printf("%d\n", check_sign_bit(*ptr));
+	ptr = (int *)&c;   
+	if (neg == 0)
+		ft_printf("%d\n", check_sign_bit(*ptr));
+
 	// printf("this is a width test%10i!\n", 123);
 	// printf("this is a precision & width test %10.5d\n", 123);
 	// printf("\n3 + 4 + 5 + 6 = %d\n", add_numbers(4, 3, 4, 5, 6));
@@ -56,41 +77,44 @@ int	main(void)
 	// 	ft_printf("%s", "");
 	// 	i++;
 	// }
-	printf("printf    *% -1.0d*\n", 0);
-	ft_printf("ft_printf *% -1.0d*\n\n", 0);
+	// printf("printf    *% -1.0d*\n", 0);
+	// ft_printf("ft_printf *% -1.0d*\n\n", 0);
+	
+	// printf("printf    *% -.0d*\n", 0);
+	// ft_printf("ft_printf *% -.0d*\n\n", 0);
 
-	printf("printf    *%+1.0d*\n", 0);
-	ft_printf("ft_printf *%+1.0d*\n\n", 0);
-	printf("printf    *%+.0d*\n", 42);
-	ft_printf("ft_printf *%+.0d*\n\n", 42);
+	// printf("printf    *% -.0d*\n", 0);
+	// ft_printf("ft_printf *% -.0d*\n\n", 0);
 
-	printf("printf    *% 1.0d*\n", 0);
-	ft_printf("ft_printf *% 1.0d*\n\n", 0);
+	// printf("printf    *% -1d*\n", 0);
+	// ft_printf("ft_printf *% -1d*\n\n", 0);
 
-	printf("printf    *%1.0d*\n", 0);
-	ft_printf("ft_printf *%1.0d*\n\n", 0);
+	// printf("printf    *%+1.0d*\n", 0);
+	// ft_printf("ft_printf *%+1.0d*\n\n", 0);
 
-	printf("printf    *% -.0d*\n", 0);
-	ft_printf("ft_printf *% -.0d*\n\n", 0);
+	// printf("printf    *%+.0d*\n", 42);
+	// ft_printf("ft_printf *%+.0d*\n\n", 42);
 
-	printf("printf    *% -1d*\n", 0);
-	ft_printf("ft_printf *% -1d*\n\n", 0);
+	// printf("printf    *% 1.0d*\n", 0);
+	// ft_printf("ft_printf *% 1.0d*\n\n", 0);
 
-	printf("printf    *% -1.0d*\n", 42);
-	ft_printf("ft_printf *% -1.0d*\n\n", 42);
+	// printf("printf    *%1.0d*\n", 0);
+	// ft_printf("ft_printf *%1.0d*\n\n", 0);
+	// printf("printf    *% -1.0d*\n", 42);
+	// ft_printf("ft_printf *% -1.0d*\n\n", 42);
 
-	short fortytwo = 42;
-	printf("printf    *%05.0hd*\n", fortytwo);
-	ft_printf("ft_printf *%05.0hd*\n\n", fortytwo);
-	printf("printf    *%05.0ld*\n", 42L);
-	ft_printf("ft_printf *%05.0ld*\n\n", 42L);
-	printf("printf    *%05.0d*\n", 42);
-	ft_printf("ft_printf *%05.0d*\n\n", 42);
+	// short fortytwo = 42;
+	// printf("printf    *%05.0hd*\n", fortytwo);
+	// ft_printf("ft_printf *%05.0hd*\n\n", fortytwo);
+	// printf("printf    *%05.0ld*\n", 42L);
+	// ft_printf("ft_printf *%05.0ld*\n\n", 42L);
+	// printf("printf    *%05.0d*\n", 42);
+	// ft_printf("ft_printf *%05.0d*\n\n", 42);
 
-	printf("printf    *%05.0hu*\n", fortytwo);
-	ft_printf("ft_printf *%05.0hu*\n\n", fortytwo);
-	printf("printf    *%05.0lu*\n", 42L);
-	ft_printf("ft_printf *%05.0lu*\n\n", 42L);
+	// printf("printf    *%05.0hu*\n", fortytwo);
+	// ft_printf("ft_printf *%05.0hu*\n\n", fortytwo);
+	// printf("printf    *%05.0lu*\n", 42L);
+	// ft_printf("ft_printf *%05.0lu*\n\n", 42L);
 
 
 	// ft_printf("\n\n***** colour testing *****\n\n");
@@ -269,7 +293,7 @@ int	main(void)
  	// ft_printf("ft_printf, hex nil value and hash flag: *%#x*\n\n", 0);
 
 	// printf("printf:   hex nil value, hash flag, zero precision: *%#.x* *%#.0x*\n", 0, 0);
- 	// ft_printf("ft_printf hex nil value, hash flag, zero precision: *%#.x* *%#.0x*\n\n", 0, 0);
+	// ft_printf("ft_printf hex nil value, hash flag, zero precision: *%#.x* *%#.0x*\n\n", 0, 0);
 
 	// printf("printf, hex and hash flag:    *%#x*\n", 7);
  	// ft_printf("ft_printf, hex and hash flag: *%#x*\n\n", 7);

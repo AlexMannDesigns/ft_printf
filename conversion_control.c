@@ -100,5 +100,10 @@ char	*conversion_ctrl(const char *s, va_list lst, t_flags *flag, int *p_ret)
 	res = NULL;
 	set_conv_type(s[0], &(flag->conv));
 	res = conversion_dispatcher(p, lst, flag, p_ret);
+	if (flag->conv.numeric && flag->nil && !flag->width.prec && flag->width.prec_set)
+	{
+		free(res);
+		res = ft_strdup("");
+	}
 	return (res);
 }
