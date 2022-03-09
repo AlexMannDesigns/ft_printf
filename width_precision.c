@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:00:09 by amann             #+#    #+#             */
-/*   Updated: 2022/03/07 16:32:28 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/09 15:12:30 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	set_prec(const char *s, t_flags *data, int *ctrl_i, va_list lst)
 		data->width.prec = (size_t)ft_atoi(pres_str);
 		free(pres_str);
 		if (len > 1)
-			*ctrl_i += (len - 1);
+			*ctrl_i += ((int) len - 1);
 		else
 			*ctrl_i += 1;
 	}
@@ -86,7 +86,7 @@ void	set_width_prec(const char *s, t_flags *data, int *ctrl_i, va_list lst)
 		width_str = ft_strndup(s, len);
 		data->width.width = ft_atoi(width_str);
 		free(width_str);
-		*ctrl_i += len - 1;
+		*ctrl_i += (int) len - 1;
 	}
 	check_neg(data);
 }

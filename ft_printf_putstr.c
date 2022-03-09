@@ -6,23 +6,23 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 15:12:50 by amann             #+#    #+#             */
-/*   Updated: 2022/03/04 11:40:18 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/09 15:05:10 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printf_putchar(char const *str, int i, int *printf_res)
+void	ft_printf_putchar(char const *str, size_t i, int *printf_res)
 {
-	int		count;
+	ssize_t		count;
 
 	count = write(1, str, i);
-	*printf_res += count;
+	*printf_res += (int) count;
 }
 
 void	ft_printf_putstr(char const *str, int *printf_res, t_flags flag)
 {
-	int		i;
+	size_t	i;
 	char	*temp;
 
 	if (!str)

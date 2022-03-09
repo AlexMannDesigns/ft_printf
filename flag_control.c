@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:14:26 by amann             #+#    #+#             */
-/*   Updated: 2022/03/07 17:28:54 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/09 16:35:35 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,71 +24,25 @@
 *	' ' leaves an empty space before positive numbers
 *	% just prints a percentage sign.
 */
-static void	hash_zero_hex(char *new, char x)
-{
-	int	i;
 
-	i = 0;
-	while (new[i] != '\0')
+static int	zero_flag_check(t_flags flag)
+{
+	if (flag.conv.numeric || flag.conv.percent || flag.conv.s || flag.conv.f)
 	{
-		if (new[i] == x)
+		if (flag.width.width && !flag.left)
 		{
-			new[i] = '0';
-			break ;
+			if (!(flag.width.prec_set && flag.conv.numeric))
+				return (1);
 		}
-		i++;
 	}
-	new[1] = x;
+	return (0);
 }
 
-static char	*handle_zero_neg(char *res, int len)
+static int plus_flag_check(char *res, t_flags flag)
 {
-	char	*temp;
-
-	temp = ft_strnew(len);
-	if (!temp)
-	{
-		free(res);
-		return (NULL);
-	}
-	ft_strcpy(temp, res + 1);
-	free(res);
-	return (temp);
-}
-
-static void	handle_zero_helper(char *new, t_flags flag)
-{
-	if (flag.conv.big_x && flag.hash)
-		hash_zero_hex(new, 'X');
-	if (flag.conv.x && flag.hash)
-		hash_zero_hex(new, 'x');
-	if (flag.conv.neg && flag.conv.d)
-		new[0] = '-';
-}
-
-static char	*handle_zero(char *res, t_flags flag)
-{
-	char	*new;
-	int		len;
-
-	len = (int) ft_strlen(res);
-	if (flag.conv.neg && flag.conv.d && (flag.width.width > len))
-		res = handle_zero_neg(res, --len);
-	if (!res)
-		return (NULL);
-	if (len > flag.width.width)
-		return (res);
-	new = ft_strnew(flag.width.width + 1);
-	if (!new)
-	{
-		ft_memdel((void **)&res);
-		return (NULL);
-	}
-	ft_memset(new, '0', flag.width.width - len);
-	ft_strcpy(new + flag.width.width - len, res);
-	free(res);
-	handle_zero_helper(new, flag);
-	return (new);
+	if ((flag.conv.d || flag.conv.f) && !flag.conv.neg && res)
+		return (1);
+	return (0);
 }
 
 char	*flag_control(char *res, t_flags flag)
@@ -99,15 +53,18 @@ char	*flag_control(char *res, t_flags flag)
 		return (NULL);
 	if (((flag.hash && flag.conv.numeric) && res[0] != '0') || flag.conv.p)
 		res = handle_hash(res, flag);
-	if (flag.zero && (flag.conv.numeric || flag.conv.percent)
-		&& flag.width.width && !flag.width.prec_set && !flag.left)
+	if (flag.zero)
 	{
-		res = handle_zero(res, flag);
+		if (zero_flag_check(flag))
+			res = handle_zero(res, flag);
 	}
-	if ((flag.plus || flag.space) && flag.conv.d && !flag.conv.neg && res)
+	if (flag.plus || flag.space) 
 	{
-		len = (int) ft_strlen(res);
-		res = handle_plus(res, flag, len);
+		if (plus_flag_check(res, flag))
+		{
+			len = (int) ft_strlen(res);
+			res = handle_plus(res, flag, len);	
+		}
 	}
 	return (res);
 }

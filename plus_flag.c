@@ -16,10 +16,7 @@ static char	sign_selector(t_flags flag)
 {
 	
 	if (flag.plus)
-	{
-		//ft_putendl("here");
 		return ('+');
-	}
 	else
 		return (SPACE);
 }
@@ -37,6 +34,17 @@ static char	*plus_helper(int len, t_width width, char sign, char *res)
 	return (new);
 }
 
+static int	extend_string_check(t_flags flag, int len)
+{
+	if (!flag.zero)
+		return 1;
+	if (len > flag.width.width && flag.conv.d)
+		return 1;
+	if (len >= flag.width.width && flag.conv.f)
+		return 1;
+	return 0;
+}
+
 char	*handle_plus(char *res, t_flags flag, int len)
 {
 	char	*new;
@@ -45,15 +53,16 @@ char	*handle_plus(char *res, t_flags flag, int len)
 	sign = sign_selector(flag);
 	if (flag.width.prec > len)
 		new = plus_helper(len, flag.width, sign, res);
-	else if (!flag.zero || len > flag.width.width)
+	else if (extend_string_check(flag, len))
 	{
 		new = ft_strnew(len + 1);
 		if (!new)
+		{
+			free(res);
 			return (NULL);
+		}
 		new[0] = sign;
-	
 		ft_strcpy(new + 1, res);
-		//ft_putendl(new);
 	}
 	else
 	{

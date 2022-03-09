@@ -25,28 +25,8 @@
 *		- precision and width handling
 */
 
-int check_sign_bit(int a)   
-{
-    if ((a & 1<<31) == 0) 
-		return 0;
-    else
-		return 1; 
-}
-
 int	main(void)
 {
-	long double a = 0.000000;
-	long double neg = -0.000000;
-	float b = (float)a; 
-	float c = (float)neg;
-	int	*ptr;
-
-	ptr = (int *)&b;
-	if (a == 0)
-    	ft_printf("%d\n", check_sign_bit(*ptr));
-	ptr = (int *)&c;   
-	if (neg == 0)
-		ft_printf("%d\n", check_sign_bit(*ptr));
 
 	// printf("this is a width test%10i!\n", 123);
 	// printf("this is a precision & width test %10.5d\n", 123);
@@ -77,6 +57,44 @@ int	main(void)
 	// 	ft_printf("%s", "");
 	// 	i++;
 	// }
+
+	// printf("printf   : %05.10%%c\n", 'a');
+	// ft_printf("ft_printf: %05.10%%c\n\n", 'a');
+
+	// char *compiler_trick = "%06s%c\n";
+	// printf("printf   : ");
+	// printf(compiler_trick, "yoyo", 'a');
+	// ft_printf("ft_printf: ");
+	// ft_printf(compiler_trick, "yoyo", 'a');
+	// ft_printf("\n");
+
+	// char *compiler_trick = "%%   %";
+	// printf("printf   : *");
+	// printf(compiler_trick, "test");
+	// printf("*\n");
+
+	ft_printf("ft_printf: *%#012.6d*\n", 123); 
+	// ft_printf("ft_printf: *");
+	// ft_printf("% ");
+	// ft_printf("*\n");
+	// ft_printf("ft_printf: *");
+	// ft_printf("% h");
+	// ft_printf("*\n");
+	// ft_printf("ft_printf: ");
+	// ft_printf("%Z");
+	// ft_printf("\n");
+	// ft_printf("% hZ");
+	// ft_printf("\n");
+	// ft_printf("% hZ%");
+	// ft_printf("\n");
+	// ft_printf("ft_printf: *");
+	// ft_printf("% Z", "test");
+	// ft_printf("*\n");
+	// ft_printf("% Z%s", "test");
+	// ft_printf("\n");
+	ft_printf("ft_printf: *");
+	ft_printf("%%   %");
+	ft_printf("*\n");
 	// printf("printf    *% -1.0d*\n", 0);
 	// ft_printf("ft_printf *% -1.0d*\n\n", 0);
 	
@@ -325,10 +343,10 @@ int	main(void)
 	// printf("printf, NULL char, width 3   :	*%3c*\n", 0);
 	// ft_printf("ft_printf, NULL char, width 3:	*%3c*\n\n", 0);
 
-	// // // //printf("printf, NULL char, space flag:	*% c*\n", 0);
-	// // // ft_printf("ft_printf,    NULL char, space flag:	*% c*\n\n", 0);
-	// // // //printf("printf, NULL char, prec 2:	*%.2c*\n", NULL);
-	// // // ft_printf("ft_printf,    NULL char, prec 2:	*%.2c*\n\n", NULL);
+	// // printf("printf, NULL char, space flag:	*% c*\n", 0);
+	// // ft_printf("ft_printf,    NULL char, space flag:	*% c*\n\n", 0);
+	// // printf("printf, NULL char, prec 2:	*%.2c*\n", NULL);
+	// // ft_printf("ft_printf,    NULL char, prec 2:	*%.2c*\n\n", NULL);
 
 	// printf("printf    decimal, left aligned, width 5, precision 10: *%-5.10d*\n", 2500);
 	// ft_printf("ft-printf decimal, left aligned, width 5, precision 10: *%5.10d*\n\n", 2500);

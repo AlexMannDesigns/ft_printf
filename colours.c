@@ -6,13 +6,13 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:21:09 by amann             #+#    #+#             */
-/*   Updated: 2022/03/07 16:28:04 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/09 15:08:37 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	print_colour_code(int i)
+static void	print_colour_code(size_t i)
 {
 	char	*colour_code_arr[9];
 
@@ -28,9 +28,9 @@ static void	print_colour_code(int i)
 	ft_putstr(colour_code_arr[i]);
 }
 
-static int	check_colour_loop(const char *s, size_t len)
+static size_t	check_colour_loop(const char *s, size_t len)
 {
-	int		i;
+	size_t	i;
 	char	*colour_str_arr[9];
 
 	colour_str_arr[0] = "{black}";
@@ -65,9 +65,9 @@ static size_t	set_len(const char *s)
 	return (len);
 }
 
-void	check_colour(const char *s, int *cursor, int *printf_ret)
+void	check_colour(const char *s, size_t *cursor, int *printf_ret)
 {
-	int		i;
+	size_t	i;
 	size_t	len;
 
 	len = set_len(s);
@@ -76,7 +76,7 @@ void	check_colour(const char *s, int *cursor, int *printf_ret)
 		i = check_colour_loop(s, len);
 		if (i < 9)
 		{
-			*cursor += (int) len;
+			*cursor += len;
 			return ;
 		}
 	}

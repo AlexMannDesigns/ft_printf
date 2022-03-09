@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/03/07 16:35:51 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/09 16:25:17 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ typedef struct s_flags
 int			ft_printf(const char *s, ...);
 
 /* ft_printf_control.c */
-void		ft_printf_ctrl(const char *s, va_list lst, int *p_i, int *p_ret);
+void		ft_printf_ctrl(const char *s, va_list lst, size_t *p_i, int *p_ret);
 
 /* set_flags.c */
 void		set_flags_and_length(const char *s, t_flags *flag, int *h_i);
@@ -164,6 +164,9 @@ char		*handle_hash(char *res, t_flags flag);
 /* plus_flag.c */
 char		*handle_plus(char *res, t_flags flag, int len);
 
+/* zero_flag.c */
+char		*handle_zero(char *res, t_flags flag);
+
 /* ft_itoa_base.c */
 char		*ft_itoa_base(const long long value, int base);
 char		*itoa_reverse(char *str);
@@ -183,8 +186,8 @@ char	*set_memory(char *res, t_width w, t_flags flag);
 
 /* ft_printf_putstr.c */
 void		ft_printf_putstr(char const *str, int *printf_res, t_flags flag);
-void		ft_printf_putchar(char const *str, int i, int *printf_res);
+void		ft_printf_putchar(char const *str, size_t i, int *printf_res);
 
 /* colours.c */
-void		check_colour(const char *s, int *cursor, int *printf_ret);
+void		check_colour(const char *s, size_t *cursor, int *printf_ret);
 #endif
