@@ -14,7 +14,6 @@
 
 static char	sign_selector(t_flags flag)
 {
-	
 	if (flag.plus)
 		return ('+');
 	else
@@ -37,12 +36,12 @@ static char	*plus_helper(int len, t_width width, char sign, char *res)
 static int	extend_string_check(t_flags flag, int len)
 {
 	if (!flag.zero)
-		return 1;
+		return (TRUE);
 	if (len > flag.width.width && flag.conv.d)
-		return 1;
+		return (TRUE);
 	if (len >= flag.width.width && flag.conv.f)
-		return 1;
-	return 0;
+		return (TRUE);
+	return (FALSE);
 }
 
 char	*handle_plus(char *res, t_flags flag, int len)

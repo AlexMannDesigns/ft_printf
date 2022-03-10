@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/03/09 16:25:17 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/10 15:39:40 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 # include "libft/libft.h"
 # include <stdarg.h>
 # include <limits.h>
-
-/* needed for testing */
-# include <stdio.h> 
 
 /***** MACROS *****/
 
@@ -80,13 +77,13 @@ typedef struct s_flags
 	unsigned int	l;
 	unsigned int	ll;
 	unsigned int	big_l;
+	unsigned int	z;
 	unsigned int	hash;
 	unsigned int	zero;
 	unsigned int	nil;
 	unsigned int	left;
 	unsigned int	plus;
 	unsigned int	space;
-	unsigned int	star; //maybe not needed
 	t_conv			conv;
 	t_width			width;
 }					t_flags;
@@ -104,18 +101,18 @@ void		set_flags_and_length(const char *s, t_flags *flag, int *h_i);
 void		initialise_structs(t_flags *flag);
 
 /* width_precision.c */
-void		set_width_prec(const char *s, t_flags *data, int *ctrl_i,		\
+void		set_width_prec(const char *s, t_flags *data, int *ctrl_i,	\
 				va_list lst);
 
 /* conversion_control.c */
-char		*conversion_ctrl(const char *s, va_list lst, t_flags *flag,		\
+char		*conversion_ctrl(const char *s, va_list lst, t_flags *flag,	\
 				int *p_ret);
 
 /* set_conv_type.c */
 void		set_conv_type(char c, t_conv *conv);
 
 /* numeric_conversion.c */
-void		numeric_conv_dispatcher(char c, va_list lst, char **res,		\
+void		numeric_conv_dispatcher(char c, va_list lst, char **res,	\
 				t_flags *flags);
 
 /* signed_conversion_handlers.c */
@@ -134,6 +131,10 @@ char		*handle_ul(unsigned long l_x, t_flags *flag, int base);
 char		*handle_uh(unsigned int x, t_flags *flag, int base);
 char		*handle_uhh(unsigned int x, t_flags *flag, int base);
 char		*handle_uint(unsigned int x, t_flags *flag, int base);
+
+/* z_conversions.c */
+char		*handle_zd(ssize_t x, t_flags *flag);
+char		*handle_zu(size_t x, t_flags *flag, int base);
 
 /* n_conversion.c */
 void		convert_n(va_list lst, t_flags *flag, int *p_ret);
@@ -172,8 +173,8 @@ char		*ft_itoa_base(const long long value, int base);
 char		*itoa_reverse(char *str);
 
 /* ft_itoa_base_unsigned.c */
-char		*ft_itoa_base_unsigned(const unsigned long long value,			\
-				int base);
+char		*ft_itoa_base_unsigned(const unsigned long long value, int base);
+
 /* ft_abs_long.c */
 long long	ft_abs_long(long long i);
 
@@ -181,8 +182,8 @@ long long	ft_abs_long(long long i);
 void		print_result(char *s, t_flags flag, int *printf_res);
 
 /* print_result_functions.c */
-void	precision_helper(char *res, char *new, t_width w, t_flags flag);
-char	*set_memory(char *res, t_width w, t_flags flag);
+void		precision_helper(char *res, char *new, t_width w, t_flags flag);
+char		*set_memory(char *res, t_width w, t_flags flag);
 
 /* ft_printf_putstr.c */
 void		ft_printf_putstr(char const *str, int *printf_res, t_flags flag);

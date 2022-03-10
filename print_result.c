@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:37:43 by amann             #+#    #+#             */
-/*   Updated: 2022/03/09 12:20:06 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/10 16:51:21 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,29 @@ static char	*print_result_helper(char *new, t_flags flag)
 	}
 }
 
+static int	nil_check_1(t_flags flag)
+{
+	if (flag.conv.numeric && flag.nil && !flag.width.prec)
+	{
+		if (flag.width.prec_set && flag.width.width && !flag.plus)
+			return (TRUE);
+	}
+	return (FALSE);
+}
+
+static int	nil_check_2(t_flags flag)
+{
+	if (flag.conv.numeric && flag.nil && !flag.width.prec)
+	{
+		if (flag.width.prec_set && !(flag.conv.o && flag.hash))
+		{
+			if (!flag.plus && !(flag.conv.d && !flag.width.width))
+				return (TRUE);
+		}
+	}		
+	return (FALSE);
+}
+
 void	print_result(char *res, t_flags flag, int *printf_ret)
 {
 	char	*new;
@@ -36,10 +59,9 @@ void	print_result(char *res, t_flags flag, int *printf_ret)
 		return ;
 	if (flag.conv.numeric)
 		precision_helper(res, new, w, flag);
-	if (flag.conv.numeric && !w.prec && w.prec_set && flag.nil && w.width && !flag.plus)
+	if (nil_check_1(flag))
 		ft_memset(new, ' ', ft_strlen(new));
-	else if (flag.conv.numeric && flag.nil && !(flag.conv.o && flag.hash) && !flag.plus
-			&& !w.prec && w.prec_set && !(flag.conv.d && !w.width))
+	else if (nil_check_2(flag))
 		new = print_result_helper(new, flag);
 	if (!new)
 		return ;

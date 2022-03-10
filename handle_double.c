@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:31:56 by amann             #+#    #+#             */
-/*   Updated: 2022/03/08 15:23:48 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/10 15:40:44 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void	check_neg_double(long double *x, t_flags *flag)
 {
 	float	test;
 	int		*ptr;
-	
+
 	if (*x == 0)
 	{
 		test = (float) *x;

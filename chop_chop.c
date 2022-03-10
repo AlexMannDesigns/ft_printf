@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:45:56 by amann             #+#    #+#             */
-/*   Updated: 2022/03/07 15:53:09 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/09 17:15:39 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ void	chop_chop(char **res_str, size_t prec)
 	if (prec == 0)
 		new = ft_strndup(*res_str, i);
 	else if (total < len)
-	{
 		new = ft_strndup(*res_str, total);
-	}
 	else
 		new = chop_chop_helper(res_str, total, len);
 	if (!new)

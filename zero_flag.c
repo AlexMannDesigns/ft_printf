@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_zero.c                                      :+:      :+:    :+:   */
+/*   zero_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 16:23:42 by amann             #+#    #+#             */
-/*   Updated: 2022/03/09 16:24:05 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/10 16:44:53 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,26 @@ static void	handle_zero_helper(char *new, t_flags flag)
 		new[0] = '-';
 }
 
+static int	zero_neg_checker(t_flags flag, int len)
+{
+	if (flag.conv.neg)
+	{
+		if (flag.conv.d || flag.conv.f)
+		{
+			if (flag.width.width > len)
+				return (TRUE);
+		}
+	}
+	return (FALSE);
+}
+
 char	*handle_zero(char *res, t_flags flag)
 {
 	char	*new;
 	int		len;
 
 	len = (int) ft_strlen(res);
-	if (flag.conv.neg && (flag.conv.d || flag.conv.f) && (flag.width.width > len))
+	if (zero_neg_checker(flag, len))
 		res = handle_zero_neg(res, --len);
 	if (!res)
 		return (NULL);

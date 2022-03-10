@@ -6,12 +6,12 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 16:25:40 by amann             #+#    #+#             */
-/*   Updated: 2022/03/07 16:33:34 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/10 15:43:06 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-/*	each time a new conversion starts, flag should all be set to FALSE */
+
 static void	intialiser_helper(t_flags *flag)
 {
 	flag->width.prec = 0;
@@ -40,13 +40,13 @@ void	initialise_structs(t_flags *flag)
 	flag->l = FALSE;
 	flag->ll = FALSE;
 	flag->big_l = FALSE;
+	flag->z = FALSE;
 	flag->hash = FALSE;
 	flag->zero = FALSE;
 	flag->nil = FALSE;
 	flag->left = FALSE;
 	flag->plus = FALSE;
 	flag->space = FALSE;
-	flag->star = FALSE;
 	intialiser_helper(flag);
 }
 
@@ -83,4 +83,6 @@ void	set_flags_and_length(const char *s, t_flags *flag, int *h_i)
 	}
 	else if (s[0] == 'l')
 		flag->l = TRUE;
+	else if (s[0] == 'z')
+		flag->z = TRUE;
 }

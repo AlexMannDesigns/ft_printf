@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:14:26 by amann             #+#    #+#             */
-/*   Updated: 2022/03/09 16:35:35 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/10 16:46:21 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,19 @@
 
 static int	zero_flag_check(t_flags flag)
 {
-	if (flag.conv.numeric || flag.conv.percent || flag.conv.s || flag.conv.f)
+	if (!flag.conv.b && flag.width.width && !flag.left)
 	{
-		if (flag.width.width && !flag.left)
-		{
-			if (!(flag.width.prec_set && flag.conv.numeric))
-				return (1);
-		}
+		if (!(flag.width.prec_set && flag.conv.numeric))
+			return (TRUE);
 	}
-	return (0);
+	return (FALSE);
 }
 
-static int plus_flag_check(char *res, t_flags flag)
+static int	plus_flag_check(char *res, t_flags flag)
 {
 	if ((flag.conv.d || flag.conv.f) && !flag.conv.neg && res)
-		return (1);
-	return (0);
+		return (TRUE);
+	return (FALSE);
 }
 
 char	*flag_control(char *res, t_flags flag)
@@ -58,12 +55,12 @@ char	*flag_control(char *res, t_flags flag)
 		if (zero_flag_check(flag))
 			res = handle_zero(res, flag);
 	}
-	if (flag.plus || flag.space) 
+	if (flag.plus || flag.space)
 	{
 		if (plus_flag_check(res, flag))
 		{
 			len = (int) ft_strlen(res);
-			res = handle_plus(res, flag, len);	
+			res = handle_plus(res, flag, len);
 		}
 	}
 	return (res);

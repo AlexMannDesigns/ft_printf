@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
+#include <stdio.h>
 
 /*
 *	basic testing:
@@ -57,6 +57,38 @@ int	main(void)
 	// 	ft_printf("%s", "");
 	// 	i++;
 	// }
+   
+
+	// ft_printf("****** SIZE_T/SSIZE_T TESTING *****\n\n");
+
+	// size_t uzs = 1;
+    // ssize_t zs = -1;
+
+	// ft_printf("size of size_t in bytes:	%d\n\n", sizeof(size_t));
+	// ft_printf("size of ssize_t in bytes:	%d\n\n", sizeof(ssize_t));
+
+    // printf ("printf size_t zu   : %zu\n", uzs);
+	// ft_printf ("ft_printf size_t zu: %zu\n\n", uzs);
+
+    // printf ("printf size_t zd   : %zd\n", uzs);
+	// ft_printf ("ft_printf size_t zd: %zd\n\n", uzs);
+
+    // printf ("printf ssize_t zu   : %zu\n", zs);
+	// ft_printf ("ft_printf ssize_t zu: %zu\n\n", zs);
+	
+    // printf ("printf ssize_t zd   : %zd\n", zs);
+	// ft_printf ("ft_printf ssize_t zd: %zd\n\n", zs);
+
+	// ssize_t min = LONG_MIN;
+	// printf ("printf LONG_MIN ssize_t zd   : %zd\n", min);
+	// ft_printf ("ft_printf LONG_MIN ssize_t zd: %zd\n\n", min);
+
+	// printf ("printf LONG_MIN zu   : %zu\n", LONG_MIN);
+	// ft_printf ("ft_printf LONG_MIN zu: %zu\n\n", LONG_MIN);
+
+	// char *s = "printf LONG_MIN zu   : %u\n";
+	// printf (s, LONG_MIN);
+	// ft_printf ("ft_printf LONG_MIN zu: %u\n\n", LONG_MIN);
 
 	// printf("printf   : %05.10%%c\n", 'a');
 	// ft_printf("ft_printf: %05.10%%c\n\n", 'a');
@@ -73,7 +105,7 @@ int	main(void)
 	// printf(compiler_trick, "test");
 	// printf("*\n");
 
-	ft_printf("ft_printf: *%#012.6d*\n", 123); 
+	// ft_printf("ft_printf: *%#012.6d*\n", 123); 
 	// ft_printf("ft_printf: *");
 	// ft_printf("% ");
 	// ft_printf("*\n");
@@ -92,9 +124,9 @@ int	main(void)
 	// ft_printf("*\n");
 	// ft_printf("% Z%s", "test");
 	// ft_printf("\n");
-	ft_printf("ft_printf: *");
-	ft_printf("%%   %");
-	ft_printf("*\n");
+	// ft_printf("ft_printf: *");
+	// ft_printf("%%   %");
+	// ft_printf("*\n");
 	// printf("printf    *% -1.0d*\n", 0);
 	// ft_printf("ft_printf *% -1.0d*\n\n", 0);
 	
@@ -663,27 +695,27 @@ int	main(void)
 	// printf("printf plus and 0 test (width 10)   : *%+010d*\n", 789);
 	// ft_printf("ft_printf plus and 0 test (width 10): *%+010d*\n", 789);
 	
-	// ft_printf("\n\n***** zero (0) flag testing *****\n\n");
-	// char *format_bypass = "0 flag with decimal (width 10), left aligned: *%-010d*\n";
-	// printf("printf 0 flag with decimal (no width):    *%0d*\n", 123);
-	// ft_printf("ft_printf 0 flag with decimal (no width): *%0d*\n\n", 123);
-	// printf("printf 0 flag with decimal (width 10):    *%010d*\n", 123);
-	// ft_printf("ft_printf 0 flag with decimal (width 10): *%010d*\n\n", 123);
-	// printf("printf    ");
-	// printf(format_bypass, 123);
-	// ft_printf("ft_printf ");
-	// ft_printf(format_bypass, 123);
-	// ft_printf("\n");
-	// printf("printf 0 flag with octal (width 10):    *%010o*\n", 123);
-	// ft_printf("ft_printf 0 flag with octal (width 10): *%010o*\n\n", 123);
-	// printf("printf 0 flag with octal (width 3):    *%03o*\n", 123);
-	// ft_printf("ft_printf 0 flag with octal (width 3): *%03o*\n\n", 123);
-	// printf("printf 0 flag with hexadecimal (width 10):    *%010x*\n", 123);
-	// ft_printf("ft_printf 0 flag with hexadecimal (width 10): *%010x*\n\n", 123);
-	// printf("printf 0 flag with hexadecimal and hash (width 10):    *%0#10x*\n", 123);
-	// ft_printf("ft_printf 0 flag with hexadecimal and hash (width 10): *%0#10x*\n\n", 123);
-	// printf("printf 0 flag with upper hexadecimal and hash (width 10):    *%0#10X*\n", 123123);
-	// ft_printf("ft_printf 0 flag with upper hexadecimal and hash (width 10): *%0#10X*\n\n", 123123);
+	ft_printf("\n\n***** zero (0) flag testing *****\n\n");
+	char *format_bypass = "0 flag with decimal (width 10), left aligned: *%-010d*\n";
+	printf("printf 0 flag with decimal (no width):    *%0d*\n", 123);
+	ft_printf("ft_printf 0 flag with decimal (no width): *%0d*\n\n", 123);
+	printf("printf 0 flag with decimal (width 10):    *%010d*\n", 123);
+	ft_printf("ft_printf 0 flag with decimal (width 10): *%010d*\n\n", 123);
+	printf("printf    ");
+	printf(format_bypass, 123);
+	ft_printf("ft_printf ");
+	ft_printf(format_bypass, 123);
+	ft_printf("\n");
+	printf("printf 0 flag with octal (width 10):    *%010o*\n", 123);
+	ft_printf("ft_printf 0 flag with octal (width 10): *%010o*\n\n", 123);
+	printf("printf 0 flag with octal (width 3):    *%03o*\n", 123);
+	ft_printf("ft_printf 0 flag with octal (width 3): *%03o*\n\n", 123);
+	printf("printf 0 flag with hexadecimal (width 10):    *%010x*\n", 123);
+	ft_printf("ft_printf 0 flag with hexadecimal (width 10): *%010x*\n\n", 123);
+	printf("printf 0 flag with hexadecimal and hash (width 10):    *%0#10x*\n", 123);
+	ft_printf("ft_printf 0 flag with hexadecimal and hash (width 10): *%0#10x*\n\n", 123);
+	printf("printf 0 flag with upper hexadecimal and hash (width 10):    *%0#10X*\n", 123123);
+	ft_printf("ft_printf 0 flag with upper hexadecimal and hash (width 10): *%0#10X*\n\n", 123123);
 
 	// ft_printf("\n\n***** hash flag testing *****\n\n");
 	// printf("printf hash flag with octal   : *%#o*\n", 7981);
