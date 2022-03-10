@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:31:56 by amann             #+#    #+#             */
-/*   Updated: 2022/03/10 15:40:44 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/10 17:34:44 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,15 @@ static char	*create_str_helper(char *int_str, char *dec_str, size_t signif)
 		return (NULL);
 	ft_memset((void *)zero_str, '0', signif);
 	temp_str = ft_strjoin(".", zero_str);
+	if (!temp_str)
+		return (NULL);
 	free(zero_str);
 	zero_str = ft_strjoin(temp_str, dec_str);
+	if (!zero_str)
+		return (NULL);
 	res_str = ft_strjoin(int_str, zero_str);
+	if (!res_str)
+		return (NULL);
 	free(zero_str);
 	free(temp_str);
 	return (res_str);
@@ -45,14 +51,19 @@ static char	*create_string(long int l_dp, long double r_dp, size_t signif)
 	char	*temp_str;
 
 	int_str = ft_itoa_base(l_dp, BASE_TEN);
+	if (!int_str)
+		return (NULL);
 	dec_str = ft_itoa_base((long int)r_dp, BASE_TEN);
+	if (!dec_str)
+		return (NULL);
 	if (signif)
 		res_str = create_str_helper(int_str, dec_str, signif);
 	else
 	{
 		temp_str = ft_strjoin(".", dec_str);
 		res_str = ft_strjoin(int_str, temp_str);
-		free(temp_str);
+		if (temp_str)
+			free(temp_str);
 	}
 	free(int_str);
 	free(dec_str);

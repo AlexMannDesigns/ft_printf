@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:00:09 by amann             #+#    #+#             */
-/*   Updated: 2022/03/10 15:15:31 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/10 17:45:35 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	set_prec_helper(t_flags *data, va_list lst, int *ctrl_i)
 static void	set_prec(const char *s, t_flags *data, int *ctrl_i, va_list lst)
 {
 	size_t	len;
-	char	*pres_str;
+	char	*prec_str;
 
 	data->width.prec_set = TRUE;
 	if (s[0] == '*')
@@ -45,14 +45,14 @@ static void	set_prec(const char *s, t_flags *data, int *ctrl_i, va_list lst)
 		len = 0;
 		while (ft_isdigit(s[len]))
 			len++;
-		pres_str = ft_strndup(s, len);
-		if (!pres_str)
+		prec_str = ft_strndup(s, len);
+		if (!prec_str)
 		{
 			data->width.prec = 0;
 			return ;
 		}
-		data->width.prec = (size_t)ft_atoi(pres_str);
-		free(pres_str);
+		data->width.prec = (size_t)ft_atoi(prec_str);
+		free(prec_str);
 		if (len > 1)
 			*ctrl_i += ((int) len - 1);
 		else

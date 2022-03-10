@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 16:18:53 by amann             #+#    #+#             */
-/*   Updated: 2022/03/01 16:19:17 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/10 17:26:54 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ char	*add_sign(char *res)
 
 	len = ft_strlen(res) + 1;
 	temp = ft_strnew(len);
+	if (!temp)
+	{
+		free(res);
+		return (NULL);
+	}
 	temp[0] = '-';
 	ft_strcpy(temp + 1, res);
 	free(res);

@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 16:05:46 by amann             #+#    #+#             */
-/*   Updated: 2022/03/10 15:42:25 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/10 17:42:47 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static char	*width_helper(char *res, int len, t_width width, t_flags flag)
 	char	*new;
 
 	new = ft_strnew(width.width);
+	if (!new)
+		return (NULL);
 	if (!flag.left)
 	{
 		ft_memset((void *)new, ' ', (size_t)(width.width - len));

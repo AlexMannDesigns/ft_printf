@@ -105,6 +105,8 @@ char	*conversion_ctrl(const char *s, va_list lst, t_flags *flag, int *p_ret)
 	{
 		free(res);
 		res = ft_strdup("");
+		if (!res)
+			return (NULL);
 	}
 	return (res);
 }

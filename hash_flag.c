@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:43:01 by amann             #+#    #+#             */
-/*   Updated: 2022/02/23 14:18:46 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/10 17:38:34 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static char	*hex_precision(char *res, size_t prec)
 		new = ft_strnew(prec);
 		if (!new)
 		{
-			ft_memdel((void **)&res);
+			free(res);
 			return (NULL);
 		}
 		ft_memset(new, '0', prec - len);
@@ -73,7 +73,7 @@ char	*handle_hash(char *res, t_flags flag)
 		new = ft_strnew(ft_strlen(res) + 1);
 		if (!new)
 		{
-			ft_memdel((void **)&res);
+			free(res);
 			return (NULL);
 		}
 		ft_memset(new, '0', 1);

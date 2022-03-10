@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:14:26 by amann             #+#    #+#             */
-/*   Updated: 2022/03/10 16:46:21 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/10 17:46:27 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ static int	zero_flag_check(t_flags flag)
 	return (FALSE);
 }
 
-static int	plus_flag_check(char *res, t_flags flag)
+static int	plus_flag_check(t_flags flag)
 {
-	if ((flag.conv.d || flag.conv.f) && !flag.conv.neg && res)
+	if ((flag.conv.d || flag.conv.f) && !flag.conv.neg)
 		return (TRUE);
 	return (FALSE);
 }
@@ -50,14 +50,14 @@ char	*flag_control(char *res, t_flags flag)
 		return (NULL);
 	if (((flag.hash && flag.conv.numeric) && res[0] != '0') || flag.conv.p)
 		res = handle_hash(res, flag);
-	if (flag.zero)
+	if (flag.zero && res)
 	{
 		if (zero_flag_check(flag))
 			res = handle_zero(res, flag);
 	}
-	if (flag.plus || flag.space)
+	if ((flag.plus || flag.space) && res)
 	{
-		if (plus_flag_check(res, flag))
+		if (plus_flag_check(flag))
 		{
 			len = (int) ft_strlen(res);
 			res = handle_plus(res, flag, len);
