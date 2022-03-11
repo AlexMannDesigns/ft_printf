@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/09 13:31:56 by amann             #+#    #+#             */
-/*   Updated: 2022/03/10 17:34:44 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/11 18:10:44 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ char	*convert_double(va_list lst, t_flags *flag)
 		res_str = rounding_algo(res_str, 17);
 	else
 		res_str = rounding_algo(res_str, flag->width.prec);
-	chop_chop(&res_str, flag->width.prec);
+	chop_chop(&res_str, flag->width.prec, flag->hash);
 	res_str = neg_float_handler(res_str, flag);
 	return (res_str);
 }

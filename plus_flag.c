@@ -33,13 +33,11 @@ static char	*plus_helper(int len, t_width width, char sign, char *res)
 	return (new);
 }
 
-static int	extend_string_check(t_flags flag, int len)
+static int	extend_string_check(t_flags flag, int len, char *res)
 {
-	if (!flag.zero || (flag.zero && (len < flag.width.width)))
+	if (!flag.zero || (flag.zero && res[0] != '0'))
 		return (TRUE);
-	if ((len > flag.width.width) && flag.conv.d)
-		return (TRUE);
-	if ((len >= flag.width.width) && flag.conv.f)
+	if ((len > flag.width.width) && (flag.conv.d || flag.conv.d))
 		return (TRUE);
 	return (FALSE);
 }
@@ -52,7 +50,7 @@ char	*handle_plus(char *res, t_flags flag, int len)
 	sign = sign_selector(flag);
 	if (flag.width.prec > len)
 		new = plus_helper(len, flag.width, sign, res);
-	else if (extend_string_check(flag, len))
+	else if (extend_string_check(flag, len, res))
 	{
 		new = ft_strnew(len + 1);
 		if (!new)

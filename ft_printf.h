@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:52:18 by amann             #+#    #+#             */
-/*   Updated: 2022/03/10 15:39:40 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/11 18:10:05 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ char		*rounding_algo(char *res, size_t prec);
 void		set_x(va_list lst, t_flags *flag, long double *x);
 
 /* chop_chop.c */
-void		chop_chop(char **res_str, size_t prec);
+void		chop_chop(char **res_str, size_t prec, unsigned int hash);
 
 /* flag_control.c */
 char		*flag_control(char *res, t_flags flag);

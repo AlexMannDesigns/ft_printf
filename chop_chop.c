@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:45:56 by amann             #+#    #+#             */
-/*   Updated: 2022/03/09 17:15:39 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/11 18:13:43 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static char	*chop_chop_helper(char **res_str, size_t t, size_t len)
 	return (new);
 }
 
-void	chop_chop(char **res_str, size_t prec)
+void	chop_chop(char **res_str, size_t prec, unsigned int hash)
 {
 	size_t	i;
 	size_t	total;
@@ -37,7 +37,12 @@ void	chop_chop(char **res_str, size_t prec)
 		i++;
 	total = prec + i + 1;
 	if (prec == 0)
-		new = ft_strndup(*res_str, i);
+	{
+		if (hash)
+			new = ft_strndup(*res_str, i + 1);
+		else
+			new = ft_strndup(*res_str, i);
+	}
 	else if (total < len)
 		new = ft_strndup(*res_str, total);
 	else
