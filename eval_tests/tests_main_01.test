@@ -1,0 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tests_main_01.test                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/01 14:15:03 by saaltone          #+#    #+#             */
+/*   Updated: 2022/03/02 16:38:51 by saaltone         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "tests_header.test"
+
+int	main(void)
+{
+	printf_tester("%s", "yo");
+	printf_tester("%30s%c", "yo", '|');
+	printf_tester("%-30s%c", "yo", '|');
+	printf_tester("%.3s", "yoyo");
+	printf_tester("%30.3s%c",  "yoyo", '|');
+	printf_tester("%-30.3s%c",  "yoyo", '|');
+	printf_tester("%s",  NULL);
+	printf_tester("%-30s%c",  NULL, '|');
+	printf_tester("%30.3s%c",  NULL, '|');
+	return (0);
+}

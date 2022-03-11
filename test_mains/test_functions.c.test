@@ -1,0 +1,37 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_functions.c.test                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/11 19:48:57 by amann             #+#    #+#             */
+/*   Updated: 2022/03/11 19:56:38 by amann            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test_header.test"
+
+FILE	*ob;
+int		stdout_backup;
+
+FILE	*ob_start()
+{
+	//dup is used to copy stdout fd
+	stdout_backup = dup(1);
+	//fopen positions stream to write to temp
+	ob = fopen("temp", "w");
+	if (!ob)
+	{
+		printf("Creating temp file for output failed\n");
+		exit(EXIT_FAILURE);
+	}
+	//dup2 is used to replace stdout with the stream to temp
+	dup2(fileno(ob), 1);
+	return (ob);
+}
+
+char	*ob_end()
+{
+	
+}

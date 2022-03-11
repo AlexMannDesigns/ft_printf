@@ -1,0 +1,129 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tests_main_08.test                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/01 14:15:03 by saaltone          #+#    #+#             */
+/*   Updated: 2022/03/08 13:03:17 by saaltone         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "tests_header.test"
+
+int	main(void)
+{
+	int trick_compiler_overflow = 2;
+
+	printf("\nBig long double (more than unsigned long long):\n");
+	printf_tester("%Lf", 3.1415926535897932383e+25L);
+	
+	printf("\n%sSome overflows:\n", COLOR_RESET);
+	printf_tester("%hho", 277);
+	printf_tester("%ho", 69420);
+	printf_tester("%lo", __LONG_LONG_MAX__);
+	printf_tester("%llo", __LONG_LONG_MAX__ * trick_compiler_overflow);
+	printf_tester("%llo", - __LONG_LONG_MAX__ * trick_compiler_overflow);
+	printf_tester("%llo", -2);
+	printf_tester("%hhX", 277);
+	printf_tester("%hX", 69420);
+	printf_tester("%lX", __LONG_LONG_MAX__);
+	printf_tester("%llX", __LONG_LONG_MAX__ * trick_compiler_overflow);
+	printf_tester("%llX", -2);
+	printf_tester("%llX", 2);
+
+	printf("\nUndefined behaviour and other lenghts (z, j):\n");
+	printf_tester("%+X", 42);
+	printf_tester("%+X", -2);
+	printf_tester("%+X", 0);
+	printf_tester("%jx", 4294967295);
+	printf_tester("%z");
+	printf_tester("%ll#x", 9223372036854775807);
+	printf_tester("%#llx", 9223372036854775807);
+	printf_tester("%05c", '*');
+	printf_tester("%zd", 4294967295);
+	printf_tester("%U", 4294967296);
+	printf_tester("%hU", 4294967296);
+	printf_tester("%zhd", 4294967296);
+	printf_tester("%hzd", 4294967296);
+	printf_tester("%zd", 4294967296);
+	printf_tester("%hd", 4294967296);
+
+	printf("\nWidth, flags in wrong order, multiple precisions:\n");
+	printf_tester("%4.d", 123);
+	printf_tester("%4..8d", 123);
+	printf_tester("%12..6.. d", 123);
+	printf_tester("%##0012..6..#00d", 123);
+	printf_tester("%##00ll #00d", 123);
+	printf_tester("%##0012 #00d", 123);
+	printf_tester("%##00  12..6..d", 123);
+	printf_tester("%#0 12.6.d", 123);
+	printf_tester("% -20.d%c", 123, '|');
+	printf_tester("%# 0-# 10..8..#0 +-0d%c", 123, '|');
+	printf_tester("%# 0-# 20#0 +-0d%c", 123, '|');
+
+	printf("\nWidth and negative precision (This is weird behaviour and definitely undefined):\n");
+	printf_tester("%1.-10f%c", 1.234, '|');
+	printf_tester("%1.--10f%c", 1.234, '|');
+	printf_tester("%1.-5d%c", 1, '|');
+	printf_tester("%6.-5d%c", 1, '|');
+	printf_tester("%6.--5d%c", 1, '|');
+
+	printf("\nEMOJIS:\n");
+	printf_tester("%s", "😇");
+	printf_tester("%20s", "🤩🤗🥳");
+
+	t_double_cast	d;
+	t_ldouble_cast	ld;
+
+	// Double precision bias 1023
+	// Extended double bias 16383
+	printf("\nSpecial floats (nan, inf, zero):\n");
+	printf_tester("1. %Lf", -0.L);
+	d.s_parts.mantissa = 0;
+	d.s_parts.exponent = 2047;
+	d.s_parts.sign = 0;
+	printf_tester("%f", d.f);
+	printf_tester("%5.5f", d.f);
+	d.s_parts.mantissa = 123;
+	printf_tester("%f", d.f);
+	d.s_parts.sign = 1;
+	printf_tester("%f", d.f);
+	d.s_parts.mantissa = 0;
+	printf_tester("%f", d.f);
+	ld.s_parts.exponent = 0;
+	ld.s_parts.int_part = 0;
+	ld.s_parts.mantissa = 0;
+	printf_tester("%6Lf", ld.f);
+	ld.s_parts.mantissa = 123;
+	printf_tester("%Lf", ld.f);
+	ld.s_parts.int_part = 1;
+	printf_tester("%Lf", ld.f);
+	ld.s_parts.mantissa = 123;
+	ld.s_parts.exponent = 32767;
+	ld.s_parts.int_part = 0;
+	printf_tester("%Lf", ld.f);
+	ld.s_parts.mantissa = 0;
+	printf_tester("%4.1Lf", ld.f);
+	ld.s_parts.mantissa = 1;
+	ld.s_parts.mantissa <<= 62;
+	printf_tester("%Lf", ld.f);
+	ld.s_parts.mantissa += 1;
+	printf_tester("%8Lf", ld.f);
+	ld.s_parts.int_part = 1;
+	ld.s_parts.mantissa = 0;
+	printf_tester("%Lf", ld.f);
+	ld.s_parts.mantissa = 1;
+	ld.s_parts.sign = 1;
+	printf_tester("%Lf", ld.f);
+	ld.s_parts.sign = 0;
+	ld.s_parts.mantissa = 1;
+	ld.s_parts.mantissa <<= 62;
+	printf_tester("%Lf", ld.f);
+	ld.s_parts.mantissa += 1;
+	printf_tester("%Lf", ld.f);
+	printf_tester("%.100f", __DBL_MIN__);
+	printf_tester("%Lf", __LDBL_MIN__);
+	return (0);
+}

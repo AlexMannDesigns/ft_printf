@@ -1,0 +1,77 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tests_main_09.test                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/01 14:15:03 by saaltone          #+#    #+#             */
+/*   Updated: 2022/03/04 16:51:06 by saaltone         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "tests_header.test"
+
+int	main(void)
+{
+	int		nbr = 0;
+	int		nbr2 = 0;
+
+	printf("%sPrint nothing but save number of printed characters to nbr %n\n", COLOR_CYAN, &nbr);
+	printf("nbr: %d\n", nbr);
+	ft_printf("%sPrint nothing but save number of printed characters to nbr %n\n", COLOR_PURPLE, &nbr2);
+	ft_printf("nbr: %d\n", nbr2);
+
+	printf("\n%sExponential/Scientific notation %%e%s\n", COLOR_GREEN, COLOR_RESET);
+	printf_tester("%e", 1000000.123);
+
+	printf("\n%sBinary %%b%s\n", COLOR_GREEN, COLOR_RESET);
+	ft_printf("%s%b%c\n", COLOR_PURPLE, 1, '|');
+	ft_printf("%s%b%c\n", COLOR_PURPLE, -1, '|');
+	ft_printf("%s%b%c\n", COLOR_PURPLE, 16777215, '|');
+	ft_printf("%s%b%c\n", COLOR_PURPLE, 44739242, '|');
+
+	printf("\n%sBinary with flags%s\n", COLOR_GREEN, COLOR_RESET);
+	ft_printf("%s%b%c\n", COLOR_PURPLE, 1, '|');
+	ft_printf("%s%-10b%c\n", COLOR_PURPLE, 1, '|');
+	ft_printf("%s%.10b%c\n", COLOR_PURPLE, 1, '|');
+	ft_printf("%s%-#010.5b%c\n", COLOR_PURPLE, 1, '|');
+
+	printf("%s\nStar (*) for width and precision:%s\n", COLOR_GREEN, COLOR_RESET);
+	printf_tester("%c%*15d%c", '|', 3, 12, '|');
+	printf_tester("%c%*15d%c", '|', 0, 12, '|');
+	printf_tester("%c%15*d%c", '|', 12, 123456, '|');
+	printf_tester("%c%*d%c", '|', -12, 123456, '|');
+	printf_tester("%c%*d%c", '|', 12, 123456, '|');
+	printf_tester("%c%*.*d%c", '|', 12, 12, 123456, '|');
+	printf_tester("%c%.*d%c", '|', 12, 123456, '|');
+	printf_tester("%c%20.20*d%c", '|', 12, 123456, '|');
+	printf_tester("%c%-*d%c", '|', -12, 123456, '|');
+	printf_tester("%c%0*d%c", '|', -12, 123456, '|');
+
+	printf("%s\nColors:%s\n", COLOR_GREEN, COLOR_RESET);
+	ft_printf("{red}%s{reset}\n", "yo");
+	ft_printf("{notcolor}%s{reset}\n", "yo");
+	ft_printf("{yoo}}}%s\n", "yo");
+	ft_printf("{bg_black}%s{reset}\n", "yo");
+	ft_printf("{bg_red}%s{reset}\n", "yo");
+	ft_printf("{red}%s{green}%s{yellow}%s{purple}%s{cyan}%s{white}%s{blue}%s{reset}\n", "yo", "yo", "yo", "yo", "yo", "yo", "yo");
+	ft_printf("{bg_red}%s{bg_green}%s{bg_yellow}%s{bg_purple}%s{bg_cyan}%s{bg_white}%s{bg_blue}%s{reset}\n", "yo", "yo", "yo", "yo", "yo", "yo", "yo");
+
+	printf("%s\nAnybase:%s\n", COLOR_GREEN, COLOR_RESET);
+	ft_printf("Number 255 in base  2: %12.2w\n", 255);
+	ft_printf("Number 255 in base 10: %12.10w\n", 255);
+	ft_printf("Number 255 in base 16: %12.16w\n", 255);
+	ft_printf("Number 255 in base 36: %12.36w\n", 255);
+	ft_printf("Number 255 in base 37: %12.37w\n", 255);
+	ft_printf("Number 255 in base 62: %12.62w\n", 255);
+	ft_printf("Number 0 in base 62:   %12.62w\n", 0);
+
+	ft_printf("\nTrillion in base 10: %39.10llw\n", 1000000000000);
+	ft_printf("Trillion in base 62: %39.62llw\n", 1000000000000);
+
+	ft_printf("\n__LONG_LONG_MAX__ in base 10: %30.10llw\n", __LONG_LONG_MAX__);
+	ft_printf("__LONG_LONG_MAX__ in base 62: %30.62llw\n", __LONG_LONG_MAX__);
+
+	return (0);
+}

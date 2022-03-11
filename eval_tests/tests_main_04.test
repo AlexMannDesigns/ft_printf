@@ -1,0 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tests_main_04.test                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/01 14:15:03 by saaltone          #+#    #+#             */
+/*   Updated: 2022/03/02 16:38:58 by saaltone         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "tests_header.test"
+
+int	main(void)
+{
+	void	*something;
+
+	something = "asd";
+
+	printf_tester("%p", something);
+	printf_tester("%p", NULL);
+	printf_tester("%.0p", something);
+	printf_tester("%.5p", something);
+	printf_tester("%.0p", NULL);
+	printf_tester("%.5p", NULL);
+	printf_tester("%15.15p", something);
+	printf_tester("%15.15p", NULL);
+
+	printf_tester("%20p%c", something, '|');
+	printf_tester("%-20p%c", something, '|');
+	printf_tester("%3p%c", something, '|');
+
+	printf_tester("%%%%%%%%%%%%%c", '|');
+	printf_tester("%4%%c", '|');
+	printf_tester("%4.4%%c", '|');
+	printf_tester("%-4.4%%c", '|');
+	printf_tester("%05%%c", '|');
+	printf_tester("%05.10%%c", '|');
+
+	printf_tester("%06s%c", "yoyo", '|');
+	printf_tester("%.06s%c", "yoyo", '|');
+	printf_tester("%.006s%c", "yoyo", '|');
+	return (0);
+}

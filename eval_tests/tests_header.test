@@ -1,0 +1,76 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tests_header.test                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/10 10:37:37 by saaltone          #+#    #+#             */
+/*   Updated: 2022/03/07 21:19:47 by saaltone         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef TESTS_HEADER_H
+# define TESTS_HEADER_H
+# define COLOR_GREEN "\033[0;32m"
+# define COLOR_YELLOW "\033[0;33m"
+# define COLOR_RED "\033[0;31m"
+# define COLOR_PURPLE "\033[0;35m"
+# define COLOR_CYAN "\033[0;36m"
+# define COLOR_BLACK "\033[0;30m"
+# define COLOR_RESET "\033[0m"
+
+# include <stdarg.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <time.h>
+# include <unistd.h>
+# include <string.h>
+# include <fcntl.h>
+
+typedef union u_double_cast {
+	double	f;
+	struct {
+		unsigned long long	mantissa : 52;
+		unsigned long long	exponent : 11;
+		unsigned long long	sign : 1;
+	} s_parts;
+}	t_double_cast;
+
+typedef union u_ldouble_cast {
+	long double	f;
+	struct {
+		unsigned long long	mantissa : 63;
+		unsigned long long	int_part : 1;
+		unsigned long long	exponent : 15;
+		unsigned long long	sign : 1;
+	} s_parts;
+}	t_ldouble_cast;
+
+int		ft_printf(const char *format, ...);
+void	save_input(const char *format, ...);
+void	printf_compare(void);
+FILE	*ob_start(void);
+char	*ob_end(void);
+
+extern FILE	*ob;
+extern int	stdout_backup;
+extern char	*printf_format;
+extern int	return_printf;
+extern int	return_ft_printf;
+extern char	*output_printf;
+extern char	*output_ft_printf;
+
+# define printf_tester(...) \
+	save_input(__VA_ARGS__); \
+	ob_start(); \
+	return_printf = printf(__VA_ARGS__); \
+	output_printf = ob_end(); \
+	ob_start(); \
+	return_ft_printf = ft_printf(__VA_ARGS__); \
+	output_ft_printf = ob_end(); \
+	printf_compare(); \
+	free(printf_format); \
+	free(output_printf); \
+	free(output_ft_printf);
+#endif

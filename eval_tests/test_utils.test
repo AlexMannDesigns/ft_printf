@@ -1,0 +1,90 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_utils.test                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/28 17:52:45 by saaltone          #+#    #+#             */
+/*   Updated: 2022/03/07 21:11:31 by saaltone         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "tests_header.test"
+
+FILE	*ob;
+int		stdout_backup;
+char	*printf_format;
+int		return_printf;
+int		return_ft_printf;
+char	*output_printf;
+char	*output_ft_printf;
+
+FILE	*ob_start()
+{
+	// Duplicate stdout to backup
+	stdout_backup = dup(1);
+	ob = fopen("temp", "w");
+	if(!ob)
+	{
+		printf("%sCreating tempfile for output buffering failed.%s", COLOR_RED, COLOR_RESET);
+		exit(EXIT_FAILURE);
+	}
+	// Replace stdout
+	dup2(fileno(ob), 1);
+	return (ob);
+}
+
+char	*ob_end()
+{
+	FILE	*temp;
+	char	buffer[1000];
+	char	*output;
+
+	fflush(stdout);
+	fclose(ob);
+	// Restore stdout
+	dup2(stdout_backup, 1);
+	close(stdout_backup);
+	temp = fopen("temp", "r");
+	if (!temp)
+	{
+		printf("%sOpening tempfile failed.%s", COLOR_RED, COLOR_RESET);
+		exit(EXIT_FAILURE);
+	}
+	output = fgets(buffer, 1000, temp);
+	fclose(temp);
+	if (!output)
+		return (NULL);
+	return (strdup(output));
+}
+
+void	save_input(const char *format, ...)
+{
+	printf_format = strdup(format);
+}
+
+void	printf_compare()
+{
+	int	cmp;
+
+	if (!output_printf || !output_ft_printf)
+	{
+		if (output_printf != output_ft_printf)
+			cmp = -1;
+		else
+			cmp = 0;
+	}
+	else
+		cmp = strcmp(output_printf, output_ft_printf);
+	printf("%s%23s%s    %s%32s%s %s%2i%s    RESULT ",
+		COLOR_YELLOW, printf_format, COLOR_RESET,
+		COLOR_CYAN, output_printf, COLOR_RESET, COLOR_BLACK, return_printf, COLOR_RESET);
+	if (return_printf == return_ft_printf && !cmp)
+		printf("%sOK%s\n", COLOR_GREEN, COLOR_RESET);
+	else
+		printf("%sKO%s\n", COLOR_RED, COLOR_RESET);
+	printf("%27s%s%32s%s %s%2i%s\n",
+		"", COLOR_PURPLE, output_ft_printf, COLOR_RESET, COLOR_BLACK, return_ft_printf, COLOR_RESET);
+	fflush(stdout);
+}

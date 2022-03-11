@@ -1,0 +1,41 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tests_main_03.test                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: saaltone <saaltone@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/01 14:15:03 by saaltone          #+#    #+#             */
+/*   Updated: 2022/03/02 16:38:56 by saaltone         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "tests_header.test"
+
+int	main(void)
+{
+	printf_tester("%.2f", 99.9999);
+	printf_tester("%.3f", 0.5595f);
+	printf_tester("%.0f", 0.5);
+	printf_tester("%.0f", 2.5);
+	printf_tester("%.0f", 3.5);
+	printf_tester("%.12f", 0.5595f);
+	printf_tester("%.10f", 99999.999999);
+	printf_tester("%.0f", 0.999);
+	printf_tester("%lf", 123456.789123345678);
+	printf_tester("%Lf", (long double) 123456123.789123345678 * (long double) 123456123.789123345678);
+	printf_tester("%o", 999999);
+	printf_tester("%x", 16777215);
+	printf_tester("%X", 16777215);
+	printf_tester("%x", -5);
+	printf_tester("%hhx", -5);
+	printf_tester("%hx", -5);
+	printf_tester("%lx", -5);
+	printf_tester("%llx", -5);
+	printf_tester("%o", -5);
+	printf_tester("%hho", -5);
+	printf_tester("%ho", -5);
+	printf_tester("%lo", -5);
+	printf_tester("%llo", -5);
+	return (0);
+}

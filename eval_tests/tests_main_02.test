@@ -1,0 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tests_main_02.test                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: saaltone <saaltone@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/01 14:15:03 by saaltone          #+#    #+#             */
+/*   Updated: 2022/03/07 21:08:06 by saaltone         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "tests_header.test"
+
+int	main(void)
+{
+	printf_tester("%c", 'a');
+	printf_tester("%3c", 'a');
+	printf_tester("%-3c", 'a');
+	printf_tester("%d", -42);
+	printf_tester("%f", -0.f);
+	printf_tester("%Lf", -0.L);
+	printf_tester("%f", 1.23);
+	printf_tester("%f", 123.456);
+	printf_tester("%hi", (short) -42);
+	printf_tester("%hu", (unsigned short) -42);
+	printf_tester("%i", 123);
+	printf_tester("%u", (unsigned int) 123);
+	printf_tester("%li", ((long) 1) << 18);
+	printf_tester("%ld", -(((long) 1) << 18));
+	printf_tester("%lu", ((unsigned long) 1) << 18);
+	printf_tester("%lli", ((long long) 1) << 42);
+	printf_tester("%lld", ((long long) 1) << 42);
+	printf_tester("%lld", (long long) -123);
+	printf_tester("%llu", ((unsigned long long) 1) << 63);
+	printf_tester("%lld", (long long) -9223372036854775807 - 1);
+	return (0);
+}
