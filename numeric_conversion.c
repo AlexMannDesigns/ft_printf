@@ -6,27 +6,11 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/21 15:26:46 by amann             #+#    #+#             */
-/*   Updated: 2022/03/10 15:41:04 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/11 14:02:28 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-char	*convert_digit(va_list lst, t_flags *flag)
-{
-	if (flag->ll && !flag->z)
-		return (handle_ll(va_arg(lst, long long), flag));
-	else if (flag->l && !flag->z)
-		return (handle_l(va_arg(lst, long), flag));
-	else if (flag->h && !flag->z)
-		return (handle_h(va_arg(lst, int), flag));
-	else if (flag->hh && !flag->z)
-		return (handle_hh(va_arg(lst, int), flag));
-	else if (flag->z && flag->conv.d)
-		return (handle_zd(va_arg(lst, ssize_t), flag));
-	else
-		return (handle_int(va_arg(lst, int), flag));
-}
 
 static char	*convert_us_helper(va_list lst, t_flags *flag, int base)
 {
@@ -68,4 +52,20 @@ char	*convert_unsigned(va_list lst, t_flags *flag)
 		}
 		return (res);
 	}
+}
+
+char	*convert_digit(va_list lst, t_flags *flag)
+{
+	if (flag->ll && !flag->z)
+		return (handle_ll(va_arg(lst, long long), flag));
+	else if (flag->l && !flag->z)
+		return (handle_l(va_arg(lst, long), flag));
+	else if (flag->h && !flag->z)
+		return (handle_h(va_arg(lst, int), flag));
+	else if (flag->hh && !flag->z)
+		return (handle_hh(va_arg(lst, int), flag));
+	else if (flag->z && flag->conv.d)
+		return (handle_zd(va_arg(lst, ssize_t), flag));
+	else
+		return (handle_int(va_arg(lst, int), flag));
 }

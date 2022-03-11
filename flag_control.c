@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 11:14:26 by amann             #+#    #+#             */
-/*   Updated: 2022/03/10 17:46:27 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/11 13:53:47 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*flag_control(char *res, t_flags flag)
 {
 	int	len;
 
-	if (!res)
+	if (!res || flag.conv.n)
 		return (NULL);
 	if (((flag.hash && flag.conv.numeric) && res[0] != '0') || flag.conv.p)
 		res = handle_hash(res, flag);

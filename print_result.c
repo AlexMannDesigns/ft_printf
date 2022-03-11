@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/24 14:37:43 by amann             #+#    #+#             */
-/*   Updated: 2022/03/10 16:51:21 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/11 13:54:24 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	print_result(char *res, t_flags flag, int *printf_ret)
 	t_width	w;
 
 	w = flag.width;
-	if (!res)
+	if (!res || flag.conv.n)
 		return ;
 	new = set_memory(res, w, flag);
 	if (!new)

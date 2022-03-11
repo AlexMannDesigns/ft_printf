@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/07 15:22:16 by amann             #+#    #+#             */
-/*   Updated: 2022/03/09 15:11:49 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/11 13:54:32 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,8 @@ void	ft_printf_ctrl(const char *s, va_list lst, size_t *p_i, int *p_ret)
 		return ;
 	}
 	res = conversion_ctrl(s + i, lst, &flag_data, p_ret);
-	if (!flag_data.conv.n)
-	{
-		res = flag_control(res, flag_data);
-		print_result(res, flag_data, p_ret);
-	}
+	res = flag_control(res, flag_data);
+	print_result(res, flag_data, p_ret);
 	if (res)
 		free(res);
 	*p_i += i + 1;

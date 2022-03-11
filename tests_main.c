@@ -58,6 +58,20 @@ int	main(void)
 	// 	i++;
 	// }
    
+//    char	*compiler_tricker = "printf   : *%-0+5d*\n";
+	// printf(compiler_tricker, 42);
+	// ft_printf("ft_printf: *%-0+5d*\n\n", 42);
+	// ft_printf("ft_printf: *%-+5d*\n\n", 42);
+	// compiler_tricker = "printf   : %####0000 33..1..#00d\\n";
+	// printf(compiler_tricker, 256);
+	// ft_printf("\nft_printf: %####0000 33..1..#00d\\n", 256);
+	// ft_printf("\n");
+	// compiler_tricker = "printf   : *%####0000 33..1d*\n";
+	// printf(compiler_tricker, 256);
+	// ft_printf("ft_printf: *%####0000 33..1d*\n\n", 256);
+	// compiler_tricker = "printf   : %###-#0000 33...12..#0+0d\n";
+	// printf(compiler_tricker, 256);
+	// ft_printf("ft_printf: %###-#0000 33...12..#0+0d\n\n", 256);
 
 	// ft_printf("****** SIZE_T/SSIZE_T TESTING *****\n\n");
 
@@ -90,6 +104,8 @@ int	main(void)
 	// printf (s, LONG_MIN);
 	// ft_printf ("ft_printf LONG_MIN zu: %u\n\n", LONG_MIN);
 
+
+	// ft_printf("***** UNDEFINED *****\n\n");
 	// printf("printf   : %05.10%%c\n", 'a');
 	// ft_printf("ft_printf: %05.10%%c\n\n", 'a');
 
@@ -100,33 +116,11 @@ int	main(void)
 	// ft_printf(compiler_trick, "yoyo", 'a');
 	// ft_printf("\n");
 
-	// char *compiler_trick = "%%   %";
+	// compiler_trick = "%%   %";
 	// printf("printf   : *");
 	// printf(compiler_trick, "test");
 	// printf("*\n");
 
-	// ft_printf("ft_printf: *%#012.6d*\n", 123); 
-	// ft_printf("ft_printf: *");
-	// ft_printf("% ");
-	// ft_printf("*\n");
-	// ft_printf("ft_printf: *");
-	// ft_printf("% h");
-	// ft_printf("*\n");
-	// ft_printf("ft_printf: ");
-	// ft_printf("%Z");
-	// ft_printf("\n");
-	// ft_printf("% hZ");
-	// ft_printf("\n");
-	// ft_printf("% hZ%");
-	// ft_printf("\n");
-	// ft_printf("ft_printf: *");
-	// ft_printf("% Z", "test");
-	// ft_printf("*\n");
-	// ft_printf("% Z%s", "test");
-	// ft_printf("\n");
-	// ft_printf("ft_printf: *");
-	// ft_printf("%%   %");
-	// ft_printf("*\n");
 	// printf("printf    *% -1.0d*\n", 0);
 	// ft_printf("ft_printf *% -1.0d*\n\n", 0);
 	
@@ -188,6 +182,7 @@ int	main(void)
 	// ft_printf("HELLO {reset} WORLD\n\n", 512, 1234567);
 	// ft_printf("HELLO {reset} WORLD{purple}");
 	// ft_printf("\nHELLO {reset} WORLD\n");
+
 	// ft_printf("\n\n***** n flag testing *****\n\n");
 	// int n_flag = 0;
 	// long n_flag_long = 0;
@@ -206,7 +201,7 @@ int	main(void)
 	// printf("this%ln is yet another test, this time with l mod\n", &n_flag_long);
 	// printf("n_flag_long = %ld\n", n_flag_long);
 	// printf("this%lln is yet another test, this time with ll mod\n", &n_flag_llong);
-	// printf("n_flag_long = %lld\n", n_flag_llong);
+	// printf("n_flag_llong = %lld\n", n_flag_llong);
 	// printf("this%hhn is yet another test, this time with char mod\n", &n_flag_char);
 	// printf("n_flag_char = %hhd\n", n_flag_char);
 	// printf("this%hn is yet another test, this time with short mod\n", &n_flag_short);
@@ -225,7 +220,7 @@ int	main(void)
 	// ft_printf("this%ln is yet another test, this time with l mod\n", &n_flag_long);
 	// ft_printf("n_flag_long = %ld\n", n_flag_long);
 	// ft_printf("this%lln is yet another test, this time with ll mod\n", &n_flag_llong);
-	// ft_printf("n_flag_long = %lld\n", n_flag_llong);
+	// ft_printf("n_flag_llong = %lld\n", n_flag_llong);
 	// ft_printf("this%hhn is yet another test, this time with char mod\n", &n_flag_char);
 	// ft_printf("n_flag_char = %hhd\n", n_flag_char);
 	// ft_printf("this%hn is yet another test, this time with short mod\n", &n_flag_short);
@@ -238,8 +233,6 @@ int	main(void)
 	// ft_printf("ft_printf this is%10n a test\n", &n_flag);
 	// printf(comp_trck2, &n_flag);
 	// ft_printf("ft_printf this is%10.10n a test\n", &n_flag);
-
-	// //printf("apostrophe flag test: %'d\n", 1000000);
 
 	// ft_printf("\n\n***** binary (b) flag testing *****\n\n");
 	// ft_printf("binary test (expected output = 1111011): %b\n", 123);
@@ -256,7 +249,7 @@ int	main(void)
 	// printf("printf new neg process test   : %ld\n", -123456123456L);
 	// ft_printf("ft_printf new neg process test: %ld\n\n", -123456123456L);
 	
-	// printf("printf new neg process test: %ld\n", 8234561234567891234);
+	// printf("printf new neg process test   : %ld\n", 8234561234567891234);
 	// ft_printf("ft_printf new neg process test: %ld\n\n", 8234561234567891234);
 	// char *percent = "%";
 	// ft_printf("printf    : *");
@@ -290,10 +283,6 @@ int	main(void)
 
 	// printf("printf:    *%+03d*\n", 123456);
 	// ft_printf("ft_printf: *%+03d*\n\n", 123456);
-
-
-	// printf(fu_compiler1, NULL, NULL);
-	// ft_printf(fu_compiler2, NULL, NULL);
 
 	// printf("printf,    percent with 0 flag and width 5: *%05%*\n");
 	// ft_printf("ft_printf, percent with 0 flag and width 5: *%05%*\n\n");
@@ -375,11 +364,6 @@ int	main(void)
 	// printf("printf, NULL char, width 3   :	*%3c*\n", 0);
 	// ft_printf("ft_printf, NULL char, width 3:	*%3c*\n\n", 0);
 
-	// // printf("printf, NULL char, space flag:	*% c*\n", 0);
-	// // ft_printf("ft_printf,    NULL char, space flag:	*% c*\n\n", 0);
-	// // printf("printf, NULL char, prec 2:	*%.2c*\n", NULL);
-	// // ft_printf("ft_printf,    NULL char, prec 2:	*%.2c*\n\n", NULL);
-
 	// printf("printf    decimal, left aligned, width 5, precision 10: *%-5.10d*\n", 2500);
 	// ft_printf("ft-printf decimal, left aligned, width 5, precision 10: *%5.10d*\n\n", 2500);
 
@@ -448,125 +432,105 @@ int	main(void)
 	// ft_printf("ft_printf 0: ");
 	// ft_printf("	*%#x*\n\n", 0);
 
-	// ft_printf("\n\n***** star (*) flag testing *****\n\n");
+	ft_printf("\n\n***** star (*) flag testing *****\n\n");
 
-	// printf("printf prec 3, neg   : *%.*d*\n", 3, -25);
-	// ft_printf("ft_printf prec 3, neg: *%.*d*\n\n", 3, -25);
+	printf("printf prec 3, neg   : *%.*d*\n", 3, -25);
+	ft_printf("ft_printf prec 3, neg: *%.*d*\n\n", 3, -25);
 
-	// printf("printf width 1   : *%*d*\n", 1, 25);
-	// ft_printf("ft_printf width 1: *%*d*\n\n", 1, 25);
+	printf("printf width 1   : *%*d*\n", 1, 25);
+	ft_printf("ft_printf width 1: *%*d*\n\n", 1, 25);
 
-	// printf("printf width 10   : *%*d*\n", 10, 12345);
-	// ft_printf("ft_printf width 10: *%*d*\n\n", 10, 12345);
+	printf("printf width 10   : *%*d*\n", 10, 12345);
+	ft_printf("ft_printf width 10: *%*d*\n\n", 10, 12345);
 
-	// printf("printf width 20   : *%*d*\n", 20, 78912340);
-	// ft_printf("ft_printf width 20: *%*d*\n\n", 20, 78912340);
+	printf("printf width 20   : *%*d*\n", 20, 78912340);
+	ft_printf("ft_printf width 20: *%*d*\n\n", 20, 78912340);
 
-	// printf("printf preci 8   : *%.*d*\n", 8, 27);
-	// ft_printf("ft_printf preci 8: *%.*d*\n\n", 8, 27);
+	printf("printf preci 8   : *%.*d*\n", 8, 27);
+	ft_printf("ft_printf preci 8: *%.*d*\n\n", 8, 27);
 
-	// printf("printf width 4 preci 8   : *%*.*d*\n", 4, 8, 312);
-	// ft_printf("ft_printf width 4 preci 8: *%*.*d*\n\n", 4, 8, 312);
+	printf("printf width 4 preci 8   : *%*.*d*\n", 4, 8, 312);
+	ft_printf("ft_printf width 4 preci 8: *%*.*d*\n\n", 4, 8, 312);
 
-	// printf("printf width 10 precision 4   : *%*.*d*\n", 10, 4, 15);
-	// ft_printf("ft_printf width 10 precision 4: *%*.*d*\n\n", 10, 4, 15);
+	printf("printf width 10 precision 4   : *%*.*d*\n", 10, 4, 15);
+	ft_printf("ft_printf width 10 precision 4: *%*.*d*\n\n", 10, 4, 15);
 
-	// printf("printf width 20 precision 6   : *%*.*d*\n", 20, 6, 234);
-	// ft_printf("ft_printf width 20 precision 6: *%*.*d*\n\n", 20, 6, 234);
+	printf("printf width 20 precision 6   : *%*.*d*\n", 20, 6, 234);
+	ft_printf("ft_printf width 20 precision 6: *%*.*d*\n\n", 20, 6, 234);
 
-	// printf("printf neg width 1   : *%*d*\n", 1, -27);
-	// ft_printf("ft_printf neg width 1: *%*d*\n\n", 1, -27);
+	printf("printf neg width 1   : *%*d*\n", 1, -27);
+	ft_printf("ft_printf neg width 1: *%*d*\n\n", 1, -27);
 
-	// printf("printf neg width 10   : *%*d*\n", 10, -2785);
-	// ft_printf("ft_printf neg width 10: *%*d*\n\n", 10, -2785);
+	printf("printf neg width 10   : *%*d*\n", 10, -2785);
+	ft_printf("ft_printf neg width 10: *%*d*\n\n", 10, -2785);
 
-	// printf("printf neg width 20   : *%*d*\n", 20, -2905654);
-	// ft_printf("ft_printf neg width 20: *%*d*\n\n", 20, -2905654);
+	printf("printf neg width 20   : *%*d*\n", 20, -2905654);
+	ft_printf("ft_printf neg width 20: *%*d*\n\n", 20, -2905654);
 
-	// printf("printf neg preci 8   : *%.*d*\n", 8, -3476);
-	// ft_printf("ft_printf neg preci 8: *%.*d*\n\n", 8, -3476);
+	printf("printf neg preci 8   : *%.*d*\n", 8, -3476);
+	ft_printf("ft_printf neg preci 8: *%.*d*\n\n", 8, -3476);
 
-	// printf("printf neg width 4 preci 8   : *%*.*d*\n", 4, 8, -271);
-	// ft_printf("ft_printf neg width 4 preci 8: *%*.*d*\n\n", 4, 8, -271);
+	printf("printf neg width 4 preci 8   : *%*.*d*\n", 4, 8, -271);
+	ft_printf("ft_printf neg width 4 preci 8: *%*.*d*\n\n", 4, 8, -271);
 
-	// printf("printf neg width 10 precision 4   : *%*.*d*\n", 10, 4, -3);
-	// ft_printf("ft_printf neg width 10 precision 4: *%*.*d*\n\n", 10, 4, -3);
+	printf("printf neg width 10 precision 4   : *%*.*d*\n", 10, 4, -3);
+	ft_printf("ft_printf neg width 10 precision 4: *%*.*d*\n\n", 10, 4, -3);
 
-	// printf("printf neg width 20 precision 6   : *%*.*d*\n", 20, 6, -34);
-	// ft_printf("ft_printf neg width 20 precision 6: *%*.*d*\n\n", 20, 6, -34);
+	printf("printf neg width 20 precision 6   : *%*.*d*\n", 20, 6, -34);
+	ft_printf("ft_printf neg width 20 precision 6: *%*.*d*\n\n", 20, 6, -34);
 	
-	// printf("printf   : *%.*s*\n", -3, "hello");
-	// ft_printf("ft_printf: *%.*s*\n\n", -3, "hello");
+	printf("printf   : *%.*s*\n", -3, "hello");
+	ft_printf("ft_printf: *%.*s*\n\n", -3, "hello");
 
-	// printf("printf   : *%-*.*s*\n", -7, -3, "yolo");
-	// ft_printf("ft_printf: *%-*.*s*\n\n", -7, -3, "yolo");
+	printf("printf   : *%-*.*s*\n", -7, -3, "yolo");
+	ft_printf("ft_printf: *%-*.*s*\n\n", -7, -3, "yolo");
 
-	// printf("printf   : *%.*d*\n", -1, 0);
-	// ft_printf("ft_printf: *%.*d*\n\n", -1, 0);
+	printf("printf   : *%.*d*\n", -1, 0);
+	ft_printf("ft_printf: *%.*d*\n\n", -1, 0);
 
-	// printf("printf   : *%.*u*\n", -1, 0);
-	// ft_printf("ft_printf: *%.*u*\n\n", -1, 0);
+	printf("printf   : *%.*u*\n", -1, 0);
+	ft_printf("ft_printf: *%.*u*\n\n", -1, 0);
 
-	// printf("printf   : *%.*o*\n", -1, 0);
-	// ft_printf("ft_printf: *%.*o*\n\n", -1, 0);
+	printf("printf   : *%.*o*\n", -1, 0);
+	ft_printf("ft_printf: *%.*o*\n\n", -1, 0);
 
-	// printf("printf   : *%.*x*\n", -1, 0);
-	// ft_printf("ft_printf: *%.*x*\n\n", -1, 0);
+	printf("printf   : *%.*x*\n", -1, 0);
+	ft_printf("ft_printf: *%.*x*\n\n", -1, 0);
 
-	// printf("printf   : *%.*X*\n", -1, 0);
-	// ft_printf("ft_printf: *%.*X*\n\n", -1, 0);
+	printf("printf   : *%.*X*\n", -1, 0);
+	ft_printf("ft_printf: *%.*X*\n\n", -1, 0);
 
-	// printf("printf   : *%.*s*\n", -3, NULL);
-	// ft_printf("ft_printf: *%.*s*\n\n", -3, NULL);
+	printf("printf   : *%.*s*\n", -3, NULL);
+	ft_printf("ft_printf: *%.*s*\n\n", -3, NULL);
 
-	// printf("printf   : *%.*s*\n", -1, NULL);
-	// ft_printf("ft_printf: *%.*s*\n\n", -1, NULL);
+	printf("printf   : *%.*s*\n", -1, NULL);
+	ft_printf("ft_printf: *%.*s*\n\n", -1, NULL);
 
-	// char *pointer_trick = "printf   : *%.*p*\n";
-	// printf(pointer_trick, -3, NULL);
-	// ft_printf("ft_printf: *%.*p*\n\n", -3, NULL);
+	char *pointer_trick = "printf   : *%.*p*\n";
+	printf(pointer_trick, -3, NULL);
+	ft_printf("ft_printf: *%.*p*\n\n", -3, NULL);
 
-	// printf(pointer_trick, -1, NULL);
-	// ft_printf("ft_printf: *%.*p*\n\n", -1, NULL);
+	printf(pointer_trick, -1, NULL);
+	ft_printf("ft_printf: *%.*p*\n\n", -1, NULL);
+
+	pointer_trick = "%20.20*d";
+	printf("printf    *");
+	printf(pointer_trick, 123);
+	printf("*\n");
+	ft_printf("ft_printf *");
+	ft_printf(pointer_trick, 123);
+	ft_printf("*\n");
 
 	// ft_printf("\n\n***** length modifier testing *****\n\n");
-	// int   aRegularInt     = 64;
 	// short aShortInt       = 64;
-	// short anegShortInt    = -64;
 	// char  aReallyShortInt = 64;
 	// int long alongint = 12345678998765432;
 	// int long long alonglongint = 123456;
 	// long double alongdouble = 9999.9999999999999999;
 	// long double alonglongdouble = 9999.9999999999999999999999999999999;
 
-	// printf("printf    long length mod test:    %d %ld %lld %f %Lf %hhd %Lf %hd %ld %hd %s %p %d %ld %lld %lf %Lf %hhd %Lf %hd %ld %hd %s %p  \n", 123, alongint, alonglongint, 0.999, alonglongdouble, aReallyShortInt, alongdouble, aShortInt, alongint, aShortInt, "hello", (void *)&aShortInt, 123, alongint, alonglongint, 0.999, alonglongdouble, aReallyShortInt, alongdouble, aShortInt, alongint, aShortInt, "hello", (void *)&aShortInt);
+	// printf("printf    long length mod test: %d %ld %lld %f %Lf %hhd %Lf %hd %ld %hd %s %p %d %ld %lld %lf %Lf %hhd %Lf %hd %ld %hd %s %p  \n", 123, alongint, alonglongint, 0.999, alonglongdouble, aReallyShortInt, alongdouble, aShortInt, alongint, aShortInt, "hello", (void *)&aShortInt, 123, alongint, alonglongint, 0.999, alonglongdouble, aReallyShortInt, alongdouble, aShortInt, alongint, aShortInt, "hello", (void *)&aShortInt);
 	// ft_printf("ft_printf long length mod test: %d %ld %lld %f %Lf %hhd %Lf %hd %ld %hd %s %p %d %ld %lld %lf %Lf %hhd %Lf %hd %ld %hd %s %p\n\n", 123, alongint, alonglongint, 0.999, alonglongdouble, aReallyShortInt, alongdouble, aShortInt, alongint, aShortInt, "hello", &aShortInt, 123, alongint, alonglongint, 0.999, alonglongdouble, aReallyShortInt, alongdouble, aShortInt, alongint, aShortInt, "hello", &aShortInt);
-
-	// printf( "aRegularInt     = %d\n",   aRegularInt );
-	// printf( "aShortInt       = %hd\n",  aShortInt );
-	// printf( "aReallyShortInt = %hhd\n", aReallyShortInt );
-	// printf( "aReallyShortInt = %c\n",   aReallyShortInt );
-
-	// printf( "printf unsigned int     = %u\n",   23 );
-	// printf( "printf unsigned int     = %u\n",   -23 );
-
-	// ft_printf( "ft_printf unsigned int     = %u\n",   23 );
-	// ft_printf( "ft_printf unsigned int     = %u\n",   -23 );
-
-	// printf( "printf short int     = %hd\n",  aShortInt  );
-	// printf( "printf short int     = %hd\n",   anegShortInt  );
-
-
-	// ft_printf( "ft_printf short int     = %hd\n",  aShortInt  );
-	// ft_printf( "ft_printf short int     = %hd\n",   anegShortInt  );
-
-
-
-
-	// printf( "signed int     = %d\n",   -23 );
-	// printf( "aShortInt       = %hd\n",  aShortInt );
-	// printf( "aReallyShortInt = %hhd\n", aReallyShortInt );
-	// printf( "aReallyShortInt = %c\n",   aReallyShortInt );
 
 	// ft_printf("\n\n***** memory address testing *****\n\n");
 	// int i = 5;
@@ -575,7 +539,7 @@ int	main(void)
 	// int *ptr = &i;
 	// int *ptr3 = &k;
 	// printf("printf address test   : *%p*\n", (void *)ptr);
-	// ft_printf("ft_printf address test: *%p*\n\n", ptr);
+	// ft_printf("ft_printf address test: *%p*\n\n", (void *)ptr);
 
 	// printf("printf    address test, width 3: *%3p*\n", (void *)ptr2);
 	// ft_printf("ft_printf address test, width 3: *%3p*\n\n", ptr2);
@@ -595,7 +559,7 @@ int	main(void)
 	// ft_printf(fu_compiler2, NULL, NULL);
 
 	// ft_printf("\n\n***** BIG number testing *****\n\n");
-	// long long int super_big = 2345678923456781234; //19 digit number is about the limit
+	// long long int super_big = 2345678923456781234; 
 	// long long int not_so_super_big = 234;
 	// long long int neg_super_big = -2345678923456781234;
 	// long long int neg_not_so_super_big = -234;
@@ -628,28 +592,31 @@ int	main(void)
 	// ft_printf("\n\n***** percent sign (%%) testing *****\n\n");
 
 	// printf("this is what a percent sign should look like: *%%*\n");
-	// ft_printf("this is what a percent sign should look like: *%%*\n");
+	// ft_printf("this is what a percent sign should look like: *%%*\n\n");
 
 	// printf("this is what a percent sign should look like, width 5: *%5%*\n");
-	// ft_printf("this is what a percent sign should look like, width 5: *%5%*\n");
+	// ft_printf("this is what a percent sign should look like, width 5: *%5%*\n\n");
 
 	// printf("this is what a percent sign should look like, precision 5: *%.5%*\n");
-	// ft_printf("this is what a percent sign should look like, precision 5: *%.5%*\n");
+	// ft_printf("this is what a percent sign should look like, precision 5: *%.5%*\n\n");
 
 	// printf("this is what a percent sign should look like, space flag: *% %*\n");
-	// ft_printf("this is what a percent sign should look like, space flag: *% %*\n");
+	// ft_printf("this is what a percent sign should look like, space flag: *% %*\n\n");
 	
 	// printf("this is what a percent sign should look like, plus flag: *%+%*\n");
-	// ft_printf("this is what a percent sign should look like, plus flag: *%+%*\n");
+	// ft_printf("this is what a percent sign should look like, plus flag: *%+%*\n\n");
 
 	// printf("this is what a percent sign should look like, minus (left align) flag, width 10: *%-10%*\n");
-	// ft_printf("this is what a percent sign should look like, minus (left align) flag, width 10: *%-10%*\n");
+	// ft_printf("this is what a percent sign should look like, minus (left align) flag, width 10: *%-10%*\n\n");
 
 	// printf("this is what a percent sign should look like next to an int, minus (left align) flag, width 10: *%d%-10%*\n", 123);
-	// ft_printf("this is what a percent sign should look like next to an int, minus (left align) flag, width 10: *%d%-10%*\n", 123);
+	// ft_printf("this is what a percent sign should look like next to an int, minus (left align) flag, width 10: *%d%-10%*\n\n", 123);
 	
 	// printf("this is what a percent sign should look like next to an int, minus (left align) flag, width 10: *%-10d%%*\n", 123);
-	// ft_printf("this is what a percent sign should look like next to an int, minus (left align) flag, width 10: *%-10d%%*\n", 123);
+	// ft_printf("this is what a percent sign should look like next to an int, minus (left align) flag, width 10: *%-10d%%*\n\n", 123);
+	
+	// printf("percent with a 0 flag and width 10 (undefined behaviour): *%010%*\n");
+	// ft_printf("percent with a 0 flag and width 10 (undefined behaviour): *%010%*\n\n");
 
 	// ft_printf("\n\n***** space (' ') flag testing *****\n\n");
 	// printf("printf space test   : *% d*\n", 25);
@@ -695,68 +662,68 @@ int	main(void)
 	// printf("printf plus and 0 test (width 10)   : *%+010d*\n", 789);
 	// ft_printf("ft_printf plus and 0 test (width 10): *%+010d*\n", 789);
 	
-	ft_printf("\n\n***** zero (0) flag testing *****\n\n");
-	char *format_bypass = "0 flag with decimal (width 10), left aligned: *%-010d*\n";
-	printf("printf 0 flag with decimal (no width):    *%0d*\n", 123);
-	ft_printf("ft_printf 0 flag with decimal (no width): *%0d*\n\n", 123);
-	printf("printf 0 flag with decimal (width 10):    *%010d*\n", 123);
-	ft_printf("ft_printf 0 flag with decimal (width 10): *%010d*\n\n", 123);
-	printf("printf    ");
-	printf(format_bypass, 123);
-	ft_printf("ft_printf ");
-	ft_printf(format_bypass, 123);
-	ft_printf("\n");
-	printf("printf 0 flag with octal (width 10):    *%010o*\n", 123);
-	ft_printf("ft_printf 0 flag with octal (width 10): *%010o*\n\n", 123);
-	printf("printf 0 flag with octal (width 3):    *%03o*\n", 123);
-	ft_printf("ft_printf 0 flag with octal (width 3): *%03o*\n\n", 123);
-	printf("printf 0 flag with hexadecimal (width 10):    *%010x*\n", 123);
-	ft_printf("ft_printf 0 flag with hexadecimal (width 10): *%010x*\n\n", 123);
-	printf("printf 0 flag with hexadecimal and hash (width 10):    *%0#10x*\n", 123);
-	ft_printf("ft_printf 0 flag with hexadecimal and hash (width 10): *%0#10x*\n\n", 123);
-	printf("printf 0 flag with upper hexadecimal and hash (width 10):    *%0#10X*\n", 123123);
-	ft_printf("ft_printf 0 flag with upper hexadecimal and hash (width 10): *%0#10X*\n\n", 123123);
+	// ft_printf("\n\n***** zero (0) flag testing *****\n\n");
+	// char *format_bypass = "0 flag with decimal (width 10), left aligned: *%-010d*\n";
+	// printf("printf 0 flag with decimal (no width):    *%0d*\n", 123);
+	// ft_printf("ft_printf 0 flag with decimal (no width): *%0d*\n\n", 123);
+	// printf("printf 0 flag with decimal (width 10):    *%010d*\n", 123);
+	// ft_printf("ft_printf 0 flag with decimal (width 10): *%010d*\n\n", 123);
+	// printf("printf    ");
+	// printf(format_bypass, 123);
+	// ft_printf("ft_printf ");
+	// ft_printf(format_bypass, 123);
+	// ft_printf("\n");
+	// printf("printf 0 flag with octal (width 10):    *%010o*\n", 123);
+	// ft_printf("ft_printf 0 flag with octal (width 10): *%010o*\n\n", 123);
+	// printf("printf 0 flag with octal (width 3):    *%03o*\n", 123);
+	// ft_printf("ft_printf 0 flag with octal (width 3): *%03o*\n\n", 123);
+	// printf("printf 0 flag with hexadecimal (width 10):    *%010x*\n", 123);
+	// ft_printf("ft_printf 0 flag with hexadecimal (width 10): *%010x*\n\n", 123);
+	// printf("printf 0 flag with hexadecimal and hash (width 10):    *%0#10x*\n", 123);
+	// ft_printf("ft_printf 0 flag with hexadecimal and hash (width 10): *%0#10x*\n\n", 123);
+	// printf("printf 0 flag with upper hexadecimal and hash (width 10):    *%0#10X*\n", 123123);
+	// ft_printf("ft_printf 0 flag with upper hexadecimal and hash (width 10): *%0#10X*\n\n", 123123);
 
 	// ft_printf("\n\n***** hash flag testing *****\n\n");
 	// printf("printf hash flag with octal   : *%#o*\n", 7981);
-	// ft_printf("ft_printf hash flag with octal: *%#o*\n", 7981);
+	// ft_printf("ft_printf hash flag with octal: *%#o*\n\n", 7981);
 	// printf("printf hash flag with hex   : *%#x*\n", 432);
-	// ft_printf("ft_printf hash flag with hex: *%#x*\n", 432);
+	// ft_printf("ft_printf hash flag with hex: *%#x*\n\n", 432);
 	// printf("printf hash flag with upper hex   : *%#X*\n", 123123);
-	// ft_printf("ft_printf hash flag with upper hex: *%#X*\n", 123123);
+	// ft_printf("ft_printf hash flag with upper hex: *%#X*\n\n", 123123);
 	// printf("printf hash flag with octal and with 10   : *%#10o*\n", 980);
-	// ft_printf("ft_printf hash flag with octal and with 10: *%#10o*\n", 980);
+	// ft_printf("ft_printf hash flag with octal and with 10: *%#10o*\n\n", 980);
 	// printf("printf hash flag with hex and with 10   : *%#10x*\n", 789123);
-	// ft_printf("ft_printf hash flag with hex and with 10: *%#10x*\n", 789123);
+	// ft_printf("ft_printf hash flag with hex and with 10: *%#10x*\n\n", 789123);
 	// printf("printf hash flag with upper hex and with 10   : *%#10X*\n", 234);
-	// ft_printf("ft_printf hash flag with upper hex and with 10: *%#10X*\n", 234);
+	// ft_printf("ft_printf hash flag with upper hex and with 10: *%#10X*\n\n", 234);
 	// printf("printf hash flag with upper hex and with 10 and precision 6   : *%#10.6X*\n", 234);
-	// ft_printf("ft_printf hash flag with upper hex and with 10 and precision 6: *%#10.6X*\n", 234);
+	// ft_printf("ft_printf hash flag with upper hex and with 10 and precision 6: *%#10.6X*\n\n", 234);
 	// printf("printf hash flag with upper hex and with 10 and precision blank   : *%#10.X*\n", 234);
-	// ft_printf("ft_printf hash flag with upper hex and with 10 and precision blank: *%#10.X*\n", 234);
+	// ft_printf("ft_printf hash flag with upper hex and with 10 and precision blank: *%#10.X*\n\n", 234);
 
 	// printf("printf hash flag with upper hex 0 and with 10 and precision blank, val 0   : *%#10.X*\n", 0);
-	// ft_printf("ft_printf hash flag with upper hex 0 and with 10 and precision blank, val 0: *%#10.X*\n", 0);
+	// ft_printf("ft_printf hash flag with upper hex 0 and with 10 and precision blank, val 0: *%#10.X*\n\n", 0);
 
 
 	// printf("printf no flag with upper hex and with 10 and precision blank   : *%10.X*\n", 234);
-	// ft_printf("ft_printf no flag with upper hex and with 10 and precision blank: *%10.X*\n", 234);
+	// ft_printf("ft_printf no flag with upper hex and with 10 and precision blank: *%10.X*\n\n", 234);
 
 	// printf("printf no flag with upper hex and with 10 and precision 0   : *%10.0X*\n", 234);
-	// ft_printf("ft_printf no flag with upper hex and with 10 and precision 0: *%10.0X*\n", 234);
+	// ft_printf("ft_printf no flag with upper hex and with 10 and precision 0: *%10.0X*\n\n", 234);
 
 	
 	// printf("printf no flag with decimal 0 and with 10 and precision 0   : *%10.0d*\n", 0);
-	// ft_printf("ft_printf no flag with decimal 0 and with 10 and precision 0: *%10.0d*\n", 0);
+	// ft_printf("ft_printf no flag with decimal 0 and with 10 and precision 0: *%10.0d*\n\n", 0);
 	// printf("printf no flag with octal 0 and with 10 and precision 0   : *%10.0o*\n", 0);
-	// ft_printf("ft_printf no flag with octal 0 and with 10 and precision 0: *%10.0o*\n", 0);
+	// ft_printf("ft_printf no flag with octal 0 and with 10 and precision 0: *%10.0o*\n\n", 0);
 	// printf("printf no flag with decimal 0 and no width and precision 0   : *%.0d*\n", 0);
-	// ft_printf("ft_printf no flag with decimal 0 and no width and precision 0: *%.0d*\n", 0);
+	// ft_printf("ft_printf no flag with decimal 0 and no width and precision 0: *%.0d*\n\n", 0);
 
 	// printf("printf with upper hex and with 10 and precision 6   : *%10.6X*\n", 789);
-	// ft_printf("ft_printf with upper hex and with 10 and precision 6: *%10.6X*\n", 789);
+	// ft_printf("ft_printf with upper hex and with 10 and precision 6: *%10.6X*\n\n", 789);
 	// printf("printf hash flag with octal and with 10 and precision 6   : *%#10.6o*\n", 543);
-	// ft_printf("ft_printf hash flag with octal and with 10 and precision 6: *%#10.6o*\n", 543);
+	// ft_printf("ft_printf hash flag with octal and with 10 and precision 6: *%#10.6o*\n\n", 543);
 
 	// ft_printf("\n\n***** precision and width testing *****\n\n");
 
@@ -879,21 +846,16 @@ int	main(void)
 	// ft_printf("ft_printf string test width 20 precision 20: *%20.20s*\n\n", "hello world");
 	// printf("printf string test precision 20   : *%.20s*\n", "hello world");
 	// ft_printf("ft_printf string test precision 20: *%.20s*\n\n", "hello world");
-	// // undefined behaviour printf("printf char test precision 20   : *%.20c*\n", 'c');
-	// // undefined behaviour ft_printf("ft_printf char test precision 20: *%.20c*\n\n", 'c');
+	// compiler_trick = "printf char test precision 20   : *%.20c*\n";
+	// printf(compiler_trick, 'c');
+	// ft_printf("ft_printf char test precision 20: *%.20c*\n\n", 'c');
 	// printf("printf hex test width 20 precision 20   : *%20.20x*\n", 1234);
 	// ft_printf("ft_printf hex test width 20 precision 20: *%20.20x*\n\n", 1234);
 	// printf("printf oct test width 20 precision 20   : *%20.20o*\n", 1234);
 	// ft_printf("ft_printf oct test width 20 precision 20: *%20.20o*\n\n", 1234);
 
-	// // // // int i = ft_printf("hello %10d world", 123);
-	// // // // int j = printf("hello %10d world", 123);
-	// // // // printf("\n\ntesting return values:\nprintf = %d  ft_printf = %d\n", j, i);
-	// // // // ft_printf("%hhLd\n", 5);
 
-	// printf("printf integer 0 test   :	*%d*\n", 0);
-	// ft_printf("ft_printf integer 0 test:	*%d*\n\n", 0);
-	// ft_printf("\noctal conversions:\n\n");
+	// ft_printf("\n***** octal conversions *****\n\n");
 	// ft_printf("ft_printf octal: %o\n", 5);
 	// printf("printf octal   : %o\n", 5);
 	// ft_printf("\n---------\n");
@@ -924,7 +886,7 @@ int	main(void)
 	// ft_printf("ft_printf neg octal: %o\n", -24);
 	// printf("printf neg octal   : %o\n", -24);
 	
-	// ft_printf("\nhexadecimal conversions:\n\n");
+	// ft_printf("\n\n***** hexadecimal conversions *****\n\n");
 	// ft_printf("ft_printf hexadecimal: %x\n", 5);
 	// printf("printf hexadecimal   : %x\n", 5);
 	// ft_printf("\n---------\n");

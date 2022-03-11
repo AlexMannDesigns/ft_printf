@@ -35,11 +35,11 @@ static char	*plus_helper(int len, t_width width, char sign, char *res)
 
 static int	extend_string_check(t_flags flag, int len)
 {
-	if (!flag.zero)
+	if (!flag.zero || (flag.zero && (len < flag.width.width)))
 		return (TRUE);
-	if (len > flag.width.width && flag.conv.d)
+	if ((len > flag.width.width) && flag.conv.d)
 		return (TRUE);
-	if (len >= flag.width.width && flag.conv.f)
+	if ((len >= flag.width.width) && flag.conv.f)
 		return (TRUE);
 	return (FALSE);
 }
