@@ -1,0 +1,20 @@
+#include "test_header.test"
+
+int main(void)
+{
+	printf_tester("% d", 25);
+	printf_tester("% d", -25);
+	printf_tester("% 2d", 25);
+	printf_tester("% 10.6d", 257);
+	printf_tester("% 6.6d", 1234);
+	printf_tester("% 5.6d", 4321);
+	printf_tester("% 010d", 2727);
+	printf_tester("%+d", 25);
+	printf_tester("%+d", -25);
+	printf_tester("%+2d", 27);
+	printf_tester("%+10.6d", 2734);
+	printf_tester("%+6.6d", 123);
+	printf_tester("%+5.6d", 432);
+	printf_tester("%+010d", 789);
+	return (0);
+}

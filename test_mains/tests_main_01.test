@@ -1,0 +1,65 @@
+#include "test_header.test"
+
+int main(void)
+{
+	printf_tester("%d", 42);
+	printf_tester("%u", 42);
+	printf_tester("%i", 42);
+	printf_tester("%d %c", 42, 42);
+	printf_tester("%c %d", 42, 42);
+	printf_tester("%o", 5);
+	printf_tester("%o", 512);
+	printf_tester("%o", 7000003);
+	printf_tester("%o", 916);
+	printf_tester("%o", 24);
+	printf_tester("%o", -5);
+	printf_tester("%o", -512);
+	printf_tester("%o", -7000003);
+	printf_tester("%o", -916);
+	printf_tester("%o", -24);
+	printf_tester("%x", 5);
+	printf_tester("%x", 512);
+	printf_tester("%x", 7000003);
+	printf_tester("%X", 1916);
+	printf_tester("%X", 10527024);
+	printf_tester("%x", -5);
+	printf_tester("%x", -512);
+	printf_tester("%x", -7000003);
+	printf_tester("%X", -1916);
+	printf_tester("%X", -10527024);
+	char *str = "this is a string";
+	char a = 'a';
+	printf_tester("%s %s", "hello world", str);
+	printf_tester("%s %s %d", "hello world", str, 123);
+	printf_tester("%c %s %c %d", 'a', "this is a char:", a, 123);
+	printf_tester("%c", 312);
+	printf_tester("%c", 0);
+	printf_tester("%5c", 0);
+	printf_tester("%s %s", NULL, "and text");
+	printf_tester("%.3s", "hello world");
+	printf_tester("%.3s", NULL);
+	printf_tester("%c", 0);
+	printf_tester("%%%s", "hello world");
+	printf_tester("%%");
+	printf_tester("%5%");
+	printf_tester("%.5%");
+	printf_tester("% %");
+	printf_tester("%+%");
+	printf_tester("%-10%");
+	printf_tester("%d%-10%", 123);	
+	printf_tester("%-10d%%", 123);	
+	printf_tester("%010%");
+
+	int i = 5;
+	char *ptr2 = "hello world";
+	int k = 5;
+	int *ptr = &i;
+	int *ptr3 = &k;
+	printf_tester("%p", (void *)ptr);
+	printf_tester("%3p", (void *)ptr2);
+	printf_tester("%20p", (void *)ptr3);
+	printf_tester("%-20p", (void *)ptr);
+	printf_tester("%p", NULL);
+	printf_tester("%.0p	%.p", NULL, NULL);
+	return (0);
+}

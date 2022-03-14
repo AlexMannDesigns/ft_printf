@@ -1,0 +1,48 @@
+#include "test_header.test"
+
+int	main(void)
+{
+	printf_tester("%.3d", -25);
+	printf_tester("%1d", 25);
+	printf_tester("%10d", 12345);
+	printf_tester("%20d", 78912340);
+	printf_tester("%.8d", 27);
+	printf_tester("%.-1d", 27);
+	printf_tester("%.-12d", 27);
+	printf_tester("%4.8d", 312);
+	printf_tester("%10.4d", 15);
+	printf_tester("%10.04d", 15);
+	printf_tester("%.04d", 15);
+	printf_tester("%20.6d", 234);
+	printf_tester("%1d", -27);
+	printf_tester("%10d", -2785);
+	printf_tester("%20d", -2905654);
+	printf_tester("%.8d", -3476);
+	printf_tester("%4.8d", -271);
+	printf_tester("%10.4d", -3);
+	printf_tester("20.6d", -34);
+	printf_tester("%-.6d", 212);
+	printf_tester("%6.6d", 765);
+	printf_tester("%-7.6d", 341);
+	printf_tester("%-20.6d", 129856);
+	printf_tester("%-.6d", -212);
+	printf_tester("%6.6d", -765);
+	printf_tester("%-7.6d", -341);
+	printf_tester("%-20.6d", -129856);
+	printf_tester("%6.6u", -765);
+	printf_tester("%-7.6u", -341);
+	printf_tester("%-20.6u", -129856);
+	printf_tester("%6.6u", 765);
+	printf_tester("%-7.6u", 341);
+	printf_tester("%-20.6u", 129856);
+	printf_tester("%20s", "hello world");
+	printf_tester("%-20s", "hello world");
+	printf_tester("%20.20s", "hello world");
+	printf_tester("%.20s", "hello world");
+	
+	printf("%.20c", 'c');
+	printf("%20.20x", 1234);
+	printf("%20.20o", 1234);
+	
+	return (0);
+}

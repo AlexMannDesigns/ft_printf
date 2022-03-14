@@ -1,0 +1,31 @@
+#include "test_header.test"
+
+int main(void)
+{
+	short aShortInt       = 64;
+	char  aReallyShortInt = 64;
+	int long alongint = 12345678998765432;
+	int long long alonglongint = 123456;
+	long double alongdouble = 9999.9999999999999999;
+	long double alonglongdouble = 9999.9999999999999999999999999999999;
+		
+	long long int super_big = 2345678923456781234; 
+	long long int not_so_super_big = 234;
+	long long int neg_super_big = -2345678923456781234;
+	long long int neg_not_so_super_big = -234;
+	int nb = 125;
+	int neg_nb = -125567;
+
+	printf_tester("%d %ld %lld %f %Lf %hhd", 123, alongint, alonglongint, 0.999, alonglongdouble, aReallyShortInt);
+	printf_tester("%Lf %hd %ld %hd %s %p", alongdouble, aShortInt, alongint, aShortInt, "hello", (void *)&aShortInt);
+	printf_tester("%d %ld %lld %lf %Lf %c", 123, alongint, alonglongint, 0.999, alonglongdouble, 'a');
+	printf_tester("%lld", super_big);
+	printf_tester("%llx", super_big);
+	printf_tester("%llo", super_big);
+	printf_tester("%lld", not_so_super_big);
+	printf_tester("%d", nb);
+	printf_tester("%d", neg_nb);
+	printf_tester("%lld", neg_super_big);
+	printf_tester("%lld", neg_not_so_super_big);
+	return (0);
+}

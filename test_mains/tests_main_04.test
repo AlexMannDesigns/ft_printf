@@ -1,0 +1,14 @@
+#include "test_header.test"
+
+int main(void)
+{
+	printf_tester("%-010d", 10);
+	printf_tester("%0d", 123);
+	printf_tester("%010d", 123);
+	printf_tester("%010o", 123);
+	printf_tester("%03o", 123);
+	printf_tester("%010x", 123);
+	printf_tester("%0#10x", 123);
+	printf_tester("%0#10X", 123123);
+	return (0);
+}

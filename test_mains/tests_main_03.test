@@ -1,0 +1,23 @@
+#include "test_header.test"
+
+int	main(void)
+{
+	printf_tester("%#o", 7981);
+	printf_tester("%#x", 432);
+	printf_tester("%#X", 123123);
+	printf_tester("%#10o", 980);
+	printf_tester("%#10x", 789123);
+	printf_tester("%#10X", 234);
+	printf_tester("%#10.6X", 234);
+	printf_tester("%#10.X", 234);
+	printf_tester("%#10.X", 0);
+	printf_tester("%10.X", 234);
+	printf_tester("%10.0X", 234);
+	printf_tester("%10.0d", 0);
+	printf_tester("%10.0o", 0);
+	printf_tester("%.0d", 0);
+	printf_tester("%10.6X", 789);
+	printf_tester("%#10.6o", 543);
+
+	return (0);
+}

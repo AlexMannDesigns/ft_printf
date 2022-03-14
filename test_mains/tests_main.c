@@ -84,8 +84,8 @@ int	main(void)
     // printf ("printf size_t zu   : %zu\n", uzs);
 	// ft_printf ("ft_printf size_t zu: %zu\n\n", uzs);
 
-    // printf ("printf size_t zd   : %zd\n", uzs);
-	// ft_printf ("ft_printf size_t zd: %zd\n\n", uzs);
+    // printf ("printf ssize_t zd   : %zd\n", uzs);
+	// ft_printf ("ft_printf ssize_t zd: %zd\n\n", uzs);
 
     // printf ("printf ssize_t zu   : %zu\n", zs);
 	// ft_printf ("ft_printf ssize_t zu: %zu\n\n", zs);
@@ -182,6 +182,21 @@ int	main(void)
 	// ft_printf("HELLO {reset} WORLD\n\n", 512, 1234567);
 	// ft_printf("HELLO {reset} WORLD{purple}");
 	// ft_printf("\nHELLO {reset} WORLD\n");
+	// ft_printf("{");
+	// ft_printf("\n");
+	// ft_printf("{   }");
+	// ft_printf("\n");
+	// ft_printf("{}");
+	// ft_printf("\n");
+	// ft_printf("{BLACK}");
+	// ft_printf("\n");
+
+	// ft_printf("hello {} {} {} hello");
+	// ft_printf("\n");
+	// ft_printf("{reset}");
+	// ft_printf("\n");
+	// ft_printf("hello {} world\n");
+
 
 	// ft_printf("\n\n***** n flag testing *****\n\n");
 	// int n_flag = 0;
@@ -618,49 +633,49 @@ int	main(void)
 	// printf("percent with a 0 flag and width 10 (undefined behaviour): *%010%*\n");
 	// ft_printf("percent with a 0 flag and width 10 (undefined behaviour): *%010%*\n\n");
 
-	ft_printf("\n\n***** space (' ') flag testing *****\n\n");
-	printf("printf space test   : *% d*\n", 25);
-	ft_printf("ft_printf space test: *% d*\n\n", 25);
+	// ft_printf("\n\n***** space (' ') flag testing *****\n\n");
+	// printf("printf space test   : *% d*\n", 25);
+	// ft_printf("ft_printf space test: *% d*\n\n", 25);
 
-	printf("printf space test, neg int   : *% d*\n", -25);
-	ft_printf("ft_printf space test, neg int: *% d*\n\n", -25);
+	// printf("printf space test, neg int   : *% d*\n", -25);
+	// ft_printf("ft_printf space test, neg int: *% d*\n\n", -25);
 
-	printf("printf space test, width 2   : *% 2d*\n", 25);
-	ft_printf("ft_printf space test, width 2: *% 2d*\n\n", 25);
+	// printf("printf space test, width 2   : *% 2d*\n", 25);
+	// ft_printf("ft_printf space test, width 2: *% 2d*\n\n", 25);
 
-	printf("printf space test (width 10, precision 6)   : *% 10.6d*\n", 257);
-	ft_printf("ft_printf space test (width 10, precision 6): *% 10.6d*\n\n", 257);
+	// printf("printf space test (width 10, precision 6)   : *% 10.6d*\n", 257);
+	// ft_printf("ft_printf space test (width 10, precision 6): *% 10.6d*\n\n", 257);
 
-	printf("printf space test (width 6, precision 6)   : *% 6.6d*\n", 1234);
-	ft_printf("ft_printf space test (width 6, precision 6): *% 6.6d*\n\n", 1234);
+	// printf("printf space test (width 6, precision 6)   : *% 6.6d*\n", 1234);
+	// ft_printf("ft_printf space test (width 6, precision 6): *% 6.6d*\n\n", 1234);
 
-	printf("printf space test (width 5, precision 6)   : *% 5.6d*\n", 4321);
-	ft_printf("ft_printf space test (width 5, precision 6): *% 5.6d*\n\n", 4321);
+	// printf("printf space test (width 5, precision 6)   : *% 5.6d*\n", 4321);
+	// ft_printf("ft_printf space test (width 5, precision 6): *% 5.6d*\n\n", 4321);
 
-	printf("printf space and 0 test (width 10)   : *% 010d*\n", 2727);
-	ft_printf("ft_printf space and 0 test (width 10): *% 010d*\n\n", 2727);
+	// printf("printf space and 0 test (width 10)   : *% 010d*\n", 2727);
+	// ft_printf("ft_printf space and 0 test (width 10): *% 010d*\n\n", 2727);
 	
-	ft_printf("\n\n***** plus (+) flag testing *****\n\n");
-	printf("printf plus test   : *%+d*\n", 25);
-	ft_printf("ft_printf plus test: *%+d*\n\n", 25);
+	// ft_printf("\n\n***** plus (+) flag testing *****\n\n");
+	// printf("printf plus test   : *%+d*\n", 25);
+	// ft_printf("ft_printf plus test: *%+d*\n\n", 25);
 
-	printf("printf plus test, neg int   : *%+d*\n", -25);
-	ft_printf("ft_printf plus test, neg int: *%+d*\n\n", -25);
+	// printf("printf plus test, neg int   : *%+d*\n", -25);
+	// ft_printf("ft_printf plus test, neg int: *%+d*\n\n", -25);
 
-	printf("printf plus test, width 2   : *%+2d*\n", 27);
-	ft_printf("ft_printf plus test, width 2: *%+2d*\n\n", 27);
+	// printf("printf plus test, width 2   : *%+2d*\n", 27);
+	// ft_printf("ft_printf plus test, width 2: *%+2d*\n\n", 27);
 
-	printf("printf plus test (width 10, precision 6)   : *%+10.6d*\n", 2734);
-	ft_printf("ft_printf plus test (width 10, precision 6): *%+10.6d*\n\n", 2734);
+	// printf("printf plus test (width 10, precision 6)   : *%+10.6d*\n", 2734);
+	// ft_printf("ft_printf plus test (width 10, precision 6): *%+10.6d*\n\n", 2734);
 
-	printf("printf plus test (width 6, precision 6)   : *%+6.6d*\n", 123);
-	ft_printf("ft_printf plus test (width 6, precision 6): *%+6.6d*\n\n", 123);
+	// printf("printf plus test (width 6, precision 6)   : *%+6.6d*\n", 123);
+	// ft_printf("ft_printf plus test (width 6, precision 6): *%+6.6d*\n\n", 123);
 
-	printf("printf plus test (width 5, precision 6)   : *%+5.6d*\n", 432);
-	ft_printf("ft_printf plus test (width 5, precision 6): *%+5.6d*\n\n", 432);
+	// printf("printf plus test (width 5, precision 6)   : *%+5.6d*\n", 432);
+	// ft_printf("ft_printf plus test (width 5, precision 6): *%+5.6d*\n\n", 432);
 
-	printf("printf plus and 0 test (width 10)   : *%+010d*\n", 789);
-	ft_printf("ft_printf plus and 0 test (width 10): *%+010d*\n", 789);
+	// printf("printf plus and 0 test (width 10)   : *%+010d*\n", 789);
+	// ft_printf("ft_printf plus and 0 test (width 10): *%+010d*\n", 789);
 	
 	// ft_printf("\n\n***** zero (0) flag testing *****\n\n");
 	// char *format_bypass = "0 flag with decimal (width 10), left aligned: *%-010d*\n";
@@ -725,7 +740,11 @@ int	main(void)
 	// printf("printf hash flag with octal and with 10 and precision 6   : *%#10.6o*\n", 543);
 	// ft_printf("ft_printf hash flag with octal and with 10 and precision 6: *%#10.6o*\n\n", 543);
 
+
+
+
 	// ft_printf("\n\n***** precision and width testing *****\n\n");
+
 
 	// printf("printf prec 3, neg   : *%.3d*\n", -25);
 	// ft_printf("ft_printf prec 3, neg: *%.3d*\n\n", -25);

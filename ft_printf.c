@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 12:42:19 by amann             #+#    #+#             */
-/*   Updated: 2022/03/09 15:08:16 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/14 16:53:56 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	ft_printf_loop(const char *s, va_list lst, int *ret)
 		if (s[i] == '%' || s[i] == '{')
 		{
 			ft_printf_putchar(s + count, i - count, ret);
-			if (s[i + 1] == '\0')
+			if (s[i + 1] == '\0' && s[i] == '%')
 				return ;
 			if (s[i] == '{')
 				check_colour(s + i, &i, ret);

@@ -6,7 +6,7 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/04 16:21:09 by amann             #+#    #+#             */
-/*   Updated: 2022/03/09 15:08:37 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/14 16:44:15 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ static void	print_colour_code(size_t i)
 {
 	char	*colour_code_arr[9];
 
-	colour_code_arr[0] = BLACK;
-	colour_code_arr[1] = RED;
+	colour_code_arr[0] = RED;
+	colour_code_arr[1] = BLACK;
 	colour_code_arr[2] = GREEN;
 	colour_code_arr[3] = YELLOW;
 	colour_code_arr[4] = BLUE;
@@ -33,8 +33,8 @@ static size_t	check_colour_loop(const char *s, size_t len)
 	size_t	i;
 	char	*colour_str_arr[9];
 
-	colour_str_arr[0] = "{black}";
-	colour_str_arr[1] = "{red}";
+	colour_str_arr[0] = "{red}";
+	colour_str_arr[1] = "{black}";
 	colour_str_arr[2] = "{green}";
 	colour_str_arr[3] = "{yellow}";
 	colour_str_arr[4] = "{blue}";
@@ -71,7 +71,7 @@ void	check_colour(const char *s, size_t *cursor, int *printf_ret)
 	size_t	len;
 
 	len = set_len(s);
-	if (len < 8)
+	if (len < 8 && len > 3)
 	{
 		i = check_colour_loop(s, len);
 		if (i < 9)

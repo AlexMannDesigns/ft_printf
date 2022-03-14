@@ -1,0 +1,93 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_functions.test                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/11 19:48:57 by amann             #+#    #+#             */
+/*   Updated: 2022/03/14 11:26:15 by amann            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "test_header.test"
+
+FILE	*ob;
+int		stdout_backup;
+char	*printf_format;
+char	*output_printf;
+char	*output_ft_printf;
+int		return_printf;
+int 	return_ft_printf;
+
+FILE	*ob_start()
+{
+	//dup is used to copy stdout fd
+	stdout_backup = dup(1);
+	//fopen positions stream to write to temp
+	ob = fopen("temp", "w");
+	if (!ob)
+	{
+		printf("Creating temp file for output failed\n");
+		exit(EXIT_FAILURE);
+	}
+	//dup2 is used to replace stdout with the stream to temp
+	dup2(fileno(ob), 1);
+	return (ob);
+}
+
+char	*ob_end()
+{
+	FILE	*temp;
+	char	buff[1000];
+	char	*output;
+
+	//write buffered data for the given output.
+	fflush(stdout);
+	//close the ob stream
+	fclose(ob);
+	//reset stdout
+	dup2(stdout_backup, 1);
+	close(stdout_backup);
+	temp = fopen("temp", "r");
+		if (!ob)
+	{
+		printf("opening temp file for output failed\n");
+		exit(EXIT_FAILURE);
+	}
+	output = fgets(buff, 1000, temp);
+	fclose(temp);
+	if (!output)
+		return (NULL);
+	return (strdup(output));	
+}
+
+void	save_input(const char *format, ...)
+{
+	printf_format = strdup(format);
+}
+
+void	printf_compare()
+{
+	int	cmp;
+	
+	if (!output_printf || !output_ft_printf)
+	{
+		if (output_printf != output_ft_printf)
+			cmp = -1;
+		else
+			cmp = 0;
+	}
+	else
+		cmp = strcmp(output_printf, output_ft_printf);
+	printf("%s%23s%s %s%32s%s %s%2i%s RESULT ", 
+		YELLOW, printf_format, RESET, 
+		CYAN, output_printf, RESET,
+		BLACK, return_printf, RESET);
+	if ((return_printf == return_ft_printf) && !cmp)
+		printf("%sOK%s\n", GREEN, RESET);
+	printf("%27s%s%29s%s %s%2i%s\n",
+		"", PURPLE, output_ft_printf, RESET, 
+		BLACK, return_ft_printf, RESET);
+	fflush(stdout);
+}

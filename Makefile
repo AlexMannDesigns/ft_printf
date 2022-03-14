@@ -6,7 +6,7 @@
 #    By: amann <amann@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/21 12:30:40 by amann             #+#    #+#              #
-#    Updated: 2022/03/10 14:36:53 by amann            ###   ########.fr        #
+#    Updated: 2022/03/14 13:36:05 by amann            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,23 +68,11 @@ fclean: clean
 	
 re: fclean all 
 
-#the below is just for testing with my main - creates a binary called test
 test: $(NAME)
 	gcc $(FLAGS) -o test $(TEST) $(NAME) -I $(LIB_DIR) $(ARC)
-
+	
 float: $(NAME)
 	gcc $(FLAGS) -o test $(DOUBLE_TEST) $(NAME) -I $(LIB_DIR) $(ARC)
 
-#compiles the above tests, but will reveal any mem issues
-leak_comp:
-	@@$(MAKE) -C $(LIB_DIR)
-	@@gcc $(FLAGS) $(LEAK_TEST) -c $(SRCS)
-	@@ar rcs $(NAME) $(OBJ)
 
-float_leak: leak_comp
-	gcc $(FLAGS) $(LEAK_TEST) -o test $(DOUBLE_TEST) $(NAME) -I $(LIB_DIR) $(ARC)
-
-test_leak: leak_comp
-	gcc $(FLAGS) $(LEAK_TEST) -o test $(TEST) $(NAME) -I $(LIB_DIR) $(ARC)
-
-.PHONY: all clean fclean re test float ref
+.PHONY: all clean fclean re test float
