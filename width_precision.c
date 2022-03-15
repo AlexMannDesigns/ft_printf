@@ -6,20 +6,20 @@
 /*   By: amann <amann@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/21 15:00:09 by amann             #+#    #+#             */
-/*   Updated: 2022/03/14 13:39:45 by amann            ###   ########.fr       */
+/*   Updated: 2022/03/15 10:56:43 by amann            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	check_neg(t_flags *flag)
+static void	check_neg(t_flags *flag, const char *s)
 {
 	if (flag->width.width < 0)
 	{
 		flag->left = TRUE;
 		flag->width.width = ft_abs(flag->width.width);
 	}
-	if (flag->width.prec < 0)
+	if ((!flag->width.prec && s[0] == '-') || flag->width.prec < 0)
 	{
 		flag->width.prec = 0;
 		flag->width.prec_set = FALSE;
@@ -48,7 +48,7 @@ static void	set_prec(const char *s, t_flags *data, int *ctrl_i, va_list lst)
 		prec_str = ft_strndup(s, len);
 		if (!prec_str)
 		{
-			data->width.prec = 0;
+			check_neg(data, s);
 			return ;
 		}
 		data->width.prec = ft_atoi(prec_str);
@@ -58,7 +58,7 @@ static void	set_prec(const char *s, t_flags *data, int *ctrl_i, va_list lst)
 		else
 			*ctrl_i += 1;
 	}
-	check_neg(data);
+	check_neg(data, s);
 }
 
 void	set_width_prec(const char *s, t_flags *data, int *ctrl_i, va_list lst)
@@ -85,5 +85,5 @@ void	set_width_prec(const char *s, t_flags *data, int *ctrl_i, va_list lst)
 		free(width_str);
 		*ctrl_i += (int) len - 1;
 	}
-	check_neg(data);
+	check_neg(data, s);
 }

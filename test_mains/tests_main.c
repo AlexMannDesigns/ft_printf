@@ -755,6 +755,8 @@ int	main(void)
 	// printf("printf width 10   : *%10d*\n", 12345);
 	// ft_printf("ft_printf width 10: *%10d*\n\n", 12345);
 
+	printf("{%.*s}\n", -5, "42");
+	ft_printf("{%.*s}\n", -5, "42");
 
 	// printf("printf width 20   : *%20d*\n", 78912340);
 	// ft_printf("ft_printf width 20: *%20d*\n\n", 78912340);
